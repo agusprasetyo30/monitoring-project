@@ -130,11 +130,6 @@
         }
 
 
-
-
-
-
-
         .ribbon-finish span{
 
             background : #8bc34a;
@@ -406,10 +401,13 @@
 						                </a>
 						            </li>
 
+                                    <li class="<?php echo $this->uri->segment(5) == "account" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('account') ?>">
+						                    <i class="demo-pli-male"></i>
+						                    <span class="menu-title">Akun Pengguna </span>
+						                </a>
+						            </li>
 
-                                    
-                                
-                                
                                 </ul>
 
 
