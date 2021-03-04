@@ -44,24 +44,19 @@
                             <h4>Data Pegawai...</h4>
                                 <p>Lengkapi data form dibawah ini</p>
 					            <!--===================================================-->
-					            <form class="form-horizontal">
+					            <form class="form-horizontal" action="<?php echo base_url('account/prosesTambahAkun') ?>" method="POST">
 					                <div class="panel-body">
-                                    <div class="form-group">
-					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Nomor Identitas</label>
-					                        <div class="col-sm-6">
-					                            <input type="text" placeholder="Masukkan NIK..."  class="form-control" id="demo-is-inputnormal">
-					                        </div>
-					                    </div>
+                                    	
 					                    <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Nama Lengkap</label>
 					                        <div class="col-sm-6">
-					                            <input type="text" placeholder="Masukkan nama lengkap..."  class="form-control" id="demo-is-inputnormal">
+					                            <input name="nama" type="text" placeholder="Masukkan nama lengkap..."  class="form-control" id="demo-is-inputnormal">
 					                        </div>
 					                    </div>
 					                    <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Alamat</label>
 					                        <div class="col-sm-8">
-                                            <textarea placeholder="Masukkan alamat..." rows="4" class="form-control"></textarea>
+                                            <textarea placeholder="Masukkan alamat..." rows="4" class="form-control" name="alamat"></textarea>
 					                        </div>
 					                    </div>
 
@@ -70,11 +65,11 @@
 					                    <div class="col-md-6">
 					                        <div class="radio">
 					                            <!-- Inline radio buttons -->
-					                            <input id="demo-inline-form-radio" class="magic-radio" type="radio" name="gender" value="L">
-					                            <label for="demo-inline-form-radio">Laki-laki</label>
+					                            <input id="gender-1" class="magic-radio" type="radio" name="gender" value="L">
+					                            <label for="gender-1">Laki-laki</label>
 					
-					                            <input id="demo-inline-form-radio-2" class="magic-radio" type="radio" name="gender" value="P">
-					                            <label for="demo-inline-form-radio-2">Perempuan</label>					
+					                            <input id="gender-2" class="magic-radio" type="radio" name="gender" value="P">
+					                            <label for="gender-2">Perempuan</label>					
 					                        </div>
                                             <small class="text-muted">Pilih jenis kelamin</small>
 											</div>
@@ -83,19 +78,19 @@
 					                    <div class="form-group">
 					                        <label class="col-sm-3 control-label">Nomor Telepon</label>
 					                        <div class="col-sm-3">
-					                            <input type="text" placeholder="081..."  class="form-control">
+					                            <input name="notelp" type="text" placeholder="081..."  class="form-control">
 					                        </div>
 					                    </div>
                                         <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Email</label>
 					                        <div class="col-sm-6">
-					                            <input type="text" placeholder="Email..."  class="form-control" id="demo-is-inputnormal">
+					                            <input name="email" type="text" placeholder="Email..."  class="form-control" id="demo-is-inputnormal">
 					                        </div>
 					                    </div>
                                         <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Tanggal Lahir</label>
 					                        <div class="col-sm-6">
-					                            <input type="text" class="form-control" id="demo-is-inputnormal">
+					                            <input name="tanggallahir" type="date" class="form-control" id="demo-is-inputnormal">
 					                        </div>
 					                    </div>
 										<div class="form-group pad-ver">
@@ -103,11 +98,11 @@
 					                    <div class="col-md-6">
 					                        <div class="radio">
 					                            <!-- Inline radio buttons -->
-					                            <input id="demo-inline-form-radio" class="magic-radio" type="radio" name="wilayah" value="Kota" >
-					                            <label for="demo-inline-form-radio">Kota</label>
+					                            <input id="wilayah-1" class="magic-radio" type="radio" name="wilayah" value="Kota" >
+					                            <label for="wilayah-1">Kota</label>
 					
-					                            <input id="demo-inline-form-radio-2" class="magic-radio" type="radio" name="wilayah" value="Kab">
-					                            <label for="demo-inline-form-radio-2">Kabupaten</label>					
+					                            <input id="wilayah-2" class="magic-radio" type="radio" name="wilayah" value="Kab">
+					                            <label for="wilayah-2">Kabupaten</label>					
 					                        </div>
                                             <small class="text-muted">Pilih wilayah penugasan</small>
 											</div>
@@ -126,36 +121,19 @@
                                 <p>Tambahkan informasi data login dibawah ini</p>
 					            <!--===================================================-->
 					            <form class="form-horizontal">
-                                    <div class="form-group pad-ver">
-					                    <label class="col-md-3 control-label text-semibold">Jabatan</label>
-					                    <div class="col-md-6">
-					                        <div class="radio">
-					
-					                            <!-- Inline radio buttons -->
-					                            <input id="demo-inline-form-radio" class="magic-radio" type="radio" name="jabatan" value="Pegawai">
-					                            <label for="demo-inline-form-radio">Pegawai Kantor</label>
-					
-					                            <input id="demo-inline-form-radio-2" class="magic-radio" type="radio" name="jabatan" value="Petugas">
-					                            <label for="demo-inline-form-radio-2">Petugas Lapangan</label>					
-					
-					                        </div>
-                                            <small class="text-muted">Pilih jabatan</small>
-					                    </div>
-					                </div>
-                                    <br>
                                     <br>
                                     <div class="form-group">
-					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Username</label>
-					                        <div class="col-sm-6">
-					                            <input type="text" placeholder="Masukkan username..."  class="form-control" id="demo-is-inputnormal">
-					                        </div>
+					                    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Username</label>
+					                    <div class="col-sm-6">
+					                    	<input name="username" type="text" placeholder="Masukkan username..."  class="form-control" id="demo-is-inputnormal">
+					                    </div>
 					                </div>
                                     <br>
                                     <br>
                                     <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Password</label>
 					                        <div class="col-sm-6">
-					                            <input type="text" placeholder="Masukkan password..."  class="form-control" id="demo-is-inputnormal">
+					                            <input name="password" type="password" placeholder="Masukkan password..."  class="form-control" id="demo-is-inputnormal">
 					                        </div>
 					                </div>
                                     </div>

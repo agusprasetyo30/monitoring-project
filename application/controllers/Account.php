@@ -7,16 +7,23 @@ class Account extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+
+        // load model
+        $this->load->model('M_account');
     
     }
     
 
-    public function index()
-    {
+    function index(){
+
+        $dataOfficer = $this->M_account->getDataOfficer();
         $data = array(
 
             'folder'    => "account",
-            'view'      => "V_account"
+            'view'      => "V_account",
+
+            // data
+            'dataOfficer'   => $dataOfficer
         );
         $this->load->view('template/template_backend', $data);
     }
@@ -28,6 +35,12 @@ class Account extends CI_Controller {
             'view'      => "V_add_account"
         );
         $this->load->view('template/template_backend', $data);
+    }
+
+
+    function prosesTambahAkun() {
+
+        $this->M_account->insertDataOfficer();
     }
 
     public function editAkun(){
