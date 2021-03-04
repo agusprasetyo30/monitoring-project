@@ -52,7 +52,7 @@
                 'telp'      => $this->input->post('notelp'),
                 'jenis_kelamin' => $this->input->post('gender'),
                 'tanggal_lahir' => $this->input->post('tanggallahir'),
-                'tempat_lahir'  => "",
+                'tempat_lahir'  => $this->input->post('tempatlahir'),
                 'foto'      => "",
                 'jabatan'   => "kantor",
                 'wilayah_penugasan' => $this->input->post('wilayah'),

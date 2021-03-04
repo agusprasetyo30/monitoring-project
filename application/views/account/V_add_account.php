@@ -93,6 +93,12 @@
 					                            <input name="tanggallahir" type="date" class="form-control" id="demo-is-inputnormal">
 					                        </div>
 					                    </div>
+										<div class="form-group">
+					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Tempat Lahir</label>
+					                        <div class="col-sm-6">
+					                            <input name="tempatlahir" type="text" placeholder="Masukkan Tempat Lahir..."  class="form-control" id="demo-is-inputnormal">
+					                        </div>
+					                    </div>
 										<div class="form-group pad-ver">
 					                    <label class="col-md-3 control-label text-semibold">Wilayah Penugasan</label>
 					                    <div class="col-md-6">
@@ -144,8 +150,8 @@
 						<div class="panel-footer">
 							<div class="row">
 					                <div class="col-md-10 text-right">
-					                    <button class="btn btn-mint" type="submit">Simpan</button>
-					                    <button class="btn btn-warning" type="reset">Reset</button>
+										<a href="<?php echo base_url('account') ?>" class="btn btn-default btn-hover-primary btn-labeled" style="color: #294f75; border: 1px solid #294f75 !important"><i class="btn-label ti-exchange-vertical"></i> Reset</a>
+                    					<button class="btn btn-primary btn-labeled btn-submit"><i class="btn-label ti-check"></i> Tambahkan dan Simpan</button>
 					                </div>
 					            </div>
 					    </div>

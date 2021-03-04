@@ -67,12 +67,6 @@
 												<p class="text-sm">Pegawai Kantor</p>
 												<p class="text-sm">Hamba Allah yang masih berusaha untuk istiqomah dengan hal-hal yang baik, aamiin.. </p>
 											</a>
-											<div class="pad-top btn-groups">
-												<a href="#" class="btn btn-icon demo-pli-facebook icon-lg add-tooltip" data-original-title="Facebook" data-container="body"></a>
-												<a href="#" class="btn btn-icon demo-pli-twitter icon-lg add-tooltip" data-original-title="Twitter" data-container="body"></a>
-												<a href="#" class="btn btn-icon demo-pli-google-plus icon-lg add-tooltip" data-original-title="Google+" data-container="body"></a>
-												<a href="#" class="btn btn-icon demo-pli-instagram icon-lg add-tooltip" data-original-title="Instagram" data-container="body"></a>
-											</div>
 										</div>
 									</div>
 								</div>
