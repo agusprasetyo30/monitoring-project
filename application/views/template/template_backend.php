@@ -407,6 +407,20 @@
 						                    <span class="menu-title">Akun Pengguna </span>
 						                </a>
 						            </li>
+                                    <li class="<?php echo $this->uri->segment(2) == "jenis_pelanggan" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('jenis_pelanggan') ?>">
+						                    <i class="demo-pli-male"></i>
+						                    <span class="menu-title">Master jenis Pelanggan </span>
+						                </a>
+						            </li>
+
+                                    <li class="<?php echo $this->uri->segment(3) == "domisili" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('domisili') ?>">
+						                    <i class="demo-pli-office"></i>
+						                    <span class="menu-title">Master Domisili</span>
+						                </a>
+						            </li>
+
 
                                 </ul>
 
