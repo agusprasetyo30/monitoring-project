@@ -14,71 +14,50 @@
                 <!--===================================================-->
                 <div id="page-content">
 
-                <!DOCTYPE html>
-<html>
-<head>
-    <!-- Load file CSS Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Load file library jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <table class="table table-bordered">
+                    <button type="button" id="btn-tambah" data-toggle="modal" data-target="#form-modal" class="btn btn-success pull-left">
+                        <span class="glyphicon glyphicon-plus"></span>  Tambah Data
+                    </button>
+                    <br><br><br>
 
-    <!-- Load file library Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                    <!-- <a href="<?php echo base_url()?>mahasiswa/tambah" class="btn btn-primary demo-pli-plus" role="button">Tambah Data</a> -->
+                        <thead>
+                            <tr>
+                                <th> No</th> <th>Nama Jenis</th> <th>Dibuat tanggal</th> <th colspan='3'>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no=1;
 
-    <!-- Load file library JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class='container'>
-    
-        <table class="table table-bordered">
-        <button type="button" id="btn-tambah" data-toggle="modal" data-target="#form-modal" class="btn btn-success pull-left">
-            <span class="glyphicon glyphicon-plus"></span>  Tambah Data
-        </button>
-        <br><br><br>
+                        
+                            ?>
+                            <tr>
+                                <td><?php echo $no;?></td>
+                                <td><?php echo "Piutang";?></td>
+                                <td><?php echo "28/02/2021 22:50";?></td>
 
-        <!-- <a href="<?php echo base_url()?>mahasiswa/tambah" class="btn btn-primary demo-pli-plus" role="button">Tambah Data</a> -->
-            <thead>
-                <tr>
-                    <th> No</th> <th>Nama Jenis</th> <th>Dibuat tanggal</th> <th colspan='3'>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no=1;
+                                <td>
 
-               
-                ?>
-                <tr>
-                    <td><?php echo $no;?></td>
-                    <td><?php echo "Piutang";?></td>
-                    <td><?php echo "28/02/2021 22:50";?></td>
+                                <a href="#" class="btn btn-warning btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span> Update
+                                </a>
 
-                    <td>
+                                <a href="#" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span> Delete 
+                                </a>
 
-                    <a href="#" class="btn btn-warning btn-lg">
-                    <span class="glyphicon glyphicon-pencil"></span> Update
-                    </a>
-
-                    <a href="#" class="btn btn-danger btn-lg">
-                    <span class="glyphicon glyphicon-trash"></span> Delete 
-                    </a>
-
-                    </td>
-          
-                    <!-- <td> <a href="#" class="btn btn-warning" role="button">Update</a> <a href="#" class="btn btn-danger" role="button">Delete</a></td> -->
-                   
-                </tr>
-                <?php
-                        $no++;
-                
-                 ?>
-            </tbody>
-        </table>
-        
-    </div>
-</body>
-</html>
+                                </td>
+                    
+                                <!-- <td> <a href="#" class="btn btn-warning" role="button">Update</a> <a href="#" class="btn btn-danger" role="button">Delete</a></td> -->
+                            
+                            </tr>
+                            <?php
+                                    $no++;
+                            
+                            ?>
+                        </tbody>
+                    </table>
 
                 </div>
             </div>

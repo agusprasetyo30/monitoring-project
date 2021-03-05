@@ -6,7 +6,26 @@
                             <!--Page Title-->
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                             <div id="page-title">
-                                <h1 class="page-header text-overflow">Menu Halaman Data Pegawai Kantor </h1>
+								<?php
+								
+									$ambilJabatanFromURL = $this->input->get('jabatan');
+									$text = "";
+									$link = "";
+
+									
+									
+									if ( $ambilJabatanFromURL == "pegawai_kantor" ) {
+
+										$text = "Pegawai Kantor";
+										$link = base_url('account/viewPegawaiKantor');
+
+									} else if ( $ambilJabatanFromURL == "petugas_lapangan" ) {
+
+										$text = "Petugas Lapangan";
+										$link = base_url('account/viewPetugasLapangan');
+									}
+								?>
+                                <h1 class="page-header text-overflow">Tambah <?php echo $text ?> </h1>
                             </div>
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                             <!--End page title-->
@@ -16,7 +35,8 @@
 							<ol class="breadcrumb">
 								<li><a href="<?php echo base_url('account') ?>"><i class="demo-pli-home"></i></a></li>
 								<li><a href="<?php echo base_url('account') ?>">Menu Akun</a></li>
-								<li><a href="<?php echo base_url('account') ?>">Data...</a></li>
+								<li><a href="<?php echo $link ?>">Menu <?php echo $text ?></a></li>
+								<li class="active">Tambah <?php echo $text ?></li>
 							</ol>
 							<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 							<!--End breadcrumb-->
@@ -30,8 +50,8 @@
                             <!---------------------------------->
                             <div class="row pad-btm">
                                 <div class="col-sm-6 toolbar-left">
-                                    <a href="<?php echo base_url('account') ?>" id="demo-btn-addrow" class="btn btn-primary btn-labeled"><i class="btn-label ti-arrow-left"></i> Kembali ke menu utama</a>
-                                    <input type="hidden" name="type" value="<?php echo $this->input->get('v') ?>" />
+                                    <a href="<?php echo $link ?>" id="demo-btn-addrow" class="btn btn-primary btn-labeled"><i class="btn-label ti-arrow-left"></i> Kembali ke menu utama</a>
+                                    
                                 </div>
                             </div>
                             <!---------------------------------->
@@ -41,7 +61,7 @@
                         
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-body" style="border : 1px solid #e0e0e0">
-                            <h4>Data Pegawai...</h4>
+                            <h4>Data <?php echo $text ?></h4>
                                 <p>Lengkapi data form dibawah ini</p>
 					            <!--===================================================-->
 					            <form class="form-horizontal" action="<?php echo base_url('account/prosesTambahAkun') ?>" method="POST">
@@ -50,13 +70,14 @@
 					                    <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Nama Lengkap</label>
 					                        <div class="col-sm-6">
-					                            <input name="nama" type="text" placeholder="Masukkan nama lengkap..."  class="form-control" id="demo-is-inputnormal">
+					                            <input name="nama" type="text" placeholder="Masukkan nama lengkap..." required="" class="form-control" id="demo-is-inputnormal">
+												<input type="hidden" name="jabatan" value="<?php echo $ambilJabatanFromURL ?>">
 					                        </div>
 					                    </div>
 					                    <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Alamat</label>
 					                        <div class="col-sm-8">
-                                            <textarea placeholder="Masukkan alamat..." rows="4" class="form-control" name="alamat"></textarea>
+                                            <textarea placeholder="Masukkan alamat..." rows="4" class="form-control" name="alamat" required=""></textarea>
 					                        </div>
 					                    </div>
 
@@ -65,10 +86,10 @@
 					                    <div class="col-md-6">
 					                        <div class="radio">
 					                            <!-- Inline radio buttons -->
-					                            <input id="gender-1" class="magic-radio" type="radio" name="gender" value="L">
+					                            <input id="gender-1" class="magic-radio" type="radio" name="gender" value="L" required="">
 					                            <label for="gender-1">Laki-laki</label>
 					
-					                            <input id="gender-2" class="magic-radio" type="radio" name="gender" value="P">
+					                            <input id="gender-2" class="magic-radio" type="radio" name="gender" value="P" required="">
 					                            <label for="gender-2">Perempuan</label>					
 					                        </div>
                                             <small class="text-muted">Pilih jenis kelamin</small>
@@ -78,25 +99,25 @@
 					                    <div class="form-group">
 					                        <label class="col-sm-3 control-label">Nomor Telepon</label>
 					                        <div class="col-sm-3">
-					                            <input name="notelp" type="text" placeholder="081..."  class="form-control">
+					                            <input name="notelp" type="number" maxlength="12" placeholder="081..."  class="form-control" required="">
 					                        </div>
 					                    </div>
                                         <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Email</label>
 					                        <div class="col-sm-6">
-					                            <input name="email" type="text" placeholder="Email..."  class="form-control" id="demo-is-inputnormal">
+					                            <input name="email" type="email" placeholder="Email..." required="" class="form-control" id="demo-is-inputnormal">
 					                        </div>
 					                    </div>
                                         <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Tanggal Lahir</label>
 					                        <div class="col-sm-6">
-					                            <input name="tanggallahir" type="date" class="form-control" id="demo-is-inputnormal">
+					                            <input name="tanggallahir" type="date" class="form-control" id="demo-is-inputnormal" required="">
 					                        </div>
 					                    </div>
 										<div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Tempat Lahir</label>
 					                        <div class="col-sm-6">
-					                            <input name="tempatlahir" type="text" placeholder="Masukkan Tempat Lahir..."  class="form-control" id="demo-is-inputnormal">
+					                            <input name="tempatlahir" type="text" placeholder="Masukkan Tempat Lahir..."  class="form-control" id="demo-is-inputnormal" required="">
 					                        </div>
 					                    </div>
 										<div class="form-group pad-ver">
@@ -104,17 +125,22 @@
 					                    <div class="col-md-6">
 					                        <div class="radio">
 					                            <!-- Inline radio buttons -->
-					                            <input id="wilayah-1" class="magic-radio" type="radio" name="wilayah" value="Kota" >
+					                            <input id="wilayah-1" class="magic-radio" type="radio" name="wilayah" value="Kota" required="" >
 					                            <label for="wilayah-1">Kota</label>
 					
-					                            <input id="wilayah-2" class="magic-radio" type="radio" name="wilayah" value="Kab">
+					                            <input id="wilayah-2" class="magic-radio" type="radio" name="wilayah" value="Kab" required="">
 					                            <label for="wilayah-2">Kabupaten</label>					
 					                        </div>
                                             <small class="text-muted">Pilih wilayah penugasan</small>
 											</div>
 										</div>
-
-                                    </div>
+										<div class="form-group">
+					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Foto Pribadi</label>
+					                        <div class="col-sm-6">
+					                            <input name="foto" type="file" placeholder="Masukkan Foto.."  class="form-control" id="demo-is-inputnormal" required="">
+					                        </div>
+					                    </div>
+                                   </div>
 					            </div>
                             </div>  
 					    </div>
@@ -131,7 +157,7 @@
                                     <div class="form-group">
 					                    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Username</label>
 					                    <div class="col-sm-6">
-					                    	<input name="username" type="text" placeholder="Masukkan username..."  class="form-control" id="demo-is-inputnormal">
+					                    	<input name="username" type="text" placeholder="Masukkan username..."  class="form-control" id="demo-is-inputnormal" required="">
 					                    </div>
 					                </div>
                                     <br>
@@ -139,7 +165,7 @@
                                     <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Password</label>
 					                        <div class="col-sm-6">
-					                            <input name="password" type="password" placeholder="Masukkan password..."  class="form-control" id="demo-is-inputnormal">
+					                            <input name="password" type="password" placeholder="Masukkan password..."  class="form-control" id="demo-is-inputnormal" required="">
 					                        </div>
 					                </div>
                                     </div>
