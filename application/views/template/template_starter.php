@@ -96,6 +96,7 @@
     <!--=================================================-->
     <script>
         var serverside = "<?php echo base_url() ?>";
+        
     </script>
     <script src="<?php echo base_url('assets/js/modules/login.js') ?>"></script>
 

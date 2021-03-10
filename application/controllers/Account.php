@@ -175,6 +175,16 @@ class Account extends CI_Controller {
 
         // echo "Oke";
     }
+
+    function detailAkun(){
+        $data = array(
+
+            'folder'    => "account",
+            'view'      => "V_detail_account",
+
+        );
+        $this->load->view('template/template_backend', $data);
+    }
 }
 
 /* End of file Account.php */

@@ -507,8 +507,8 @@
 
             $('#demo-tp-textinput').timepicker({ zindex: 9999999});
             $('#demo-dp-txtinput input').datepicker();
+
         });
-    </script>
 
     <?php
     
@@ -567,7 +567,7 @@
     <?php if ( $this->session->flashdata('msg-greet') == "active" ) { ?>
     <script>
     
-
+        
         $(function() {
 
             var msg = '<div class="media-left"><span class="icon-wrap icon-wrap-xs icon-circle alert-icon"><i class="ti-face-smile icon-2x"></i></span></div><div class="media-body"><h4 class="alert-title">Hallo !</h4><p class="alert-message">Selamat datang di aplikasi pelayanan antrian.</p></div>'

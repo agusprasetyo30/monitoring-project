@@ -53,21 +53,23 @@
 									<div class="panel pos-rel">
 										<div class="pad-all text-center">
 											<div class="widget-control">
-												<a href="#" class="add-tooltip btn btn-trans" data-original-title="Favorite"><span class="favorite-color"><i class="demo-psi-star icon-lg"></i></span></a>
-												<div class="btn-group dropdown">
+													<div class="btn-group dropdown">
 													<a href="#" class="dropdown-toggle btn btn-trans" data-toggle="dropdown" aria-expanded="false"><i class="demo-psi-dot-vertical icon-lg"></i></a>
 													<ul class="dropdown-menu dropdown-menu-right" style="">
 														<li><a href="<?php echo base_url('account/editAkun?jabatan=pegawai_kantor&id='. $row['id_login']) ?>"><i class="icon-lg icon-fw demo-psi-pen-5"></i> Sunting</a></li>
+														<li><a href="<?php echo base_url('account/detailAkun') ?>"><i class="icon-lg icon-fw demo-pli-calendar-4"></i> Detail</a></li>
 														<li><a href="#"><i class="icon-lg icon-fw demo-pli-recycling"></i> Hapus</a></li>
-														<li><a href="#"><i class="icon-lg icon-fw demo-pli-calendar-4"></i> Detail</a></li>
 													</ul>
 												</div>
 											</div>
-											<a href="#">
+									
 												<img alt="Profile Picture" class="img-lg img-circle mar-ver" src="<?php echo base_url() ?>assets/img/profile-photos/8.png">
 												<p class="text-lg text-semibold mar-no text-main"><?php echo $row['name'] ?></p>
-												<p class="text-sm">Pegawai Kantor</p>
-												<p class="text-sm">Hamba Allah yang masih berusaha untuk istiqomah dengan hal-hal yang baik, aamiin.. </p>
+												<p class="text-sm"><?php echo $row['jabatan'] == "pegawai_kantor" ? "Pegawai Kantor" : "" ?></p>
+												<br>
+												<!-- Profile Details -->
+												<p><i class="demo-pli-mail icon-lg icon-fw"></i><?php echo $row['email'] ?></p>
+												<p><i class="demo-pli-old-telephone icon-lg icon-fw"></i><?php echo $row['telp'] ?></p>
 											</a>
 										</div>
 									</div>
