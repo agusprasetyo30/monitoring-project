@@ -409,14 +409,14 @@
 						            </li>
                                     <li class="<?php echo $this->uri->segment(2) == "jenis_pelanggan" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('jenis_pelanggan') ?>">
-						                    <i class="demo-pli-male"></i>
+						                    <i class="demo-pli-check"></i>
 						                    <span class="menu-title">Master jenis Pelanggan </span>
 						                </a>
 						            </li>
 
                                     <li class="<?php echo $this->uri->segment(3) == "domisili" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('domisili') ?>">
-						                    <i class="demo-pli-office"></i>
+						                    <i class="demo-pli-map-2"></i>
 						                    <span class="menu-title">Master Domisili</span>
 						                </a>
 						            </li>

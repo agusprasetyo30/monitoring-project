@@ -43,8 +43,8 @@ class Account extends CI_Controller {
 
             $data = array(
 
-                'folder'    => "",
-                'view'      => ""
+                'folder'    => "account/manager",
+                'view'      => "V_manager"
             );
 
             $this->load->view('template/template_backend', $data);
