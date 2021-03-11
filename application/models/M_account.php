@@ -141,7 +141,39 @@
 
             redirect( $link );
         }
-    
+        
+
+
+        // delete 
+        function deleteDataOfficer() {
+
+            $id = $this->input->get('id');
+            $jabatan = $this->input->get('jabatan');
+
+            $this->db->where('id_login', $id)->delete('user_officer');
+            $this->db->where('id_login', $id)->delete('user_login');
+
+           
+
+
+            if ( $jabatan == "pegawai_kantor" ) {
+
+                $text = "Pegawai Kantor";
+                $link = base_url('account/viewPegawaiKantor');
+
+            } else if ( $jabatan == "petugas_lapangan" ) {
+
+                $text = "Petugas Lapangan";
+                $link = base_url('account/viewPetugasLapangan');
+            }  
+            
+            // msg 
+            $msg = '<div class="alert alert-success"><b>Pegawai '.$text.' berhasil dihapus</b> <br>
+                Menambahkan pada tanggal '.date('d F Y H.i A').'
+            </div>';
+            $this->session->set_flashdata('msg', $msg);
+            redirect( $link );
+        }
     }
     
     /* End of file M_account.php */

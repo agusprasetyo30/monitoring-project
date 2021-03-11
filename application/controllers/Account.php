@@ -176,6 +176,15 @@ class Account extends CI_Controller {
         // echo "Oke";
     }
 
+
+    // delete account
+    function onDeleteAccount() {
+
+        $this->M_account->deleteDataOfficer();
+    }
+
+
+
     function detailAkun(){
         $data = array(
 
