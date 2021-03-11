@@ -63,12 +63,11 @@
 					                <div class="fluid">
 					                    <div class="text-right">
 					                        <button class="btn btn-sm btn-primary">Edit Profile</button>
-					                        <!-- <button class="btn btn-sm btn-primary">Send Message</button> -->
-					                        <button class="btn btn-sm btn-success">Download CV</button>
+					                        
 					                    </div>
 					
 					                    <hr class="new-section-md bord-no">
-					
+<!-- 					
 					                    <div class="pad-btm">
 					                        <textarea class="form-control" rows="4" placeholder="What are you thinking?"></textarea>
 					                        <div class="mar-top clearfix">
@@ -77,7 +76,7 @@
 					                            <a class="btn btn-icon demo-pli-camera-2 icon-lg add-tooltip" href="#" data-original-title="Add Photo" data-toggle="tooltip"></a>
 					                            <a class="btn btn-icon demo-pli-file icon-lg add-tooltip" href="#" data-original-title="Add File" data-toggle="tooltip"></a>
 					                        </div>
-					                    </div>
+					                    </div> -->
 					
 					                </div>
 					            </div>
