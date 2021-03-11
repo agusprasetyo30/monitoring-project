@@ -137,7 +137,7 @@
 										<div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Foto Pribadi</label>
 					                        <div class="col-sm-6">
-					                            <input name="foto" type="file" placeholder="Masukkan Foto.."  class="form-control" id="demo-is-inputnormal" required="">
+					                            <input name="foto" type="file" placeholder="Masukkan Foto.."  class="form-control" id="demo-is-inputnormal">
 					                        </div>
 					                    </div>
                                    </div>

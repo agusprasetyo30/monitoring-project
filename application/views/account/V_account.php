@@ -65,7 +65,11 @@
 												<img alt="Profile Picture" class="img-lg img-circle mar-ver" src="assets/img/profile-photos/8.png">
 												<p class="text-lg text-semibold mar-no text-main"><?php echo $row['name'] ?></p>
 												<p class="text-sm">Pegawai Kantor</p>
-												<p class="text-sm">Hamba Allah yang masih berusaha untuk istiqomah dengan hal-hal yang baik, aamiin.. </p>
+												<!-- Profile Details -->
+												<p class="pad-ver text-main text-sm text-uppercase text-bold">About Me</p>
+												<p><i class="demo-pli-map-marker-2 icon-lg icon-fw"></i> San Jose, CA</p>
+												<p><a href="#" class="btn-link"><i class="demo-pli-internet icon-lg icon-fw"></i> http://www.themeon.net</a></p>
+												<p><i class="demo-pli-old-telephone icon-lg icon-fw"></i>(123) 456 1234</p>
 											</a>
 										</div>
 									</div>
