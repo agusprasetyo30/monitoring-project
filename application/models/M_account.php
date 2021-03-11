@@ -21,7 +21,7 @@
 
                 $sql = "SELECT 
                             user_login.id_login, user_login.username, user_login.level,
-                            user_officer.id_officer, user_officer.name, user_officer.jabatan, user_officer.email, user_officer.telp
+                            user_officer.*
                         FROM user_login
                         JOIN user_officer ON user_officer.id_login = user_login.id_login 
                         WHERE user_officer.jabatan = '$jabatan'";
