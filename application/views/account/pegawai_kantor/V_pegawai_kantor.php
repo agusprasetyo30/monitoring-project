@@ -46,7 +46,18 @@
 
 							<?php if ( $dataOfficer->num_rows() > 0 ) {  ?> 
 
-								<?php foreach ( $dataOfficer->result_array() AS $row ) { ?>
+								<?php foreach ( $dataOfficer->result_array() AS $row ) { 
+									
+									
+									if ( $row['foto'] ) {
+
+										$img = base_url('assets/img/profile-photos/'. $row['foto']);
+									} else {
+	
+										$number = $row['jenis_kelamin'] == "L" ? "1.png" : "7.png";	
+										$img = base_url('assets/img/profile-photos/'. $number);
+									}	
+								?>
 								
 								<!---------------------------------->
 								<div class="col-sm-4 col-md-3">
@@ -68,7 +79,7 @@
 													</div>
 												</div>
 										
-													<img alt="Profile Picture" class="img-lg img-circle mar-ver" src="<?php echo base_url() ?>assets/img/profile-photos/8.png">
+													<img alt="Profile Picture" class="img-lg img-circle mar-ver" src="<?php echo $img ?>">
 													<p class="text-lg text-semibold mar-no text-main"><?php echo $row['name'] ?></p>
 													<p class="text-sm"><?php echo $row['jabatan'] == "pegawai_kantor" ? "Pegawai Kantor" : "" ?></p>
 													<br>
@@ -88,42 +99,64 @@
 
 
 
-								<!-- MODAL -->
-								<div class="modal fade" id="detail-pegawai-<?php echo $row['id_login'] ?>" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
-									<div class="modal-dialog">
+								<!--Detail Bootstrap Modal-->
+								<!--===================================================-->
+								<div id="detail-pegawai-<?php echo $row['id_login'] ?>" class="modal fade" tabindex="-1">
+									<div class="modal-dialog modal-md">
 										<div class="modal-content">
-											<div class="text-center">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-													<h4 class="modal-title">Detail Profil ....</h4>
-												</div>
-												<!--Default Bootstrap Modal-->
-													<!--===================================================-->
-													<!--Modal header-->
-														<div class="col md-6">
-														<img alt="Profile Picture" class="img-lg img-circle mar-ver" src="<?php echo base_url() ?>assets/img/profile-photos/8.png">
-															<p class="text-lg text-semibold mar-no text-main"><?php echo $row['name'] ?></p>
-															<p class="text-sm">Jabatan</p>
-															<br>
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+											</div>
+											<div class="modal-body">
+												<div class="media pad-ver">
+													<div class="media-left">
+														<div class="box-inline"><img alt="Profile Picture" class="img-md img-circle" src="<?php echo $img ?>"></div>
+													</div>
+													<div class="media-body pad-top">
+														<div class="box-inline">
+															<span class="text-lg text-semibold text-main"><?php echo $row['name'] ?></span>
+															<p class="text-sm">NIP : '.$nip.'</p>
 														</div>
-														<div class="col md-6">
-															<!-- Profile Details -->
-															<p><i class="demo-pli-mail icon-lg icon-fw"></i>aaaa@gmail.com</p>
-															<p><i class="demo-pli-old-telephone icon-lg icon-fw"></i>087837777388</p>	
-														</div>
-													<!--===================================================-->
-													<!--End Default Bootstrap Modal-->
-												
-												<!--Modal footer-->
-												<div class="modal-footer">
-													<button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-													<button class="btn btn-primary">Save changes</button>
+													</div>
+													<div class="media-right pad-top">
+														<a href="'.base_url('account?v='.$type.'&action=update&id='. encrypt_data( $row['id_user_info'] )).'" class="btn btn-sm btn-default btn-labeled"><i class="btn-label ti-pencil"></i> Sunting</a>
+													</div>
 												</div>
+
+												<div class="row">
+													<div class="col-md-6">
+														<label class="text-sm"><i class="demo-pli-mail icon-lg icon-fw"></i> '.$row['email'].'</label><br>
+														<label class="text-sm"><i class="demo-pli-old-telephone icon-lg icon-fw"></i> '.$row['telp'].'</label>
+
+														'.$detailInfoLogin.'
+
+													</div>
+													<div class="col-md-6" style="border-left: 1px solid #e0e0e0">
+
+														<div class="row">
+															<div class="col-md-5">
+
+															'.$this->typeAccessSVG( $typeAccount ).'
+															</div>
+															<div class="col-md-7">
+																<small class="text-main text-semibold">Level Akun saat ini</small>
+																<h3 style="margin: 0px; margin-top: 5px" class="text-thin">'.ucfirst($row['level']).'</h3>
+															</div>
+															<div class="col-md-12"><small>Pelajari lebih lanjut tentang <a class="text-semibold btn-link">Hak akses</a>.</small></div>
+
+
+															'.$detailLoginStatus.'
+
+														</div>
+													</div>
+												</div>
+
 											</div>
 										</div>
 									</div>
 								</div>
-								<!-- END MODAL -->
+								<!--===================================================-->
+								<!--End Detail Bootstrap Modal-->
 
 
 

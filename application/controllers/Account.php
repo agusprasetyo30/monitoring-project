@@ -41,10 +41,13 @@ class Account extends CI_Controller {
 
         function viewManager() {
 
+            $dataOfficer = $this->M_account->getDataOfficer("manajer");
             $data = array(
 
                 'folder'    => "account/manager",
-                'view'      => "V_manager"
+                'view'      => "V_manager",
+
+                'dataOfficer'   => $dataOfficer
             );
 
             $this->load->view('template/template_backend', $data);

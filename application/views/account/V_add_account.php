@@ -23,6 +23,10 @@
 
 										$text = "Petugas Lapangan";
 										$link = base_url('account/viewPetugasLapangan');
+									} else if ( $ambilJabatanFromURL == "manajer" ) {
+
+										$text = "Manajer";
+										$link = base_url('account/viewManager');
 									}
 								?>
                                 <h1 class="page-header text-overflow">Tambah <?php echo $text ?> </h1>
@@ -60,11 +64,15 @@
                     <div class="row">
                         
                         <div class="col-md-8 col-md-offset-2">
+							
+							<?php echo $this->session->flashdata('msg') ?>
+
                             <div class="panel panel-body" style="border : 1px solid #e0e0e0">
                             <h4>Data <?php echo $text ?></h4>
                                 <p>Lengkapi data form dibawah ini</p>
+
 					            <!--===================================================-->
-					            <form class="form-horizontal" action="<?php echo base_url('account/prosesTambahAkun') ?>" method="POST">
+					            <form class="form-horizontal" action="<?php echo base_url('account/prosesTambahAkun') ?>" method="POST" enctype="multipart/form-data">
 					                <div class="panel-body">
                                     	
 					                    <div class="form-group">

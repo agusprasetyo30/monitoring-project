@@ -48,8 +48,15 @@
 
 							<?php foreach ( $dataOfficer->result_array() AS $row ) { 
 								
-								$number = $row['jenis_kelamin'] == "L" ? "1.png" : "7.png";	
-								$img = base_url('assets/img/profile-photos/'. $number);
+								if ( $row['foto'] ) {
+
+									$img = base_url('assets/img/profile-photos/'. $row['foto']);
+								} else {
+
+									$number = $row['jenis_kelamin'] == "L" ? "1.png" : "7.png";	
+									$img = base_url('assets/img/profile-photos/'. $number);
+								}
+								
 							?>
 					        
 							<!---------------------------------->
