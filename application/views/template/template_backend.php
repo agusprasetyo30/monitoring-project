@@ -71,6 +71,11 @@
     <link rel="shortcut icon" href="<?php echo base_url('assets/img/logopgn.png') ?>" />
 
 
+    <!--DataTables [ OPTIONAL ]-->
+    <link href="<?php echo base_url() ?>assets/plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
+	<link href="<?php echo base_url() ?>assets/plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css" rel="stylesheet">
+
+
 
     <style>
 
@@ -497,72 +502,25 @@
     <!--=================================================-->
     
     
-    <!--Bootstrap Datepicker [ OPTIONAL ]-->
-    <script src="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <!--Bootstrap Timepicker [ OPTIONAL ]-->
-    <script src="<?php echo base_url() ?>assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-    <script>
-        $(function() {
-
-
-            $('#demo-tp-textinput').timepicker({ zindex: 9999999});
-            $('#demo-dp-txtinput input').datepicker();
-
-        });
-
-    <?php
     
-        $menu = $this->uri->segment(1);
-        switch( $menu ) {
+    <!--DataTables [ OPTIONAL ]-->
+    <script src="<?php echo base_url() ?>assets/plugins/datatables/media/js/jquery.dataTables.js"></script>
+	<script src="<?php echo base_url() ?>assets/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+	<script src="<?php echo base_url() ?>assets/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 
-
-            case 'dashboard':
-                
-                echo '    <!--Flot Chart [ OPTIONAL ]-->
-                <script src="'.base_url('assets/').'plugins/flot-charts/jquery.flot.min.js"></script>
-                <script src="'.base_url('assets/').'plugins/flot-charts/jquery.flot.categories.min.js"></script>
-                <script src="'.base_url('assets/').'plugins/flot-charts/jquery.flot.orderBars.min.js"></script>
-                <script src="'.base_url('assets/').'plugins/flot-charts/jquery.flot.tooltip.min.js"></script>
-                <script src="'.base_url('assets/').'plugins/flot-charts/jquery.flot.resize.min.js"></script>
-                <script src="'.base_url().'assets/js/modules/dashboard.js"></script>';
-                
-                break;
-
-            case 'account':
-                    
-                if ( $view ) {
-                        echo '<script src="'.base_url().'assets/js/modules/account-form-admin.js"></script>';
-                        
-                        // if ( $this->session->userdata('sess_level') == "super_admin" ) {
-
-                        //     echo '<script src="'.base_url().'assets/js/modules/account-form-admin.js"></script>';
-                        // } else {
-                            
-                        //     echo '<script src="'.base_url().'assets/js/modules/account-form.js"></script>';
-
-                        // }
-                    }
-                    echo '<script src="'.base_url().'assets/js/modules/account-data.js"></script>';
-                break;
-
-
-            case 'queue':
-                echo '<script src="'.base_url().'assets/js/modules/data-queue.js"></script>';
-                break;
+    <script>
+    
+        $('#table-domisili').dataTable();
+    </script>
 
 
 
-            case 'accessbility':
-                echo '<script src="'.base_url().'assets/plugins/switchery/switchery.min.js"></script>';
-                echo '<script src="'.base_url().'assets/js/modules/accessbility-form.js"></script>';
-                break;
 
 
-            case 'report';
-                echo '<script src="'.base_url().'assets/js/modules/report.js"></script>';
-                break;
-        }
-    ?>
+
+    
+
+
 
     <?php if ( $this->session->flashdata('msg-greet') == "active" ) { ?>
     <script>
@@ -580,6 +538,44 @@
                 timer : 6000,
                 floating: {
                     position: 'top-right',
+                    animationIn: 'jellyIn',
+                    animationOut: 'fadeOutRight'
+                },
+            });
+        });
+    
+    </script>
+    <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <?php if ( $this->session->flashdata('msg') ) { ?>
+    <script>
+    
+        
+        $(function() {
+
+            var msg = 'Pengoperasian <?php echo $this->session->flashdata('msg') ?> data berhasil <br> <small>Pada <?php echo date('d F Y H.i A') ?></small>';
+
+            $.niftyNoty({
+                type: 'dark',
+                container : 'floating',
+                html : msg,
+                closeBtn : true,
+                timer : 6000,
+                floating: {
+                    position: 'bottom-left',
                     animationIn: 'jellyIn',
                     animationOut: 'fadeOutRight'
                 },

@@ -13,56 +13,231 @@
                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content">
-    <div class='container'>
     
-        <table class="table table-bordered">
-        <button type="button" id="btn-tambah" data-toggle="modal" data-target="#form-modal" class="btn btn-success pull-left">
-            <span class="glyphicon glyphicon-plus"></span>  Tambah Data
-        </button>
-        <br><br><br>
+    
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="panel panel-body" style="border: 1px solid #e0e0e0">
+                            
+                                <p class="text-main text-semibold">Data Tabel Domisili</p>
+                                <a href="#" data-target="#tambah-domisili" data-toggle="modal" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
 
-        <!-- <a href="<?php echo base_url()?>mahasiswa/tambah" class="btn btn-primary demo-pli-plus" role="button">Tambah Data</a> -->
-            <thead>
-                <tr>
-                    <th> No</th> <th>Kota</th> <th>Wilayah</th> <th colspan='3'>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no=1;
 
-                ?>
-                <tr>
-                    <td><?php echo $no;?></td>
-                    <td><?php echo "Probolinggo";?></td>
-                    <td><?php echo "Kabupaten";?></td>
-          
-                    <!-- <td> <a href="#" class="btn btn-warning" role="button">Update</a> <a href="#" class="btn btn-danger" role="button">Delete</a></td>
-                    -->
+                                <!--Small Bootstrap Modal-->
+                                <!--===================================================-->
+                                <div id="tambah-domisili" class="modal fade" tabindex="-1">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                                                <h4 class="modal-title" id="mySmallModalLabel">Informasi Domisili</h4>
+                                            </div>
+                                            
+                                            <form action="<?php echo base_url('domisili/prosesTambahDomisili') ?>" method="POST">
+                                            <div class="modal-body">
+                                                
+                                                <div class="form-group">
+                                                    <label for="" class="text-semibold">Nama Domisili</label>
+                                                    <input type="text" name="nama_domisili" class="form-control" placeholder="..." id="" required="" />
+                                                    <small>Masukkan nama domisili ex.Probolinggo</small>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="">Wilayah</label>
+                                                    <div class="radio">
+					
+                                                        <!-- Inline radio buttons -->
+                                                        <input id="demo-inline-form-radio" class="magic-radio" type="radio" name="wilayah" value="kota" checked>
+                                                        <label for="demo-inline-form-radio">Kota</label>
+                            
+                                                        <input id="demo-inline-form-radio-2" class="magic-radio" type="radio" name="wilayah" value="kabupaten">
+                                                        <label for="demo-inline-form-radio-2">Kabupaten</label> <br>
 
-                    <td>
+                                                        <small>Pilih salah satu</small>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
+                                                <button class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambahkan dan Simpan</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--===================================================-->
+                                <!--End Small Bootstrap Modal-->
 
-                    <a href="#" class="btn btn-warning btn-lg">
-                    <span class="glyphicon glyphicon-pencil"></span> Update
-                    </a>
 
-                    <a href="#" class="btn btn-danger btn-lg">
-                    <span class="glyphicon glyphicon-trash"></span> Delete 
-                    </a>
 
-                    </td>
 
-                </tr>
-                <?php
-                        $no++;
-                
-                 ?>
-            </tbody>
-        </table>
-        
-    </div>
-</body>
-</html>
+
+
+
+
+
+
+
+                                <hr>
+
+                                <table class="table" id="table-domisili">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kota</th>
+                                            <th>Wilayah</th>
+                                            <th>Data Kecamatan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        <?php foreach ( $domisili->result_array() AS $kolom ) { ?>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <small>Informasi Kota</small> <br>
+                                                <a href="" class="btn-link text-semibold text-main"><?php echo $kolom['kota'] ?></a>
+                                            </td>
+                                            <td>
+                                                <small>Wilayah</small> <br>
+                                                <?php
+
+                                                    $colorBadge = "";
+                                                    if ( $kolom['wilayah'] == "kota" ) {
+
+                                                        $colorBadge = "badge-mint";
+                                                    } else {
+
+                                                        $colorBadge = "badge-primary";
+                                                    }
+                                                ?>
+                                                <span for="" class="badge <?php echo $colorBadge ?>"><?php echo $kolom['wilayah'] ?></span>
+                                            </td>
+                                            <td>
+                                                <small>Total Kecamatan : </small> <br>
+                                                <a href="<?php echo base_url('domisili/subdomisili/'. $kolom['id_domisili']) ?>" class="text-main btn-link">10 Kecamatan <small>(Klik untuk mendetail)</small></a>
+                                            </td>
+                                            <td>
+                                                <small>Klik tombol dibawah ini</small> <br>
+                                                <div class="btn-group mar-rgt">
+                                                    <button data-target="#hapus-domisili-<?php echo $kolom['id_domisili'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
+                                                    <button data-target="#sunting-domisili-<?php echo $kolom['id_domisili'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-warning">Sunting</button>
+                                                </div>
+
+
+
+
+                                                <!-- Modal sunting -->
+                                                <!--===================================================-->
+                                                <div id="sunting-domisili-<?php echo $kolom['id_domisili'] ?>" class="modal fade" tabindex="-1">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                                                                <h4 class="modal-title" id="mySmallModalLabel">Informasi Domisili</h4>
+                                                            </div>
+                                                            
+                                                            <form action="<?php echo base_url('domisili/prosesUbahDomisili') ?>" method="POST">
+                                                            <div class="modal-body">
+                                                                
+                                                                <div class="form-group">
+                                                                    <label for="" class="text-semibold">Nama Domisili</label>
+                                                                    <input type="text" name="nama_domisili" class="form-control" value="<?php echo $kolom['kota'] ?>" placeholder="..." id="" required="" /> <br>
+                                                                    
+                                                                    <input type="text" name="id" value="<?php echo $kolom['id_domisili'] ?>">
+
+                                                                    <small>Masukkan nama domisili ex.Probolinggo</small>
+                                                                </div> <br><br>
+                                                                
+                                                                <div class="form-group">
+                                                                    <label for="">Wilayah</label>
+                                                                    <div class="radio">
+                                    
+                                                                        <!-- Inline radio buttons -->
+                                                                        <input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="wilayah" value="kota" <?php if ( $kolom['wilayah'] == "kota" ) echo 'checked'; ?>>
+                                                                        <label for="demo-inline-form-radio-edit"">Kota</label>
+                                            
+                                                                        <input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="wilayah" value="kabupaten" <?php if ( $kolom['wilayah'] == "kabupaten" ) echo 'checked'; ?>>
+                                                                        <label for="demo-inline-form-radio-edit-2">Kabupaten</label> <br>
+
+                                                                        <small>Pilih salah satu</small>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
+                                                                <button class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-plus"></i> Simpan dan Perbarui</button>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--===================================================-->
+                                                <!-- End Modal Sunting -->
+
+
+
+
+
+
+
+
+                                                <!-- Modal Hapus -->
+
+                                                <!-- Modal sunting -->
+                                                <!--===================================================-->
+                                                <div id="hapus-domisili-<?php echo $kolom['id_domisili'] ?>" class="modal fade" tabindex="-1">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                                                                <h4 class="modal-title" id="mySmallModalLabel">Informasi Domisili</h4>
+                                                            </div>
+                                                            
+                                                            <div class="modal-body">
+
+                                                                <label for="">Nama Bagian : <span class="text-main text-semibold"><?php echo $kolom['kota'] ?></span></label><br>
+                                                                <label for="">Wilayah : <span class="text-main text-semibold"><?php echo $kolom['wilayah'] ?></span></label>
+
+
+                                                                <hr>
+
+                                                                <small><span class="text-danger">*</span> Catatan</small> <br>
+                                                                <small>Apakah anda yakin ingin menghapus informasi domisili ini. Data yang telah dihapus tidak dapat dipulihkan kembali</small>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Batal</button>
+                                                                <a href="<?php echo base_url('domisili/prosesHapusDomisili/'. $kolom['id_domisili']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- End Modal Hapus -->
+
+
+
+
+
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        
+                        </div>
+                    </div>
+
+
 
                 </div>
             </div>
