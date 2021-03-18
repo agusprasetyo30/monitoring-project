@@ -46,6 +46,33 @@
         }
 
 
+        // proses insert ke db
+        function insertDataSubDomisili() {
+
+            $id_domisili =  $this->input->post('id_domisili');
+
+
+            $data = array(
+
+                'id_domisili' => $id_domisili,
+                'kode_wilayah'=> $this->input->post('kode_wilayah'),
+                'kelurahan'   => $this->input->post('nama_kelurahan'),
+                'kecamatan'   => $this->input->post('nama_kecamatan'),
+            );
+
+
+            // query insert
+            $this->db->insert('master_subdomisili', $data);
+            
+            
+            // flashdata
+            $this->session->set_flashdata('msg', 'tambah');
+
+            // kembali ke halaman
+            redirect('domisili/subdomisili/'.$id_domisili);
+        }
+
+
 
 
         // update
@@ -73,6 +100,34 @@
         }
 
 
+        
+        // update
+        function updateDataSubDomisili() {
+
+
+            // element input type hidden
+            $id_sub = $this->input->post('id_sub');
+            $id_domisili = $this->input->post('id_domisili');
+
+            $data = array(
+
+                'kode_wilayah'=> $this->input->post('kode_wilayah'),
+                'kelurahan'   => $this->input->post('nama_kelurahan'),
+                'kecamatan'   => $this->input->post('nama_kecamatan'),
+            );
+
+            $this->db->where('id_subdomisili', $id_sub);
+            $this->db->update('master_subdomisili', $data);
+
+
+            // flashdata
+            $this->session->set_flashdata('msg', 'ubah');
+
+            // kembali ke halaman
+            redirect('domisili/subdomisili/'.$id_domisili);
+        }
+
+
 
 
         // delete
@@ -81,7 +136,7 @@
             // hapus data master_domisili
             $where = ['id_domisili' => $id_domisili];
             $this->db->where( $where )->delete('master_domisili');
-
+            $this->db->where( $where )->delete('master_subdomisili');
 
             // flashdata
             $this->session->set_flashdata('msg', 'hapus');
@@ -91,6 +146,21 @@
         }
 
         // UPDATE master_domisili SET ..... WHERE id = x
+
+        function deleteDataSubDomisili( $id_subdomisili, $id_domisili ) {
+
+
+            // hapus data master_domisili
+            $where = ['id_subdomisili' => $id_subdomisili];
+            $this->db->where( $where )->delete('master_subdomisili');
+
+
+            // flashdata
+            $this->session->set_flashdata('msg', 'hapus');
+
+            // kembali ke halaman
+            redirect('domisili/subdomisili/'.$id_domisili);
+        }
 
 
 

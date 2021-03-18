@@ -28,20 +28,25 @@
                 'view'      => "V_domisili",
 
                 // variable data
-                'domisili'  => $dataDomisili
+                'domisili'  => $dataDomisili,
             );
             $this->load->view('template/template_backend', $data);
         }
 
 
 
-
-
         // proses tambah domisili
         function prosesTambahDomisili() {
 
-            $this->M_domisili->insertDataDomisili( $data );
+            $this->M_domisili->insertDataDomisili();
         }
+
+        // proses tambah domisili
+        function prosesTambahSubDomisili() {
+
+            $this->M_domisili->insertDataSubDomisili();
+        }
+
 
 
         // proses ubah domisili
@@ -58,6 +63,8 @@
             $this->M_domisili->deleteDataDomisili( $id_domisili );
 
         }
+
+        
 
 
 
@@ -108,6 +115,19 @@
             );
             $this->load->view('template/template_backend', $data);
         }
+
+        // proses ubah domisili
+        function prosesUbahSubDomisili() {
+ 
+            $this->M_domisili->updateDataSubDomisili();
+        }
+
+        function prosesHapusSubDomisili( $id_subdomisili, $id_domisili )  {
+
+            $this->M_domisili->deleteDataSubDomisili( $id_subdomisili, $id_domisili );
+
+        }
+
     }
     
     /* End of file Dashboard.php */

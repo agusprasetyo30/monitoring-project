@@ -511,6 +511,7 @@
     <script>
     
         $('#table-domisili').dataTable();
+        $('#table-subdomisili').dataTable();
         $('#table-jenis_pelanggan').dataTable();
     </script>
 
