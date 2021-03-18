@@ -6,7 +6,6 @@
     class M_domisili extends CI_Model {
         
 
-
         // menampilkan data domisili
         function getDataTable( $where = null, $table ) {
 

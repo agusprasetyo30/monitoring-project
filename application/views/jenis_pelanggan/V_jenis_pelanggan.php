@@ -32,7 +32,7 @@
                                                 <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
                                             </div>
                                             
-                                            <form action="<?php echo base_url('') ?>" method="POST">
+                                            <form action="<?php echo base_url('jenis_pelanggan/prosesTambahJP') ?>" method="POST">
                                             <div class="modal-body">
                                                 
                                                 <div class="form-group">
@@ -55,7 +55,6 @@
                                 <!--End Small Bootstrap Modal-->
 
 
-
                                 <hr>
 
                                 <table class="table" id="table-jenis_pelanggan">
@@ -67,10 +66,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
+
+
+                                    <?php foreach ( $jenis_pelanggan->result_array() AS $kolom ) { ?>
                                         <tr>
                                             <td>1</td>
                                             <td> 
-                                                <small>Nama Jenis Pelanggan</small> 
+                                                <small><?php echo $kolom['nama_jenis'] ?></small> 
                                             <br></td>
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
@@ -147,6 +150,7 @@
 
                                             </td>
                                         </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
