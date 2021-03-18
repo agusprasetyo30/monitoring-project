@@ -415,7 +415,7 @@
                                     <li class="<?php echo $this->uri->segment(2) == "jenis_pelanggan" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('jenis_pelanggan') ?>">
 						                    <i class="demo-pli-check"></i>
-						                    <span class="menu-title">Master jenis Pelanggan </span>
+						                    <span class="menu-title">Master Jenis Pelanggan </span>
 						                </a>
 						            </li>
 
@@ -511,6 +511,7 @@
     <script>
     
         $('#table-domisili').dataTable();
+        $('#table-jenis_pelanggan').dataTable();
     </script>
 
 

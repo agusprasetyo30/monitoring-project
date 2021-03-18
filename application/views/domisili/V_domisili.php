@@ -72,14 +72,6 @@
 
 
 
-
-
-
-
-
-
-
-
                                 <hr>
 
                                 <table class="table" id="table-domisili">
