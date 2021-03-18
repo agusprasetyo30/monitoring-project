@@ -35,9 +35,44 @@ class M_jenis_pelanggan extends CI_Model {
             // query insert
             $this->db->insert('master_jenis_pelanggan', $data);
             
-            
             // flashdata
             $this->session->set_flashdata('msg', 'tambah');
+
+            // kembali ke halaman
+            redirect('jenis_pelanggan');
+        }
+
+
+        // delete
+        function deleteDataJP( $id_jenis_pelanggan ) {
+            // hapus data master_domisili
+            $where = ['id_jenis_pelanggan' => $id_jenis_pelanggan];
+            $this->db->where( $where )->delete('master_jenis_pelanggan');
+                // flashdata
+                $this->session->set_flashdata('msg', 'hapus');
+                // kembali ke halaman
+                redirect('jenis_pelanggan');
+        }
+
+
+        // update
+        function updateDataJP() {
+
+
+            // element input type hidden
+            $id = $this->input->post('id');
+
+            $data = array(
+
+                'nama_jenis'      => $this->input->post('nama_jenis_pelanggan'),
+            );
+
+            $this->db->where('id_jenis_pelanggan', $id);
+            $this->db->update('master_jenis_pelanggan', $data);
+
+
+            // flashdata
+            $this->session->set_flashdata('msg', 'ubah');
 
             // kembali ke halaman
             redirect('jenis_pelanggan');

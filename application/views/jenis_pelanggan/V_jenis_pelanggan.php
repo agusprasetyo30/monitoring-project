@@ -78,8 +78,8 @@
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                    <button data-target="#hapus-jenis_pelanggan-" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
-                                                    <button data-target="#sunting-jenis_pelanggan-" data-toggle="modal" class="btn btn-sm btn-default btn-active-warning">Sunting</button>
+                                                    <button data-target="#hapus-jenis_pelanggan-<?php echo $kolom['id_jenis_pelanggan'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
+                                                    <button data-target="#sunting-jenis_pelanggan-<?php echo $kolom['id_jenis_pelanggan'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-warning">Sunting</button>
                                             </div>
                                         </tr>
                                         
@@ -87,14 +87,17 @@
 
                                                 <!-- Modal sunting -->
                                                 <!--===================================================-->
-                                                <div id="sunting-jenis_pelanggan" class="modal fade" tabindex="-1">
+                                                <div id="sunting-jenis_pelanggan-<?php echo $kolom['id_jenis_pelanggan'] ?>" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content">
+
+                                                        <form action="<?php echo base_url('jenis_pelanggan/prosesUbahJP') ?>" method="POST">
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="" class="text-semibold">Nama jenis_pelanggan</label>
-                                                                    <input type="text" name="nama_jenis_pelanggan" class="form-control" placeholder="..." id="" required="" /> <br>
-                                                                    <!-- <input type="text" name="id"> -->
+                                                                    <input type="text" name="nama_jenis_pelanggan" class="form-control" value="<?php echo $kolom['nama_jenis'] ?>" placeholder="..." id="" required="" /> <br>
+                                                                    <input type="hidden" name="id" value="<?php echo $kolom['id_jenis_pelanggan'] ?>">
+
                                                                     <small>Masukkan nama jenis pelanggan</small>
                                                                 </div>                
                                                             </div>
@@ -102,7 +105,7 @@
                                                                 <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
                                                                 <button class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-plus"></i> Simpan dan Perbarui</button>
                                                             </div>
-                                                            </form>
+                                                        </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,16 +114,9 @@
 
 
 
-
-
-
-
-
-                                                <!-- Modal Hapus -->
-
-                                                <!-- Modal sunting -->
+                                                <!-- Modal hapus -->
                                                 <!--===================================================-->
-                                                <div id="hapus-jenis_pelanggan-" class="modal fade" tabindex="-1">
+                                                <div id="hapus-jenis_pelanggan-<?php echo $kolom['id_jenis_pelanggan'] ?>" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -130,7 +126,7 @@
                                                             
                                                             <div class="modal-body">
 
-                                                                <label for="">Nama Jenis Pelanggan : <span class="text-main text-semibold"></span></label><br>
+                                                                <label for="">Nama Jenis Pelanggan : <span class="text-main text-semibold"><?php echo $kolom['nama_jenis'] ?></span></label><br>
                                                                 <hr>
 
                                                                 <small><span class="text-danger">*</span> Catatan</small> <br>
@@ -139,12 +135,11 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Batal</button>
-                                                                <a href="" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
+                                                                <a href="<?php echo base_url('jenis_pelanggan/prosesHapusJP/'. $kolom['id_jenis_pelanggan']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
 
                                                 <!-- End Modal Hapus -->
 

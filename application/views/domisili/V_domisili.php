@@ -159,7 +159,7 @@
                                     
                                                                         <!-- Inline radio buttons -->
                                                                         <input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="wilayah" value="kota" <?php if ( $kolom['wilayah'] == "kota" ) echo 'checked'; ?>>
-                                                                        <label for="demo-inline-form-radio-edit"">Kota</label>
+                                                                        <label for="demo-inline-form-radio-edit">Kota</label>
                                             
                                                                         <input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="wilayah" value="kabupaten" <?php if ( $kolom['wilayah'] == "kabupaten" ) echo 'checked'; ?>>
                                                                         <label for="demo-inline-form-radio-edit-2">Kabupaten</label> <br>
@@ -190,7 +190,7 @@
 
                                                 <!-- Modal Hapus -->
 
-                                                <!-- Modal sunting -->
+                                           
                                                 <!--===================================================-->
                                                 <div id="hapus-domisili-<?php echo $kolom['id_domisili'] ?>" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog modal-sm">

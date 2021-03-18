@@ -35,6 +35,16 @@
             $this->M_jenis_pelanggan->insertDataJP( $data );
         }
 
+        // proses hapus
+        function prosesHapusJP( $id_jenis_pelanggan )  {
+            $this->M_jenis_pelanggan->deleteDataJP( $id_jenis_pelanggan );
+        }
+
+        // proses ubah domisili
+        function prosesUbahJP() {
+            $this->M_jenis_pelanggan->updateDataJP();
+        }
+
 
     
     }
