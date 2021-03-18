@@ -8,6 +8,9 @@
         function __construct() {
 
             parent::__construct();
+
+            // load 
+            $this->load->model('M_jenis_pelanggan');
         }
 
         public function index(){
@@ -19,6 +22,14 @@
             );
             $this->load->view('template/template_backend', $data);
         }
+
+        // proses tambah domisili
+        function prosesTambahJP() {
+
+            $this->M_domisili->insertDataDomisili( $data );
+        }
+
+
     
     }
     

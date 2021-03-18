@@ -5,7 +5,7 @@
                     
                     <div class="pad-all text-center">
                         <h3>MASTER JENIS PELANGGAN</h3>
-                        <p1>Data master domisili penagihan piutang</p>
+                        <p1>Data master jenis pelanggan penagihan piutang</p>
                     </div>
                 </div>
 
@@ -13,51 +13,148 @@
                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content">
+    
+    
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="panel panel-body" style="border: 1px solid #e0e0e0">
+                            
+                                <p class="text-main text-semibold">Data Tabel Jenis Pelanggan</p>
+                                <a href="#" data-target="#tambah-jenis_pelanggan" data-toggle="modal" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
 
-                <table class="table table-bordered">
-                    <button type="button" id="btn-tambah" data-toggle="modal" data-target="#form-modal" class="btn btn-success pull-left">
-                        <span class="glyphicon glyphicon-plus"></span>  Tambah Data
-                    </button>
-                    <br><br><br>
 
-                    <!-- <a href="<?php echo base_url()?>mahasiswa/tambah" class="btn btn-primary demo-pli-plus" role="button">Tambah Data</a> -->
-                        <thead>
-                            <tr>
-                                <th> No</th> <th>Nama Jenis</th> <th>Dibuat tanggal</th> <th colspan='3'>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $no=1;
+                                <!--Small Bootstrap Modal-->
+                                <!--===================================================-->
+                                <div id="tambah-jenis_pelanggan" class="modal fade" tabindex="-1">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                                            </div>
+                                            
+                                            <form action="<?php echo base_url('') ?>" method="POST">
+                                            <div class="modal-body">
+                                                
+                                                <div class="form-group">
+                                                    <label for="" class="text-semibold">Nama Jenis Pelanggan</label>
+                                                    <input type="text" name="nama_jenis_pelanggan" class="form-control" placeholder="..." id="" required="" />
+                                                    <small>Masukkan nama jenis pelanggan</small>
+                                                </div>
+                                            
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
+                                                <button class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambahkan dan Simpan</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--===================================================-->
+                                <!--End Small Bootstrap Modal-->
 
+
+
+                                <hr>
+
+                                <table class="table" id="table-jenis_pelanggan">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Jenis Pelanggan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td> 
+                                                <small>Nama Jenis Pelanggan</small> 
+                                            <br></td>
+                                            <td>
+                                                <small>Klik tombol dibawah ini</small> <br>
+                                                <div class="btn-group mar-rgt">
+                                                    <button data-target="#hapus-jenis_pelanggan-" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
+                                                    <button data-target="#sunting-jenis_pelanggan-" data-toggle="modal" class="btn btn-sm btn-default btn-active-warning">Sunting</button>
+                                            </div>
+                                        </tr>
+                                        
+
+
+                                                <!-- Modal sunting -->
+                                                <!--===================================================-->
+                                                <div id="sunting-jenis_pelanggan" class="modal fade" tabindex="-1">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="" class="text-semibold">Nama jenis_pelanggan</label>
+                                                                    <input type="text" name="nama_jenis_pelanggan" class="form-control" placeholder="..." id="" required="" /> <br>
+                                                                    <!-- <input type="text" name="id"> -->
+                                                                    <small>Masukkan nama jenis pelanggan</small>
+                                                                </div>                
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
+                                                                <button class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-plus"></i> Simpan dan Perbarui</button>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--===================================================-->
+                                                <!-- End Modal Sunting -->
+
+
+
+
+
+
+
+
+                                                <!-- Modal Hapus -->
+
+                                                <!-- Modal sunting -->
+                                                <!--===================================================-->
+                                                <div id="hapus-jenis_pelanggan-" class="modal fade" tabindex="-1">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                                                                <h4 class="modal-title" id="mySmallModalLabel">Informasi jenis_pelanggan</h4>
+                                                            </div>
+                                                            
+                                                            <div class="modal-body">
+
+                                                                <label for="">Nama Jenis Pelanggan : <span class="text-main text-semibold"></span></label><br>
+                                                                <hr>
+
+                                                                <small><span class="text-danger">*</span> Catatan</small> <br>
+                                                                <small>Apakah anda yakin ingin menghapus informasi jenis_pelanggan ini. Data yang telah dihapus tidak dapat dipulihkan kembali</small>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Batal</button>
+                                                                <a href="" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- End Modal Hapus -->
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         
-                            ?>
-                            <tr>
-                                <td><?php echo $no;?></td>
-                                <td><?php echo "Piutang";?></td>
-                                <td><?php echo "28/02/2021 22:50";?></td>
+                        </div>
+                    </div>
 
-                                <td>
 
-                                <a href="#" class="btn btn-warning btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span> Update
-                                </a>
-
-                                <a href="#" class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-trash"></span> Delete 
-                                </a>
-
-                                </td>
-                    
-                                <!-- <td> <a href="#" class="btn btn-warning" role="button">Update</a> <a href="#" class="btn btn-danger" role="button">Delete</a></td> -->
-                            
-                            </tr>
-                            <?php
-                                    $no++;
-                            
-                            ?>
-                        </tbody>
-                    </table>
 
                 </div>
             </div>
