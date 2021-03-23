@@ -32,8 +32,11 @@
                 'data_pelanggan'  => $dataPelanggan,
             );
             $this->load->view('template/template_backend', $data);
-            
-            
+        }
+        
+        // proses tambah pelanggan
+        function prosesTambahPelanggan() {
+            $this->M_data_pelanggan->insertDataPelanggan();
         }
     
     }

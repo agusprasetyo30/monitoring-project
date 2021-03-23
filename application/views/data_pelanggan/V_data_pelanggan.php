@@ -20,7 +20,7 @@
                             <div class="panel panel-body" style="border: 1px solid #e0e0e0">
                             
                                 <p class="text-main text-semibold">Data Tabel Jenis Pelanggan</p>
-                                <a href="#" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
+                                <a href="<?php echo base_url('data_pelanggan/prosesTambahPelanggan')?>" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
                                 <a href="#" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Import Data Excell</a>
                                 <hr>
 
@@ -32,7 +32,6 @@
                                             <th>Nama pelanggan</th>
                                             <th>Alamat</th>
                                             <th>Status</th>
-                                            <th>Jenis Rekening</th>
                                             <th>Domisili</th>
                                             <th>Sub Domisili</th>
                                             <th>Aksi</th>
@@ -56,9 +55,6 @@
                                             <br></td>
                                             <td> 
                                                 <small>Status</small> 
-                                            <br></td>
-                                            <td> 
-                                                <small><?php echo $kolom['jenis_rekening'] ?></small> 
                                             <br></td>
                                             <td> 
                                                 <small>Domisili</small> 
