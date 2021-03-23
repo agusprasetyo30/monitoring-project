@@ -426,6 +426,13 @@
 						                </a>
 						            </li>
 
+                                    <li class="<?php echo $this->uri->segment(3) == "data_pelanggan" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('data_pelanggan') ?>">
+						                    <i class="demo-pli-map-2"></i>
+						                    <span class="menu-title">Data Pelanggan</span>
+						                </a>
+						            </li>
+
 
                                 </ul>
 
@@ -513,6 +520,7 @@
         $('#table-domisili').dataTable();
         $('#table-subdomisili').dataTable();
         $('#table-jenis_pelanggan').dataTable();
+        $('#table-data_pelanggan').dataTable();
     </script>
 
 
