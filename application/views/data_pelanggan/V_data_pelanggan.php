@@ -20,7 +20,7 @@
                             <div class="panel panel-body" style="border: 1px solid #e0e0e0">
                             
                                 <p class="text-main text-semibold">Data Tabel Jenis Pelanggan</p>
-                                <a href="<?php echo base_url('data_pelanggan/prosesTambahPelanggan')?>" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
+                                <a href="<?php echo base_url('data_pelanggan/tambahPelanggan')?>" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
                                 <a href="#" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Import Data Excell</a>
                                 <hr>
 
@@ -54,20 +54,22 @@
                                                 <small><?php echo $kolom['alamat'] ?></small> 
                                             <br></td>
                                             <td> 
-                                                <small>Status</small> 
+                                                <small><?php echo $kolom['nama_jenis'] ?></small> 
                                             <br></td>
                                             <td> 
-                                                <small>Domisili</small> 
+                                                <small><?php echo $kolom['wilayah'] ?></small> 
                                             <br></td>
                                             <td> 
-                                                <small>Sub Domisili</small> 
+                                                <small><?php echo $kolom['kelurahan'] ?></small> 
                                             <br></td>
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                    <button data-target="#hapus-jenis_pelanggan-" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
-                                                    <button class="btn btn-sm btn-default btn-active-warning">Sunting</button>
-                                            </div>
+                                                   
+                                                <a href="<?php echo base_url('data_pelanggan/editPelanggan/').$kolom['id_pelanggan'] ?>" class="btn btn-sm btn-default btn-active-warning">Sunting</a>
+                                                <a href="<?php echo base_url('data_pelanggan/prosesHapusPelanggan/'. $kolom['id_pelanggan']) ?>" 
+												    onclick="return confirm('Apakah anda yakin ingin menghapus pelanggan atas nama <?php echo $kolom['nama'] ?>')" class="btn btn-sm btn-default btn-active-warning">Hapus</a>
+                                                </div>
                                         </tr>
 
                                             </td>

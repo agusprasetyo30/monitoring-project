@@ -14,6 +14,9 @@
             
             // load 
             $this->load->model('M_data_pelanggan');
+            $this->load->model('M_jenis_pelanggan');
+            $this->load->model('M_domisili');
+         
         }
         
     
@@ -33,11 +36,67 @@
             );
             $this->load->view('template/template_backend', $data);
         }
+
+        function tambahPelanggan(){
+            $data = array(
+
+                'folder'    => "data_pelanggan",
+                'view'      => "V_add_pelanggan"
+            );
+           
+            $data['master_jenis_pelanggan'] = $this->M_jenis_pelanggan->getDataTable(null, 'master_jenis_pelanggan')->result_array();
+            $data['master_domisili'] = $this->M_domisili->getDataTable(null, 'master_domisili')->result_array();
+            $data['master_subdomisili'] = $this->M_domisili->getDataTable(null, 'master_subdomisili')->result_array();
+            // var_dump($data);
+            // die();
+            $this->load->view('template/template_backend', $data);
+        }
         
         // proses tambah pelanggan
         function prosesTambahPelanggan() {
+       
             $this->M_data_pelanggan->insertDataPelanggan();
         }
+
+        function editPelanggan($id_pelanggan){
+
+            $data = array(
+
+                'folder'    => "data_pelanggan",
+                'view'      => "V_edit_pelanggan"
+            );
+
+           
+            $data['hasil'] = $this->M_data_pelanggan->getDataTable( $id_pelanggan, 'data_pelanggan' )->result_array()[0];
+            $data['master_jenis_pelanggan'] = $this->M_jenis_pelanggan->getDataTable(null, 'master_jenis_pelanggan')->result_array();
+            $data['master_domisili'] = $this->M_domisili->getDataTable(null, 'master_domisili')->result_array();
+            $data['master_subdomisili'] = $this->M_domisili->getDataTable(null, 'master_subdomisili')->result_array();
+            // var_dump($data);
+            // die();
+            $this->load->view('template/template_backend', $data);
+
+
+        }
+
+        function prosesEditPelanggan($id_pelanggan) {
+       
+            $this->M_data_pelanggan->editDataPelanggan($id_pelanggan);
+        }
+
+        function prosesHapusPelanggan( $id_pelanggan)  {
+            // var_dump($this->M_data_pelanggan);
+            // die();
+            $this->M_data_pelanggan->deleteDataPelanggan( $id_pelanggan );
+        }
+
+      
+
+
+    
+       
+
+
+
     
     }
     

@@ -121,15 +121,6 @@ class Account extends CI_Controller {
 
 
 
-
-
-
-
-
-
-
-
-
     // view tambah akun
     public function tambahAkun(){
         $data = array(
