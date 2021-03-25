@@ -428,8 +428,15 @@
 
                                     <li class="<?php echo $this->uri->segment(3) == "data_pelanggan" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('data_pelanggan') ?>">
-						                    <i class="demo-pli-love"></i>
+						                    <i class="demo-pli-male"></i>
 						                    <span class="menu-title">Data Pelanggan</span>
+						                </a>
+						            </li>
+
+                                    <li class="<?php echo $this->uri->segment(3) == "data_piutang" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('data_piutang') ?>">
+						                    <i class="demo-pli-coin"></i>
+						                    <span class="menu-title">Kelola Data Piutang</span>
 						                </a>
 						            </li>
 
@@ -521,6 +528,7 @@
         $('#table-subdomisili').dataTable();
         $('#table-jenis_pelanggan').dataTable();
         $('#table-data_pelanggan').dataTable();
+        $('#table-data_piutang').dataTable();
     </script>
 
 
