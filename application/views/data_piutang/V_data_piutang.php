@@ -16,7 +16,7 @@
     
     
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-10 col-md-offset-1">
                             <div class="panel panel-body" style="border: 1px solid #e0e0e0">
                             
                                 <p class="text-main text-semibold">Data Tabel Piutang</p>
@@ -37,19 +37,32 @@
                                                 
                                                 <div class="form-group">
                                                     <label for="" class="text-semibold">No Ref</label>
-                                                    <input type="text" name="no_ref" class="form-control" placeholder="..." id="" required="" />
+                                                    <select id="no_ref" name="no_ref">
+                                                        <?php foreach ( $data_pelanggan->result_array() AS $row ) { ?>
+                                                        <option value="<?php echo $row['no_ref'] ?>"><?php echo $row['no_ref'].' - '. $row['nama'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
                                                     <small>Masukkan no ref</small>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="" class="text-semibold">Tahun</label>
-                                                    <input type="year" name="tahun" class="form-control" placeholder="..." id="" required="" />
+                                                    <!-- <input type="year" name="tahun" class="form-control" placeholder="..." id="" required="" /> -->
+                                                    <!--Bootstrap Datepicker : Text Input-->
+                                                    <!--===================================================-->
+                                                    <div id="dp-tahun">
+                                                        <input type="text" name="tahun" class="form-control">
+                                                    </div>
+                                                    <!--===================================================-->
                                                     <small>Masukkan tahun</small>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="" class="text-semibold">Bulan</label>
-                                                    <input type="date" name="bulan" class="form-control" placeholder="..." id="" required="" />
+                                                    <div id="dp-bulan">
+                                                        <input type="text" name="bulan" class="form-control">
+                                                    </div>
+                                                    <!-- <input type="date" name="bulan" class="form-control" placeholder="..." id="" required="" /> -->
                                                     <small>Masukkan bulan</small>
                                                 </div>
 
@@ -256,3 +269,40 @@
 
                 </div>
             </div>
+
+
+
+            
+            <!--Chosen [ OPTIONAL ]-->
+            <script src="<?php echo base_url() ?>assets/plugins/chosen/chosen.jquery.min.js"></script>
+            <!--Bootstrap Datepicker [ OPTIONAL ]-->
+            <script src="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+            
+            <script>
+
+                // No ref
+                $('#no_ref').chosen({width:'100%'});
+
+                // year
+                $('#dp-tahun').datepicker({
+                    format: "yyyy",
+                    todayBtn: "linked",
+                    viewMode: "years", 
+                    minViewMode: "years",
+                });
+
+
+                // bulan
+                $('#dp-bulan').datepicker({
+                    format: "MM",
+                    todayBtn: "linked",
+                    viewMode: "months", 
+                    minViewMode: "months",
+
+                });
+            
+            </script>
+
+
+
+
