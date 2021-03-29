@@ -5,7 +5,7 @@
                             
                             <!--Page Title-->
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                            <div id="page-title">}
+                            <div id="page-title">
                                 <h1 class="page-header text-overflow">Tambah Data Pelanggan </h1>
                             </div>
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -68,24 +68,11 @@
                                             <textarea placeholder="Masukkan alamat..." rows="4" class="form-control" name="alamat" required=""></textarea>
 					                        </div>
 					                    </div>
-                                        <div class="form-group">
-					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Status/Jenis Pelanggan</label>
-					                        <div class="col-sm-6">
-                                            <select data-placeholder="Choose a Country..." name="jenis" id="demo-chosen-select" tabindex="2">
-					                            <option value=""selected readonly>Pilih status pelanggan</option>
-												<?php
-													foreach ($master_jenis_pelanggan as $kolom => $value) { ?>
-														<option value="<?= $value['id_jenis_pelanggan']?>"><?= $value['nama_jenis']?></option>
-												<?php 
-													}
-												?>
-                                            </select>
-					                        </div>
-					                    </div>
+                                        
                                         <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Domisili</label>
 					                        <div class="col-sm-6">
-                                            <select data-placeholder="Choose a Country..." name="domisili"  id="demo-chosen-select" tabindex="2">
+                                            <select data-placeholder="Choose a Country..." name="domisili"  id="dom" tabindex="2">
 											<option value=""selected readonly>Pilih Domisili pelanggan</option>
 												<?php
 													foreach ($master_domisili as $kolom => $value) { ?>
@@ -99,7 +86,7 @@
 										<div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Sub Domisili</label>
 					                        <div class="col-sm-6">
-                                            <select data-placeholder="Choose a Country..." name="subdomisili" id="demo-chosen-select" tabindex="2">
+                                            <select data-placeholder="Choose a Country..." name="subdomisili" id="sub" tabindex="2">
 											<option value=""selected readonly>Pilih Sub Domisili pelanggan</option>
 												<?php
 													foreach ($master_subdomisili as $kolom => $value) { ?>
@@ -126,3 +113,14 @@
 				</form>
 					            <!--===================================================-->
 					            <!--End Input Size-->
+
+					     <!--Chosen [ OPTIONAL ]-->
+						 <script src="<?php echo base_url() ?>assets/plugins/chosen/chosen.jquery.min.js"></script>
+
+								<script>
+
+								$('#dom').chosen({width:'100%'});
+								$('#sub').chosen({width:'100%'});
+
+
+						</script>

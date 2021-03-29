@@ -89,6 +89,17 @@
             $this->M_data_pelanggan->deleteDataPelanggan( $id_pelanggan );
         }
 
+        function importData(){
+            $data = array(
+
+                'folder'    => "data_piutang",
+                'view'      => "V_import_excel",
+
+                // variable data
+            );
+            $this->load->view('template/template_backend', $data);
+        }
+
       
 
 
