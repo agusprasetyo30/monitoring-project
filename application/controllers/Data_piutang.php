@@ -61,8 +61,8 @@
              );
             //  var_dump($data);
             //  die();
-             $data['hasil'] = $this->M_data_piutang->getDataTable( $id_piutang, 'piutang' );
-             $data['data_pelanggan'] = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan');
+             $data['hasil'] = $this->M_data_piutang->getDataTable( $id_piutang, 'piutang' )->row_array();
+             $data['data_pelanggan'] = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan')->row_array();
         
              $this->load->view('template/template_backend', $data);
 

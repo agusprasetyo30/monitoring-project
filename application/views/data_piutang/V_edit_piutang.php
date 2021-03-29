@@ -52,42 +52,57 @@
 					                <div class="panel-body">
 
                                     <!-- ISI FORM -->                           
-                                        <div class="form-group">
-                                        <label for="" class="text-semibold">No ref</label>
-                                        <input type="text" name="no_ref" class="form-control" value="<?php echo $hasil['no_ref'] ?>" placeholder="..." id="" required="" /> <br>
-                                        <input type="hidden" name="id" value="<?php echo $hasil['id_piutang'] ?>">
-
-                                        <small>Masukkan no ref</small>
+                                    <div class="form-group">
+                                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">No Ref</label>
+                                            <div class="col-sm-6">
+                                            <input type="text" name="no_ref" class="form-control" value="<?php echo $hasil['no_ref'] ?>" placeholder="..." id="" required="" /> <br>
+                                            <input type="hidden" name="id" value="<?php echo $hasil['id_piutang'] ?>">
+                                            <small>Masukkan no ref</small>
+                                            </div>  
                                         </div>  
 
                                     <div class="form-group">
-                                        <label for="" class="text-semibold">Tahun</label>
-                                        <input type="year" name="tahun" class="form-control" value="<?php echo $hasil['tahun'] ?>" placeholder="..." id="" required="" /> <br>
-                                        <small>Masukkan tahun</small>
+                                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Tahun</label>
+                                        <div class="col-sm-6">
+                                            <div id="dp-tahun">
+                                            <input type="year" name="tahun" class="form-control" value="<?php echo $hasil['tahun'] ?>" placeholder="..." id="" required="" /> <br>
+                                            </div> 
+                                            <small>Masukkan tahun</small>
+                                        </div> 
                                     </div>    
 
                                     <div class="form-group">
-                                        <label for="" class="text-semibold">Bulan</label>
-                                        <input type="year" name="bulan" class="form-control" value="<?php echo $hasil['bulan'] ?>" placeholder="..." id="" required="" /> <br>
-                                        <small>Masukkan nama jenis pelanggan</small>
+                                    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Bulan</label>
+                                            <div class="col-sm-6">
+                                            <div id="dp-bulan">
+                                            <input type="year" name="bulan" class="form-control" value="<?php echo $hasil['bulan'] ?>" placeholder="..." id="" required="" /> <br>
+                                            </div> 
+                                            <small>Masukkan bulan</small>
+                                        </div> 
                                     </div>  
 
                                     <div class="form-group">
-                                        <label for="" class="text-semibold">Nominal</label>
+                                    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Nominal</label>
+                                        <div class="col-sm-6">
                                         <input type="number" name="nominal" class="form-control" value="<?php echo $hasil['nominal'] ?>" placeholder="..." id="" required="" /> <br>
-                                        <small>Masukkan nama jenis pelanggan</small>
+                                        <small>Masukkan nominal</small>
+                                        </div>  
                                     </div>  
 
                                     <div class="form-group">
-                                        <label for="" class="text-semibold">Keterangan</label>
+                                    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Keterangan</label>
+                                        <div class="col-sm-6">
                                         <input type="text" name="keterangan" class="form-control" value="<?php echo $hasil['keterangan'] ?>" placeholder="..." id=""  /> <br>
                                         <small>Masukkan nama jenis pelanggan</small>
                                     </div>  
+                                    </div>
 
                                     <div class="form-group">
-                                        <label for="" class="text-semibold">Alasan</label>
+                                    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Alasan</label>
+                                        <div class="col-sm-6">
                                         <input type="text" name="alasan" class="form-control" value="<?php echo $hasil['alasan'] ?>" placeholder="..." id="" /> <br>
                                         <small>Masukkan nama jenis pelanggan</small>
+                                    </div>
                                     </div>  
                                     <!-- TUTUP FORM -->
 
@@ -96,10 +111,14 @@
                             </div>  
 					    </div>  
 
-                        <div class="modal-footer">
-                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
-                                <button class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-plus"></i> Simpan dan Perbarui</button>
-                                </div>
+                        <div class="panel-footer">
+							<div class="row">
+					                <div class="col-md-10 text-right">
+										<a href="<?php echo base_url('data_piutang') ?>" class="btn btn-default btn-hover-primary btn-labeled" style="color: #294f75; border: 1px solid #294f75 !important"><i class="btn-label ti-exchange-vertical"></i> Reset</a>
+                    					<button class="btn btn-primary btn-labeled btn-submit"><i class="btn-label ti-check"></i> Simpan dan Perbarui</button>
+					                </div>
+					            </div>
+					    </div>
 				</form>
 		<!--===================================================-->
 		<!--End Input Size-->
