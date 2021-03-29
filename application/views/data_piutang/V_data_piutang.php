@@ -133,8 +133,9 @@
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
+                                                <button data-target="#sunting-data_piutang-<?php echo $kolom['id_piutang'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-warning">Sunting</button>
                                                     <button data-target="#hapus-data_piutang-<?php echo $kolom['id_piutang'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
-                                                    <button data-target="#sunting-data_piutang-<?php echo $kolom['id_piutang'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-warning">Sunting</button>
+                                                  
                                             </div>
                                         </tr>
                                         
