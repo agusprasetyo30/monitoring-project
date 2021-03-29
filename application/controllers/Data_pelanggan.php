@@ -96,18 +96,10 @@
 
                 // variable data
             );
+            $data['master_domisili'] = $this->M_domisili->getDataTable(null, 'master_domisili')->result_array();
             $this->load->view('template/template_backend', $data);
         }
 
-      
-
-
-    
-       
-
-
-
-    
     }
     
     /* End of file Data_pelanggan.php */

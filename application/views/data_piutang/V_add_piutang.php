@@ -14,7 +14,7 @@
 							<!--Breadcrumb-->
 							<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 							<ol class="breadcrumb">
-								<li><a href="<?php echo base_url('data_pelanggan') ?>"><i class="demo-pli-home"></i></a></li>
+								<li><a href="<?php echo base_url('data_piutang') ?>"><i class="demo-pli-home"></i> Menu Piutang</a></li>
 								<li class="active">Tambah Data Piutang</li>
 							</ol>
 							<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -29,7 +29,7 @@
                             <!---------------------------------->
                             <div class="row pad-btm">
                                 <div class="col-sm-6 toolbar-left">
-                                    <a href="<?php echo base_url('data_pelanggan') ?>" id="demo-btn-addrow" class="btn btn-primary btn-labeled"><i class="btn-label ti-arrow-left"></i> Kembali ke menu utama</a>
+                                    <a href="<?php echo base_url('data_piutang') ?>" id="demo-btn-addrow" class="btn btn-primary btn-labeled"><i class="btn-label ti-arrow-left"></i> Kembali ke menu utama</a>
                                     
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                         <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">No Ref</label>
 					                        <div class="col-sm-6">
-                                                <select name="no_ref"  id="no_ref" tabindex="2">
+                                                <select name="no_ref" id="no_ref" tabindex="2">
                                                     <?php foreach ($data_pelanggan AS $row => $value ) { ?>
                                                         <option value="<?php echo $value['no_ref'] ?>"><?php echo $value['no_ref'].' - '. $value['nama'] ?></option>
                                                     <?php } ?>

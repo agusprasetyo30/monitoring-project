@@ -45,21 +45,24 @@
                                       <h9> * Pilih Tahun</h9><br>
                                     
                                       <select id="tahun" name="tahun">
-                                           <option value="United States">Silahkan pilih tahun data piutang</option>
+                                           <option value="United States">Silahkan pilih tahun </option>
                                             <option value="United States">2020</option>
 					                        <option value="United Kingdom">2021</option>
                                       </select>
-                                
-
+     
                                       <br><br><br>
 
                                       <h9> * Pilih Domisili</h9><br>
-                                  
                                       <select  id="domisili" name="domisili">
                                             <option value="United States">Silahkan pilih domisili</option>
-                                            <option value="United States">LALALALALALALALAL</option>
-					                        <option value="United Kingdom">United Kingdom</option>
+                                            <?php
+												foreach ($master_domisili as $kolom => $value) { ?>
+												<option value="<?= $value['id_domisili']?>"><?= $value['kota']." - ".$value['wilayah'] ?></option>
+											<?php 
+											}
+                                            ?>
                                       </select>
+
 
                                       <br><br>
                                       <div class="col-md-12 text-right">
