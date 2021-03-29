@@ -14,6 +14,7 @@
             
             // load 
             $this->load->model('M_data_piutang'); 
+            $this->load->model('M_data_pelanggan');
          
         }
         
@@ -21,23 +22,26 @@
         public function index()
         {
 
-             // data jenis_pelanggan (get all)
-             $datapiutang = $this->M_data_piutang->getDataTable( null, 'piutang' );
-            
-             $data = array(
+            // data jenis_pelanggan (get all)
+            $datapiutang = $this->M_data_piutang->getDataTable( null, 'piutang' );
+            $dataPelanggan = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan');
+
+
+            $data = array(
  
-                 'folder'    => "data_piutang",
-                 'view'      => "V_data_piutang",
+                'folder'    => "data_piutang",
+                'view'      => "V_data_piutang",
  
-                  // variable data
-                  'data_piutang'  => $datapiutang
+                // variable data
+                'data_piutang'  => $datapiutang,
+                'data_pelanggan'=> $dataPelanggan
              );
              $this->load->view('template/template_backend', $data);
         }
 
         function prosesTambahPiutang() {
 
-            $this->M_data_piutang->insertDataPiutang( $data );
+            $this->M_data_piutang->insertDataPiutang();
         }
 
         function prosesHapusPiutang( $id_piutang )  {

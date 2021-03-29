@@ -1,4 +1,20 @@
 
+<?php
+                                        
+                                        
+    $foto = $this->session->userdata('sess_foto');
+    $username = $this->session->userdata('sess_username');
+    $name     = $this->session->userdata('sess_name');
+    $foto     = $this->session->userdata('sess_foto');
+    $jabatan  = $this->session->userdata('sess_jabatan');
+    $level    = $this->session->userdata('sess_level');
+    
+    // pemanggilan gambar
+    $img = base_url('assets/img/profile-photos/'. $foto);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,91 +91,13 @@
     <link href="<?php echo base_url() ?>assets/plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css" rel="stylesheet">
 
+    <!--Chosen [ OPTIONAL ]-->
+    <link href="<?php echo base_url() ?>assets/plugins/chosen/chosen.min.css" rel="stylesheet">
+    <!--Bootstrap Datepicker [ OPTIONAL ]-->
+    <link href="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
 
 
-    <style>
-
-        .bootstrap-timepicker-widget.dropdown-menu {
-            z-index: 10000 !important;
-        }
     
-
-        .ribbon-pending span{
-
-            background : #78909c;
-        }
-
-        .ribbon-pending span::before {
-            content: "";
-            position: absolute; left: 0px; top: 100%;
-            z-index: -1;
-            border-left: 3px solid #37474f  ;
-            border-right: 3px solid transparent;
-            border-bottom: 3px solid transparent;
-            border-top: 3px solid #37474f  ;
-        }
-        .ribbon-pending span::after {
-            content: "";
-            position: absolute; right: 0px; top: 100%;
-            z-index: -1;
-            border-left: 3px solid transparent;
-            border-right: 3px solid #37474f  ;
-            border-bottom: 3px solid transparent;
-            border-top: 3px solid #37474f  ;
-        }
-
-
-
-        .ribbon-accept span{
-
-            background : #0288d1;
-        }
-
-        .ribbon-accept span::before {
-            content: "";
-            position: absolute; left: 0px; top: 100%;
-            z-index: -1;
-            border-left: 3px solid #01579b  ;
-            border-right: 3px solid transparent;
-            border-bottom: 3px solid transparent;
-            border-top: 3px solid #01579b  ;
-        }
-        .ribbon-accept span::after {
-            content: "";
-            position: absolute; right: 0px; top: 100%;
-            z-index: -1;
-            border-left: 3px solid transparent;
-            border-right: 3px solid #01579b  ;
-            border-bottom: 3px solid transparent;
-            border-top: 3px solid #01579b  ;
-        }
-
-
-        .ribbon-finish span{
-
-            background : #8bc34a;
-        }
-
-        .ribbon-finish span::before {
-            content: "";
-            position: absolute; left: 0px; top: 100%;
-            z-index: -1;
-            border-left: 3px solid #33691e   ;
-            border-right: 3px solid transparent;
-            border-bottom: 3px solid transparent;
-            border-top: 3px solid #33691e   ;
-        }
-        .ribbon-finish span::after {
-            content: "";
-            position: absolute; right: 0px; top: 100%;
-            z-index: -1;
-            border-left: 3px solid transparent;
-            border-right: 3px solid #33691e   ;
-            border-bottom: 3px solid transparent;
-            border-top: 3px solid #33691e   ;
-        }
-    
-    </style>
 
         
 </head>
@@ -278,23 +216,6 @@
 
         <div class="boxed">
 
-            <!--Small Bootstrap Modal-->
-            <!--===================================================-->
-            <div id="process-loader" class="modal fade" tabindex="-1">
-                <div class="modal-dialog modal-sm">
-                    <div class="">
-                        <div class="load6" style="color: #fff">
-                            <div class="loader" style="color: #69f0ae"></div>
-                            <h4 class="text-center" style="color: #00e676">Sedang Memproses</h4>
-                            <div class="text-center"><small>Tunggu beberapa saat, kami sedang mengerjakan</small></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--===================================================-->
-            <!--End Small Bootstrap Modal-->
-
-
 
             <?php $this->load->view( $folder.'/'.$view ) ?>
 
@@ -320,24 +241,33 @@
                                 <div id="mainnav-profile" class="mainnav-profile">
                                     <div class="profile-wrap text-center">
                                         <div class="pad-btm">
-                                        <?php
-                                            
-                                           $full_name = "Nama Lengkap";
-                                           $caption   = "Bagiannya";
-                                           $img   = 8;
-                                        ?>
-
-                                            <img class="img-circle img-md" src="<?php echo base_url() ?>assets/img/profile-photos/<?php echo $img ?>.png" alt="Profile Picture">
+                                        
+                                            <img class="img-circle img-md" src="<?php echo $img ?>" alt="Profile Picture">
                                         </div>
                                         <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
                                             <span class="pull-right dropdown-toggle">
                                                 <i class="dropdown-caret"></i>
                                             </span>
-                                            <p class="mnp-name"><?php echo $full_name ?></p>
+                                            <p class="mnp-name"><?php echo $name ?></p>
                                             <span class="mnp-desc">
                                                 <?php
 
-                                                    echo $caption;
+                                                    if ( $jabatan == "petugas_lapangan" ) {
+
+                                                        echo "Petugas Lapangan";
+                                                    } else if ( $jabatan == "pegawai_kantor" ) {
+
+                                                        echo "Pegawai Kantor";
+                                                    } else if ( $jabatan == "manajer" ) {
+
+                                                        echo "Manajer Kantor Jargas";
+                                                    
+                                                    
+                                                    } else { // super admin
+
+                                                        echo $jabatan;
+                                                    }
+                                                    
                                                 
                                                 ?>
                                             </span>
@@ -392,56 +322,34 @@
                                 <!--End shortcut buttons-->
 
 
-                                <ul id="mainnav-menu" class="list-group">
-						
-						            <!--Nav-->
-						            <li class="list-header">Menu</li>
+                                <!-- Navigation sidebar -->
 
-						
-						            <!--Menu list item-->
-						            <li class="<?php echo $this->uri->segment(1) == "dashboard" ? 'active-sub' : '' ?>">
-						                <a href="<?php echo base_url('dashboard') ?>">
-						                    <i class="demo-pli-home"></i>
-						                    <span class="menu-title">Halaman Utama</span>
-						                </a>
-						            </li>
+                                <?php
 
-                                    <li class="<?php echo $this->uri->segment(5) == "account" ? 'active-sub' : '' ?>">
-						                <a href="<?php echo base_url('account') ?>">
-						                    <i class="demo-pli-male"></i>
-						                    <span class="menu-title">Akun Pengguna </span>
-						                </a>
-						            </li>
-                                    <li class="<?php echo $this->uri->segment(2) == "jenis_pelanggan" ? 'active-sub' : '' ?>">
-						                <a href="<?php echo base_url('jenis_pelanggan') ?>">
-						                    <i class="demo-pli-check"></i>
-						                    <span class="menu-title">Master Jenis Pelanggan </span>
-						                </a>
-						            </li>
+                                    if ( $jabatan == "petugas_lapangan" ) {
 
-                                    <li class="<?php echo $this->uri->segment(3) == "domisili" ? 'active-sub' : '' ?>">
-						                <a href="<?php echo base_url('domisili') ?>">
-						                    <i class="demo-pli-map-2"></i>
-						                    <span class="menu-title">Master Domisili</span>
-						                </a>
-						            </li>
+                                        $this->load->view('template/navigation_employee');
 
-                                    <li class="<?php echo $this->uri->segment(3) == "data_pelanggan" ? 'active-sub' : '' ?>">
-						                <a href="<?php echo base_url('data_pelanggan') ?>">
-						                    <i class="demo-pli-male"></i>
-						                    <span class="menu-title">Data Pelanggan</span>
-						                </a>
-						            </li>
-
-                                    <li class="<?php echo $this->uri->segment(3) == "data_piutang" ? 'active-sub' : '' ?>">
-						                <a href="<?php echo base_url('data_piutang') ?>">
-						                    <i class="demo-pli-coin"></i>
-						                    <span class="menu-title">Kelola Data Piutang</span>
-						                </a>
-						            </li>
+                                    } else if ( $jabatan == "pegawai_kantor" ) {
 
 
-                                </ul>
+                                    } else if ( $jabatan == "manajer" ) {
+
+
+
+                                    } else {
+
+                                        // view super admin
+
+                                        $this->load->view('template/navigation_officer');
+                                    }
+
+                                    
+                                
+                                ?>
+
+
+                                <!-- end Navigation sidebar -->
 
 
                             </div>

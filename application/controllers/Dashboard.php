@@ -12,12 +12,32 @@
 
         public function index(){
             
-            $data = array(
+            $sess_level = $this->session->userdata('sess_level');
 
-                'folder'    => "dashboard",
-                'view'      => "V_dashboard"
-            );
-            $this->load->view('template/template_backend', $data);
+            
+            // pengecekan hak akses
+            if ( $sess_level != "employee" ) {
+
+                $data = array(
+
+                    'folder'    => "dashboard",
+                    'view'      => "V_dashboard"
+                );
+                $this->load->view('template/template_backend', $data);
+
+            } else {
+
+                // view pegawai
+                $data = array(
+
+                    'folder'    => "dashboard",
+                    'view'      => "V_dashboard_lapangan"
+                );
+                $this->load->view('template/template_backend', $data);
+            }
+
+            
+            
         }
     
     }
