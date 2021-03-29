@@ -5,18 +5,29 @@
     class M_data_piutang extends CI_Model {
 
         //menampilkan data pelanggan
-        function getDataTable( $where = null, $table ) {
+        function getDataTable( $id_piutang = null ) {
 
-            if ( $where ) {
-                // SELECT  * FROM master_jenis_pelanggan WHERE id = 'x'
-                return $this->db->get_where($table, $where);
+         
+            if ( $id_piutang ) { // ada idnya / isinya
 
-            } else {
 
-                // tidak menampilkan data secara spesifik
-                // SELECT * FROM master_jenispelanggan
-                return $this->db->get($table);
+                $sql = "SELECT 
+                    piutang.id_piutang, piutang.no_ref, piutang.tahun, piutang.bulan, piutang.nominal,piutang.keterangan, piutang.alasan, 
+                    data_pelanggan.id_pelanggan, data_pelanggan.nama, data_pelanggan.no_ref
+                    FROM piutang
+                    JOIN data_pelanggan ON piutang.no_ref = data_pelanggan.no_ref 
+                    WHERE piutang.id_piutang = '$id_piutang'";
+            } else { 
+                $sql = "SELECT 
+                    piutang.id_piutang, piutang.no_ref, piutang.tahun, piutang.bulan, piutang.nominal,piutang.keterangan, piutang.alasan, 
+                    data_pelanggan.id_pelanggan, data_pelanggan.nama, data_pelanggan.no_ref
+                    FROM piutang
+                    JOIN data_pelanggan ON piutang.no_ref = data_pelanggan.no_ref";
             }
+            
+            $query = $this->db->query($sql);
+
+            return $query;
         }
 
         // proses insert ke db
@@ -55,7 +66,7 @@
 
 
         // update
-        function updateDataPiutang() {
+        function updateDataPiutang($id_piutang) {
 
 
             // element input type hidden

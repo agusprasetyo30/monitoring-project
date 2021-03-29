@@ -39,6 +39,35 @@
              $this->load->view('template/template_backend', $data);
         }
 
+        function tambahPiutang(){
+            $data = array(
+ 
+                'folder'    => "data_piutang",
+                'view'      => "V_add_piutang",
+            
+             // var_dump($data);
+            // die();
+             );
+             $this->load->view('template/template_backend', $data);
+
+        }
+
+        function editPiutang($id_piutang){
+            $data = array(
+ 
+                'folder'    => "data_piutang",
+                'view'      => "V_edit_piutang",
+            
+             );
+            //  var_dump($data);
+            //  die();
+             $data['hasil'] = $this->M_data_piutang->getDataTable( $id_piutang, 'piutang' );
+             $data['data_pelanggan'] = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan');
+        
+             $this->load->view('template/template_backend', $data);
+
+        }
+
         function prosesTambahPiutang() {
 
             $this->M_data_piutang->insertDataPiutang();
@@ -48,22 +77,9 @@
             $this->M_data_piutang->deleteDataPiutang( $id_piutang );
         }
 
-        // proses ubah domisili
-        function prosesUbahPiutang() {
-            $this->M_data_piutang->updateDataPiutang();
+        function prosesEditPiutang($id_piutang) {
+            $this->M_data_piutang->updateDataPiutang($id_piutang);
         }
-
-
-
-
-
-
-    
-       
-
-
-
-    
     }
     
     /* End of file Data_pelanggan.php */

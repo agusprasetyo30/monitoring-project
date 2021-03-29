@@ -67,6 +67,7 @@
                             <h4>Data <?php echo $text ?></h4>
                                 <p>Lengkapi data form dibawah ini</p>
 					            <!--===================================================-->
+							
 					            <form class="form-horizontal" action="<?php echo base_url('account/prosesUbahAkun') ?>" method="POST" enctype="multipart/form-data">
 					                <div class="panel-body">
                                     	

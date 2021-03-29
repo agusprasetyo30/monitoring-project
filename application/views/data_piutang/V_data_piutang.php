@@ -20,84 +20,7 @@
                             <div class="panel panel-body" style="border: 1px solid #e0e0e0">
                             
                                 <p class="text-main text-semibold">Data Tabel Piutang</p>
-                                <a href="#" data-target="#tambah-data_piutang" data-toggle="modal" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
-
-
-                                <!--Small Bootstrap Modal-->
-                                <!--===================================================-->
-                                <div id="tambah-data_piutang" class="modal fade" tabindex="-1">
-                                    <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-                                            </div>
-                                            
-                                            <form action="<?php echo base_url('data_piutang/prosesTambahPiutang') ?>" method="POST">
-                                            <div class="modal-body">
-                                                
-                                                <div class="form-group">
-                                                    <label for="" class="text-semibold">No Ref</label>
-                                                    <select id="no_ref" name="no_ref">
-                                                        <?php foreach ( $data_pelanggan->result_array() AS $row ) { ?>
-                                                        <option value="<?php echo $row['no_ref'] ?>"><?php echo $row['no_ref'].' - '. $row['nama'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                    <small>Masukkan no ref</small>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="" class="text-semibold">Tahun</label>
-                                                    <!-- <input type="year" name="tahun" class="form-control" placeholder="..." id="" required="" /> -->
-                                                    <!--Bootstrap Datepicker : Text Input-->
-                                                    <!--===================================================-->
-                                                    <div id="dp-tahun">
-                                                        <input type="text" name="tahun" class="form-control">
-                                                    </div>
-                                                    <!--===================================================-->
-                                                    <small>Masukkan tahun</small>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="" class="text-semibold">Bulan</label>
-                                                    <div id="dp-bulan">
-                                                        <input type="text" name="bulan" class="form-control">
-                                                    </div>
-                                                    <!-- <input type="date" name="bulan" class="form-control" placeholder="..." id="" required="" /> -->
-                                                    <small>Masukkan bulan</small>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="" class="text-semibold">Nominal</label>
-                                                    <input type="number" name="nominal" class="form-control" placeholder="..." id="" required="" />
-                                                    <small>Masukkan nominal</small>
-
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label for="" class="text-semibold">Keterangan</label>
-                                                    <input type="text" name="keterangan" class="form-control" placeholder="..." id="" required="" />
-                                                    <small>Masukkan keterangan</small>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="" class="text-semibold">Alasan</label>
-                                                    <input type="text" name="alasan" class="form-control" placeholder="..." id="" required="" />
-                                                    <small>Masukkan alasan</small>
-                                                </div>
-                                            
-                                                
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
-                                                <button class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambahkan dan Simpan</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--===================================================-->
-                                <!--End Small Bootstrap Modal-->
-
+                                <a href="<?php echo base_url('data_piutang/tambahPiutang')?>" data class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
 
                                 <hr>
 
@@ -146,83 +69,14 @@
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                <button data-target="#sunting-data_piutang-<?php echo $kolom['id_piutang'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-warning">Sunting</button>
-                                                    <button data-target="#hapus-data_piutang-<?php echo $kolom['id_piutang'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
+                                                <a href="<?php echo base_url('data_piutang/editPiutang/').$kolom['id_piutang'] ?>" class="btn btn-sm btn-default btn-active-warning">Sunting</a>
+                                                <button data-target="#hapus-data_piutang-<?php echo $kolom['id_piutang'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
                                                   
                                             </div>
                                         </tr>
                                         
 
-
-                                                <!-- Modal sunting -->
-                                                <!--===================================================-->
-                                                <div id="sunting-data_piutang-<?php echo $kolom['id_piutang'] ?>" class="modal fade" tabindex="-1">
-                                                    <div class="modal-dialog modal-sm">
-                                                        <div class="modal-content">
-
-                                                        <form action="<?php echo base_url('data_piutang/prosesUbahPiutang') ?>" method="POST">
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <label for="" class="text-semibold">No ref</label>
-                                                                    <input type="text" name="no_ref" class="form-control" value="<?php echo $kolom['no_ref'] ?>" placeholder="..." id="" required="" /> <br>
-                                                                    <input type="hidden" name="id" value="<?php echo $kolom['id_piutang'] ?>">
-
-                                                                    <small>Masukkan nama jenis pelanggan</small>
-                                                                </div>  
-
-                                                                 <div class="form-group">
-                                                                    <label for="" class="text-semibold">Tahun</label>
-                                                                    <input type="year" name="tahun" class="form-control" value="<?php echo $kolom['tahun'] ?>" placeholder="..." id="" required="" /> <br>
-                                                                   
-
-                                                                    <small>Masukkan nama jenis pelanggan</small>
-                                                                </div>    
-
-                                                                <div class="form-group">
-                                                                    <label for="" class="text-semibold">Bulan</label>
-                                                                    <input type="year" name="bulan" class="form-control" value="<?php echo $kolom['bulan'] ?>" placeholder="..." id="" required="" /> <br>
-                                                                   
-
-                                                                    <small>Masukkan nama jenis pelanggan</small>
-                                                                </div>  
-
-                                                                <div class="form-group">
-                                                                    <label for="" class="text-semibold">Nominal</label>
-                                                                    <input type="number" name="nominal" class="form-control" value="<?php echo $kolom['nominal'] ?>" placeholder="..." id="" required="" /> <br>
-                                                                   
-
-                                                                    <small>Masukkan nama jenis pelanggan</small>
-                                                                </div>  
-
-                                                                <div class="form-group">
-                                                                    <label for="" class="text-semibold">Keterangan</label>
-                                                                    <input type="text" name="keterangan" class="form-control" value="<?php echo $kolom['keterangan'] ?>" placeholder="..." id="" required="" /> <br>
-                                                                   
-
-                                                                    <small>Masukkan nama jenis pelanggan</small>
-                                                                </div>  
-
-                                                                <div class="form-group">
-                                                                    <label for="" class="text-semibold">Alasan</label>
-                                                                    <input type="text" name="alasan" class="form-control" value="<?php echo $kolom['alasan'] ?>" placeholder="..." id="" required="" /> <br>
-                                                                   
-
-                                                                    <small>Masukkan nama jenis pelanggan</small>
-                                                                </div>  
-
-
-
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
-                                                                <button class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-plus"></i> Simpan dan Perbarui</button>
-                                                            </div>
-                                                        </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--===================================================-->
-                                                <!-- End Modal Sunting -->
+                        
 
 
 

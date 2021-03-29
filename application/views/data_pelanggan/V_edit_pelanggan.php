@@ -35,7 +35,6 @@
                             </div>
                             <!---------------------------------->
 
-
                     <div class="row">
                         
                         <div class="col-md-8 col-md-offset-2">
@@ -54,10 +53,6 @@
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">No Ref</label>
 					                        <div class="col-sm-6">
 					                            <input name="no_ref" type="text" value="<?php echo $hasil['no_ref'] ?>" placeholder="Masukkan No Ref..." required="" class="form-control" id="demo-is-inputnormal">
-                                                <!-- <input type="hidden" name="idpel" value="<?php echo $data['id_pelanggan'] ?>">
-                                                <input type="hidden" name="idjen" value="<?php echo $data['id_domisili'] ?>">
-                                                <input type="hidden" name="iddom" value="<?php echo $data['id_domisili'] ?>">
-                                                <input type="hidden" name="idsubdom" value="<?php echo $data['id_subdomisili'] ?>"> -->
                                             </div>
 					                    </div>
                                         <div class="form-group">
@@ -76,7 +71,7 @@
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Status/Jenis Pelanggan</label>
 					                        <div class="col-sm-6">
 											
-                                            <select data-placeholder="Choose a Country..." name="jenis" id="demo-chosen-select" tabindex="2">
+                                            <select data-placeholder="Choose a Country..." name="jenis" id="jen" tabindex="2">
 					                            <option value=""selected readonly>Pilih status pelanggan</option>
 												<?php
 													foreach ($master_jenis_pelanggan as $kolom => $value) {
@@ -95,7 +90,7 @@
                                         <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Domisili</label>
 					                        <div class="col-sm-6">
-                                            <select data-placeholder="Choose a Country..." name="domisili" id="demo-chosen-select" tabindex="2">
+                                            <select data-placeholder="Choose a Country..." name="domisili" id="dom" tabindex="2">
 											<option value=""selected readonly>Pilih Domisili pelanggan</option>
 												<?php
 													foreach ($master_domisili as $kolom => $value) {
@@ -114,7 +109,7 @@
 										<div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Sub Domisili</label>
 					                        <div class="col-sm-6">
-                                            <select data-placeholder="Choose a Country..." name="subdomisili"id="demo-chosen-select" tabindex="2">
+                                            <select data-placeholder="Choose a Country..." name="subdomisili"id="sub" tabindex="2">
 											<option value=""selected readonly>Pilih Sub Domisili pelanggan</option>
 												<?php
 													foreach ($master_subdomisili as $kolom => $value) {
@@ -137,13 +132,16 @@
                                 </div>
 					            </div>
 
-								
-
-
                             </div>  
-					    </div>  
-
-                        
+					    </div>     
 				</form>
-					            <!--===================================================-->
-					            <!--End Input Size-->
+				<!--===================================================-->
+				<!--End Input Size-->
+
+			<!--Chosen [ OPTIONAL ]-->
+			<script src="<?php echo base_url() ?>assets/plugins/chosen/chosen.jquery.min.js"></script>
+			<script>
+				$('#jen').chosen({width:'100%'});
+				$('#dom').chosen({width:'100%'});
+				$('#sub').chosen({width:'100%'});
+			</script>

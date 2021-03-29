@@ -21,7 +21,7 @@
                             
                                 <p class="text-main text-semibold">Data Tabel Jenis Pelanggan</p>
                                 <a href="<?php echo base_url('data_pelanggan/tambahPelanggan')?>" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Tambah Baru</a>
-                                <a href="<?php echo base_url('data_pelanggan/importData')?>" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Import Data Excel</a>
+                                <a href="<?php echo base_url('data_pelanggan/importData')?>" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Import Data Excell</a>
                                 <hr>
 
                                 <table class="table" id="table-data_pelanggan">
