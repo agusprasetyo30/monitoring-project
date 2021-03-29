@@ -48,6 +48,7 @@
              // var_dump($data);
             // die();
              );
+             $data['data_pelanggan'] = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan')->result_array();
              $this->load->view('template/template_backend', $data);
 
         }
