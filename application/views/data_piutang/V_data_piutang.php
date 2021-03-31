@@ -40,9 +40,12 @@
                                     <tbody>
 
 
-                                    <?php foreach ( $data_piutang->result_array() AS $kolom ) { ?>
+                                    <?php
+                                    
+                                    $nomor = 1;
+                                    foreach ( $data_piutang->result_array() AS $kolom ) { ?>
                                         <tr>
-                                            <td>1</td>
+                                            <td><?php echo $nomor++ ?></td>
                                             <td> 
                                                 <small><?php echo $kolom['no_ref'] ?></small> 
                                             <br></td>

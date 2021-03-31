@@ -14,8 +14,8 @@
 
 
                                     <!--Menu list item-->
-						            <li class="<?php echo $this->uri->segment(1) == "" ? 'active-sub' : '' ?>">
-						                <a href="<?php echo base_url('dashboard') ?>">
+						            <li class="<?php echo $this->uri->segment(1) == "penagihan" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('penagihan') ?>">
 						                    <i class="demo-pli-home"></i>
 						                    <span class="menu-title">Kelola Penagihan</span>
 						                </a>
