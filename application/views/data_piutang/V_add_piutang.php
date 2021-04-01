@@ -96,7 +96,7 @@
                                         <div class="form-group">
                                             <label for="demo-is-inputnormal" class="col-sm-3 control-label">Keterangan</label>
                                             <div class="col-sm-6">
-                                                <input type="text" name="keterangan" class="form-control" placeholder="..." id=""  />
+                                                <textarea name="keterangan" id="" cols="30"  class="form-control" rows="5"></textarea>
                                                 <small>Masukkan keterangan</small>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                         <div class="form-group">
                                             <label for="demo-is-inputnormal" class="col-sm-3 control-label">Alasan</label>
                                             <div class="col-sm-6">
-                                                <input type="text" name="alasan" class="form-control" placeholder="..." id=""  />
+                                                <textarea name="alasan" id="" class="form-control" cols="30" rows="5"></textarea>
                                                 <small>Masukkan alasan</small>
                                             </div>
                                         </div>

@@ -152,7 +152,6 @@
                 redirect( $link );
 
             }
-
             
         }
 
@@ -205,9 +204,6 @@
                     $data_foto = $this->upload->data('file_name');
                 }
 
-
-
-
             } else {
 
                 // without upload photo
@@ -215,14 +211,6 @@
 
             }
 
-
-
-
-
-
-
-          
-            
           
             $dataOfficer = array(
 
@@ -234,7 +222,7 @@
                 'tanggal_lahir' => $this->input->post('tanggallahir'),
                 'tempat_lahir'  => $this->input->post('tempatlahir'),
                 'foto'      => $data_foto,
-                'wilayah_penugasan' => $this->input->post('wilayah'),
+                'wilayah_penugasan'  => $this->input->post('wilayah'),
             );
 
             $this->db->where('id_login', $id_login);

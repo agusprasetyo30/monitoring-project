@@ -92,7 +92,7 @@
                                     <div class="form-group">
                                     <label for="demo-is-inputnormal" class="col-sm-3 control-label">Keterangan</label>
                                         <div class="col-sm-6">
-                                        <input type="text" name="keterangan" class="form-control" value="<?php echo $hasil['keterangan'] ?>" placeholder="..." id=""  /> <br>
+                                        <textarea name="keterangan" id="" cols="30" class="form-control" rows="5"><?php echo $hasil['keterangan'] ?></textarea>
                                         <small>Masukkan nama jenis pelanggan</small>
                                     </div>  
                                     </div>
@@ -100,7 +100,7 @@
                                     <div class="form-group">
                                     <label for="demo-is-inputnormal" class="col-sm-3 control-label">Alasan</label>
                                         <div class="col-sm-6">
-                                        <input type="text" name="alasan" class="form-control" value="<?php echo $hasil['alasan'] ?>" placeholder="..." id="" /> <br>
+                                        <textarea name="keterangan" id="" cols="30" class="form-control" rows="5"><?php echo $hasil['alasan'] ?></textarea>
                                         <small>Masukkan nama jenis pelanggan</small>
                                     </div>
                                     </div>  

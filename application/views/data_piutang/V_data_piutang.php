@@ -90,16 +90,16 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-                                                                <h4 class="modal-title" id="mySmallModalLabel">Informasi jenis_pelanggan</h4>
+                                                                <h4 class="modal-title" id="mySmallModalLabel">Informasi Pelanggan</h4>
                                                             </div>
                                                             
                                                             <div class="modal-body">
 
                                                                 <label for="">No Ref : <span class="text-main text-semibold"><?php echo $kolom['no_ref'] ?></span></label><br>
+                                                                <label for="">Nama   : <span class="text-main text-semibold"><?php echo $kolom['nama'] ?></span></label>
                                                                 <hr>
-
                                                                 <small><span class="text-danger">*</span> Catatan</small> <br>
-                                                                <small>Apakah anda yakin ingin menghapus informasi jenis_pelanggan ini. Data yang telah dihapus tidak dapat dipulihkan kembali</small>
+                                                                <small>Apakah anda yakin ingin menghapus data piutang pada pelanggan ini? Data yang telah dihapus tidak dapat dipulihkan kembali</small>
 
                                                             </div>
                                                             <div class="modal-footer">
