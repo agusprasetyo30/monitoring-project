@@ -274,9 +274,18 @@
                                         </a>
                                     </div>
                                     <div id="profile-nav" class="collapse list-group bg-trans">
-                                        <a href="<?php echo base_url('setting-account') ?>" class="list-group-item">
+                                    <li>
+                                        <a href="<?php echo base_url('setting') ?>" class="list-group-item">
                                             <i class="demo-pli-male icon-lg icon-fw"></i> Pengaturan Akun
                                         </a>
+                                         <!--Submenu-->
+						                <ul class="collapse">
+						                    <li><a href="index.html">Dashboard 1</a></li>
+											<li><a href="dashboard-2.html">Dashboard 2</a></li>
+											<li><a href="dashboard-3.html">Dashboard 3</a></li>
+											
+						                </ul>
+                                    </li>
                                         <a href="<?php echo base_url('login/processlogout') ?>" class="list-group-item">
                                             <i class="demo-pli-unlock icon-lg icon-fw"></i> Logout
                                         </a>

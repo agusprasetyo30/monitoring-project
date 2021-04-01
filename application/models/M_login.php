@@ -72,7 +72,7 @@
                 $name       = "Admin PGN";
                 $username   = $kolom['username'];
                 $level      = $kolom['level'];
-                $foto       = 'admin.png';
+                $foto       = '7.png';
                 $jabatan    = "Pemilik Kantor Jargas PGN";
                 $gender     = "";
             
