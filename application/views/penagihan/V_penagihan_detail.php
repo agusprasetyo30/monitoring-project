@@ -1,226 +1,155 @@
-<?php 
-
-
-$btnReset = '<a  href="" class="btn btn-default btn-hover-mint btn-icon btn-sm"><i class="ti-reload"></i></a>';
-
-$colorStatus = "";
-$textStatus  = "Ditolak";
-$buttonStatus= '<button class="btn btn-sm btn-danger btn-labeled disabled"><i class="btn-label ti-close"></i> Antrian di tolak</button> '. $btnReset;
-
-$buttonFinish= '<button class="btn btn-sm btn-default btn-labeled disabled"><i class="btn-label ti-close"></i> Status Antrian Harus di setujui </button>';
-if (  "pending" ) {
-
-	$colorStatus = "pending";
-	$textStatus  = "Pending";
-	$buttonStatus = '
-	<button class="btn btn-sm btn-default btn-hover-info btn-labeled" data-target="#modal-accept" data-toggle="modal"><i class="btn-label ti-check"></i> Setujui Antrian</button>
-	<button class="btn btn-sm btn-default btn-hover-danger btn-labeled" data-target="#modal-decline" data-toggle="modal"><i class="btn-label ti-close"></i> Tolak antrian</button>';
-	
-} else if ( "accept" ) {
-
-	$colorStatus = "accept";
-	$textStatus  = "Disetujui";
-	$buttonStatus = '<button class="btn btn-sm btn-info btn-labeled disabled"><i class="btn-label ti-check"></i> Antrian telah di setujui</button> '.$btnReset.'<br>
-	
-	<a href="'.base_url('queue/printQueue?id='. encrypt_data($dataQueue['id_antrian']) ).'" class="btn-link text-main text-sm" target="_blank"><i class="fa fa-print"></i> Cetak Antrian - '.$dataQueue['code'] .'</a>';
-	$buttonFinish= '<button class="btn btn-sm btn-warning btn-labeled" data-target="#modal-finished" data-toggle="modal"><i class="btn-label ti-check"></i> Tambahkan keterangan antrian selesai</button>';
-} else if ("finished" ) {
-
-	$colorStatus = "finish";
-	$textStatus  = "Selesai";
-	$btnReset = '<button type="button" class="btn btn-mint disabled btn-sm"><i class="ti-minus"></i></button>';
-	$buttonStatus = '<button class="btn btn-sm btn-info btn-labeled disabled"><i class="btn-label ti-check"></i> Antrian telah di setujui</button> '.$btnReset.'<br>
-	
-	<a href="'.base_url('queue/printQueue?id='. encrypt_data($dataQueue['id_antrian']) ).'" class="btn-link text-main" target="_blank"><i class="fa fa-print"></i> Cetak Antrian - '.$dataQueue['code'] .'</a>';
-
-	$buttonFinish= '<button class="btn btn-sm btn-success btn-labeled disabled"><i class="btn-label ti-check"></i> Antrian telah selesai</button>';
-}
-
-?>
 <!--CONTENT CONTAINER-->
             <!--===================================================-->
             <div id="content-container">
-                <div id="page-head"></div>
+                <div id="page-head">
+                    
+                    <!--Page Title-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <div id="page-title">
+                        <h1 class="page-header text-overflow">Halaman Penagihan</h1>
+                    </div>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End page title-->
 
+
+                    <!--Breadcrumb-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <ol class="breadcrumb">
+					<li><a href="<?php echo base_url('dashboard') ?>"><i class="demo-pli-home"></i></a></li>
+					<li class="active">Penagihan</li>
+                    </ol>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End breadcrumb-->
+
+                </div>
+                        
+
+
+          
                 
                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content">
                     
-					    <!-- MAIL INBOX -->
-					    <!--===================================================-->
-					    <div class="panel">
-					        <div class="panel-body">
-					            <div class="fixed-fluid">
-					                <div class="fixed-sm-200 pull-sm-left fixed-right-border">
+					<div class="row">
+                    <div class="col-md-12">
+					    <div class="eq-height">
+					        <div class="col-sm-4 eq-box-sm">
 					
-										<input type="hidden" name="status_antrian" value="all" />
-										<input type="hidden" name="specific" />
-					
-					                    <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Informasi Penagihan</p>
-					                    <div class="list-group bg-trans pad-btm bord-btm">
-					                        <a href="javascript:void(0)" class="list-group-item select-by" data-status="pending">
-					                            <i class="ti-email icon-lg icon-fw"></i> Akan Ditagih
-					                        </a>
-					                        <a href="javascript:void(0)" class="list-group-item select-by" data-status="accept">
-					                            <i class="ti-time icon-lg icon-fw"></i> Sudah Ditagih
-					                        </a>
-					                       
-
-											<?php if ( $this->session->userdata('sess_level') != "super_admin" ) { ?>
-					                        <a href="javascript:void(0)" class="list-group-item select-by" data-status="priority">
-					                            &nbsp;<i class="ti-star icon-lg icon-fw"></i> Prioritas <span id="qty-priority"></span>
-					                        </a>
-											<?php } ?>
-					                    </div>
-										
-										<?php if ( $this->session->userdata('sess_level') == "super_admin" ) { ?>
-					                   
-										<?php } else { ?>
-											
-									
-					                    <div class="list-group bg-trans pad-ver bord-ver">
-
-					                        <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Jenis Bagian</p>
-					
-					                        <!-- Menu list item -->
-					                        <a href="javascript:void(0)" data-bagian="tu" class="list-group-item select-bagian list-item-sm">
-					                            <span class="badge badge-purple badge-icon badge-fw pull-left"></span>
-					                            Kota
-					                        </a>
-					                        <a href="javascript:void(0)" data-bagian="renvapor" class="list-group-item select-bagian list-item-sm">
-					                            <span class="badge badge-info badge-icon badge-fw pull-left"></span>
-					                            Kabupaten
-					                        </a>
-					                      
-
-					                    </div>
-										<?php } ?>
-					
-					
-					                </div>
-					                <div class="fluid">
-					                    <div id="demo-email-list">
-					                        <div class="row">
-					                            <div class="col-sm-7 toolbar-left">
-					
-					                                <!-- Mail toolbar -->
-					                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-					
-					                                <!--Refresh button-->
-					                                <button id="ref-btn" class="btn btn-default" type="button"><i class="demo-psi-repeat-2"></i></button>
-					
-					                            </div>
-					                            <div class="col-sm-5 toolbar-right">
-													<div class="form-group has-feedback">
-														<input type="text" class="form-control" name="keyword" placeholder="Cari">
-														<i class="ti-search form-control-feedback"></i>
-													</div>
-					                            </div>
-					                        </div>
-					
-					                        <!--Mail list group-->
-											<hr>
-											
-											<label class="text-main text-semibold">INFORMASI DETAIL</label>
-											<h5 class="text-thin" style="margin: 0px"><span id="text-bagian">Penagihan</span> | 
-											<br><br><br><br>
-											  <!--Purple Panel-->
-					        <!--===================================================-->
-					       <!-- Contact Toolbar -->
-		
-
-		<div class="row">
-			<!--Premium Plan-->
-			<!--===================================================-->
-			<div class="col-sm-8 col-md-offset-2 pricing-featured">
-				<div class="panel" style="border: 1px solid #e0e0e0">
-					<div class="ribbon ribbon-<?php echo $colorStatus ?>"><span><?php echo $textStatus ?></span></div>
-					<div class="panel-body">
-						
-						<div class="row">
-							<div class="col-md-3">
-								<?php echo svg() ?>
-							</div>
-							<div class="col-md-9">
-								<h2 class="text-thin">Informasi Penagihan</h2>
-								<p style="margin: 0px">No ref <b class="text-main"></b></p>
-							
-							</div>
-						</div>
-
-						<!-- <hr> -->
-
-						<div class="row">
-							<div class="col-md-5" style="border-right: 1px solid #e0e0e0">
-								<div class="form-group">
-									<label>No Ref</label>
-									<h4 style="margin: 0px"></h4>
-									<small>Memiliki noref</small>
-								</div>
-
-
-								<div class="form-group">
-									<label>Atas Nama</label>
-									<h4 style="margin: 0px" class="text-primary"></h4>
-									
-									<small>Status saat ini yaitu</small>
-								</div>
-
-
-								<div class="form-group">
-									<label><i class="fa fa-envelope-o"></i> </label><br>
-									<label><i class="fa fa-phone"></i>&nbsp; </label>
-								</div>
-
-								<hr>
+					            <!--Panel 1-->
+					            <!--===================================================-->
+					            <div class="panel">
+					                  <div class="panel panel-body" style="border: 1px solid #e0e0e0">
+									<!-- //Isi Panel -->
+									<h5>Informasi Petugas Lapangan</h5>
 								
-								<small><i class="fa fa-envelope-open-o"></i> Isi pesan atau keperluan :</small>
-								<div class="well well-sm" style="border: 1px solid #e0e0e0">
-									<div style="text-align: justify;"><small>Rincian Keperluan</small><br>"<span class="text-semibold text-main"></div><br><br>
 
-									<small class="text-muted">Ditulis pada </small>
+
+							
+							
+							
+							</div>                                
+					            </div>
+					            <!--===================================================-->
+					            <!--End Panel 1-->
+                               
+					        </div>
+					        <div class="col-sm-8 eq-box-sm">
+					
+					            <!--Panel 2-->
+					            <!--===================================================-->
+					            <div class="panel">
+                                	<div class="panel panel-body" style="border: 1px solid #e0e0e0">
+									<div class="ribbon ribbon-"><span></span></div>
+										<div class="panel-body">
+											
+											<div class="row">
+												<div class="col-md-3">	
+												<svg style="width:130px" id="a139742c-031f-4297-9910-0b661ecf4262" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 888.07971 534.96981"><title>online_payments</title><path d="M214.1947,574.21548l-5.333-21.03429A273.135,273.135,0,0,0,179.8838,542.7848l-.67337,9.77549L176.48,541.79069c-12.212-3.48717-20.51983-5.02321-20.51983-5.02321s11.22195,42.67366,34.7592,75.29821l27.426,4.81755-21.30654,3.072a110.50245,110.50245,0,0,0,9.53073,10.10012c34.24,31.78207,72.377,46.36387,85.18129,32.5693s-4.57282-50.7417-38.81286-82.52378c-10.61474-9.85276-23.94912-17.75951-37.29675-23.98229Z" transform="translate(-155.96015 -182.5151)" fill="#e6e6e6"/><path d="M264.9155,551.37272l6.30738-20.76292a273.13329,273.13329,0,0,0-19.4325-23.8785l-5.6294,8.02019,3.22943-10.63063C240.73891,494.82328,234.421,489.214,234.421,489.214s-12.45157,42.33122-9.16631,82.42573l20.98773,18.30061-19.82728-8.3836a110.50442,110.50442,0,0,0,2.938,13.57259c12.88281,44.90561,37.99241,77.10132,56.0839,71.91112s22.31392-45.80088,9.43111-90.70649c-3.9938-13.92118-11.32161-27.58227-19.53123-39.80866Z" transform="translate(-155.96015 -182.5151)" fill="#e6e6e6"/><rect x="0.07971" y="487.64984" width="888" height="2.24072" fill="#3f3d56"/><path d="M296.338,438.128s-6.91528,83.14848-8.40005,100.9657a126.7102,126.7102,0,0,1-7.42384,32.66491s-2.96954,5.93908-2.96954,11.87815v75.7232s-5.93907,0-4.4543,5.93908,2.96953,16.33245,2.96953,16.33245h22.27153s-1.48476-4.4543,2.96954-5.93907,0-13.36292,0-13.36292l23.7563-89.08612,35.63445-74.23843s20.78676,66.81459,25.24107,74.23843c0,0,16.33245,83.14705,19.302,90.57089s4.4543,7.42384,2.96953,10.39338-1.48476,5.93907,0,7.42384,29.69538,0,29.69538,0l-7.42385-105.41857L417.11284,450.00754l-68.29936-20.78676Z" transform="translate(-155.96015 -182.5151)" fill="#2f2e41"/><path d="M292.39227,669.7533s-7.42384-26.72583-19.302-5.93907-11.87815,28.2106-11.87815,28.2106-19.302,28.21061,7.42384,25.24107,20.78676-16.33245,20.78676-16.33245,10.39338-5.93908,10.39338-10.39338S292.39227,669.7533,292.39227,669.7533Z" transform="translate(-155.96015 -182.5151)" fill="#2f2e41"/><path d="M412.65853,666.78377s7.42384-26.72584,19.302-5.93908,11.87815,28.21061,11.87815,28.21061,19.302,28.2106-7.42384,25.24106-20.78676-16.33245-20.78676-16.33245-10.39338-5.93908-10.39338-10.39338S412.65853,666.78377,412.65853,666.78377Z" transform="translate(-155.96015 -182.5151)" fill="#2f2e41"/><path d="M342.8744,237.68563s2.96954,19.302-5.93907,23.75629,19.302,20.78677,26.72584,20.78677S384.44793,267.381,384.44793,267.381s-7.42385-22.27153-5.93908-26.72584Z" transform="translate(-155.96015 -182.5151)" fill="#a0616a"/><circle cx="203.24671" cy="38.83808" r="31.18014" fill="#a0616a"/><path d="M420.08237,285.19822l-37.118-22.4886s-21.1191,23.97337-43.96746-2.75246l-39.18081,10.39338,5.93908,100.96426s-8.90861,40.08876-5.93908,47.5126-7.42384,10.39338-4.4543,11.87815,0,11.87815,0,11.87815,57.906,29.69537,121.751,7.42384l-5.93908-19.302a15.58017,15.58017,0,0,0-2.96954-14.84769s5.93908-8.90861-1.48476-16.33245c0,0,2.96953-13.36292-4.45431-19.302l-1.48477-20.78676,4.45431-10.39338Z" transform="translate(-155.96015 -182.5151)" fill="#cfcce0"/><path d="M343.24976,206.87536s-3.7173,8.04469,11.15192,4.82681c0,0,5.576,3.21788,5.576-1.60893,0,0,7.43461,8.04469,9.29326,3.21787s5.576,1.60894,5.576,1.60894l3.7173-8.04469,3.71731,4.82681H395.292s3.7173-32.17875-40.89036-28.96087-22.663,54.20194-22.663,54.20194.35921-9.15169,4.07651-4.32487S343.24976,206.87536,343.24976,206.87536Z" transform="translate(-155.96015 -182.5151)" fill="#2f2e41"/><path d="M433.44529,344.589l1.48477,31.18014s5.93908,57.906-5.93907,83.147v13.36291s-2.96954,34.14968-17.81723,32.66491,4.45431-48.99736,4.45431-48.99736l-2.96954-65.32982L409.689,353.49758Z" transform="translate(-155.96015 -182.5151)" fill="#a0616a"/><path d="M403.74992,286.683l14.81131-2.40638a72.31337,72.31337,0,0,1,20.82314,38.04083c4.4543,23.7563,5.93907,28.2106,5.93907,28.2106L409.689,359.43666l-19.302-37.11922Z" transform="translate(-155.96015 -182.5151)" fill="#cfcce0"/><rect x="184.01662" y="87.22321" width="234.31056" height="116.39453" fill="#fff"/><path d="M365.56206,276.73782c-6.01967-3.62-13.278-3.3435-16.0373-3.067,1.05081,2.56549,4.20371,9.10919,10.22338,12.731,6.03437,3.62916,13.28306,3.34441,16.03823,3.06977C374.736,286.907,371.58266,280.36056,365.56206,276.73782Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M393.84906,348.57067H356.22553a8.4653,8.4653,0,1,0,0,16.93059h37.62353a8.4653,8.4653,0,1,0,0-16.93059Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M564.22146,259.21477H353.27787A18.68583,18.68583,0,0,0,334.592,277.90064V380.67657a18.68587,18.68587,0,0,0,18.68587,18.68587H564.22146a18.68587,18.68587,0,0,0,18.68587-18.68587V277.90064A18.68583,18.68583,0,0,0,564.22146,259.21477ZM348.05876,271.9614c.41656-.07532,10.29412-1.75626,18.47328,3.1653,8.17871,4.92063,11.32105,14.43582,11.45057,14.83815l.33067,1.026-1.06138.1883a28.17463,28.17463,0,0,1-4.57756.33619,27.25632,27.25632,0,0,1-13.89618-3.50241c-8.17871-4.91972-11.32059-14.43491-11.4501-14.83723l-.33068-1.026Zm45.7903,95.421H356.22553a10.34647,10.34647,0,0,1,0-20.69294h37.62353a10.34647,10.34647,0,1,1,0,20.69294Zm171.18709-1.88117a11.32027,11.32027,0,0,1-11.28706,11.28706H525.53144a11.32027,11.32027,0,0,1-11.28706-11.28706V348.57067a11.32023,11.32023,0,0,1,11.28706-11.28706h28.21765a11.32023,11.32023,0,0,1,11.28706,11.28706Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M534.467,362.2092H522.23938a3.29206,3.29206,0,0,0,0,6.58412H534.467a3.29206,3.29206,0,0,0,0-6.58412Zm0,4.70294H522.23938a1.41089,1.41089,0,1,1,0-2.82177H534.467a1.41089,1.41089,0,0,1,0,2.82177Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M557.04115,362.2092H544.8135a3.29206,3.29206,0,0,0,0,6.58412h12.22765a3.29206,3.29206,0,0,0,0-6.58412Zm0,4.70294H544.8135a1.41089,1.41089,0,1,1,0-2.82177h12.22765a1.41089,1.41089,0,0,1,0,2.82177Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M534.467,353.7439H522.23938a3.29206,3.29206,0,0,0,0,6.58412H534.467a3.29206,3.29206,0,0,0,0-6.58412Zm0,4.70294H522.23938a1.41088,1.41088,0,1,1,0-2.82176H534.467a1.41088,1.41088,0,1,1,0,2.82176Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M557.04115,353.7439H544.8135a3.29206,3.29206,0,0,0,0,6.58412h12.22765a3.29206,3.29206,0,0,0,0-6.58412Zm0,4.70294H544.8135a1.41088,1.41088,0,1,1,0-2.82176h12.22765a1.41088,1.41088,0,1,1,0,2.82176Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M534.467,345.27861H522.23938a3.29206,3.29206,0,0,0,0,6.58412H534.467a3.29206,3.29206,0,0,0,0-6.58412Zm0,4.70294H522.23938a1.41089,1.41089,0,1,1,0-2.82177H534.467a1.41089,1.41089,0,0,1,0,2.82177Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M557.04115,345.27861H544.8135a3.29206,3.29206,0,0,0,0,6.58412h12.22765a3.29206,3.29206,0,0,0,0-6.58412Zm0,4.70294H544.8135a1.41089,1.41089,0,1,1,0-2.82177h12.22765a1.41089,1.41089,0,0,1,0,2.82177Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M277.54458,326.77175s-13.36291,56.4212,2.96954,56.4212,54.93644-63.84505,54.93644-63.84505,40.08875-20.78676,23.7563-28.2106-37.11922,11.87815-37.11922,11.87815l-23.985,33.29991-1.2561-16.96746Z" transform="translate(-155.96015 -182.5151)" fill="#a0616a"/><path d="M308.72473,279.25915l-8.90862-8.90861s-17.81722,10.39338-19.302,20.78676-8.90861,43.05829-8.90861,43.05829l27.46822,2.22715,8.90861-13.36292Z" transform="translate(-155.96015 -182.5151)" fill="#cfcce0"/><path d="M730.74286,258.1379c-1.11855-3.30279-15.14535-14.52981-6.55009-16.41686l7.04866,9.39858,32.40661-32.406,3.25929,3.25929Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M730.74286,368.33187c-1.11855-3.30278-15.14535-14.5298-6.55009-16.41685l7.04866,9.39858,32.40661-32.406,3.25929,3.25929Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><path d="M730.74286,480.10005c-1.11855-3.30278-15.14535-14.5298-6.55009-16.41685l7.04866,9.39858,32.40661-32.406,3.25929,3.25928Z" transform="translate(-155.96015 -182.5151)" fill="#c57900"/><circle cx="672.94144" cy="62.22326" r="10" fill="#3f3d56"/><rect x="710.44122" y="61.22319" width="161" height="2" fill="#3f3d56"/><circle cx="672.94144" cy="172.41724" r="10" fill="#3f3d56"/><rect x="710.44122" y="171.41703" width="161" height="2" fill="#3f3d56"/><circle cx="672.94144" cy="284.18542" r="10" fill="#3f3d56"/><rect x="710.44122" y="283.1851" width="161" height="2" fill="#3f3d56"/><polygon points="600.04 312.485 550.04 312.485 550.04 261.485 584.04 261.485 584.04 263.485 552.04 263.485 552.04 310.485 598.04 310.485 598.04 287.485 600.04 287.485 600.04 312.485" fill="#3f3d56"/><polygon points="600.04 200.485 550.04 200.485 550.04 149.485 584.04 149.485 584.04 151.485 552.04 151.485 552.04 198.485 598.04 198.485 598.04 175.485 600.04 175.485 600.04 200.485" fill="#3f3d56"/><polygon points="600.04 86.485 550.04 86.485 550.04 35.485 584.04 35.485 584.04 37.485 552.04 37.485 552.04 84.485 598.04 84.485 598.04 61.485 600.04 61.485 600.04 86.485" fill="#3f3d56"/></svg>
+												</div>
+												<div class="col-md-9">
+													<h2 class="text-thin">Catatan Penagihan</h2>
+													<p style="margin: 0px">No ref.........<b class="text-main"></b></p>
+													<br>
+											</div>
+									</div>
 								</div>
 
 
-							</div>
-							<div class="col-md-7">
-								<!-- Timeline -->
-								<!--===================================================-->
-								<div class="timeline">
-				
-									<!-- Timeline header -->
-									<div class="timeline-header">
-										<div class="timeline-header-title bg-primary text-bold text-sm">Rincian</div>
-									</div>
-				
-									<div class="timeline-entry">
-										<div class="timeline-stat">
-											<div class="timeline-icon"><i class="ion-ios-list-outline icon-2x"></i></div>
-											<div class="timeline-time"></div>
+								<!-- <hr> -->
+
+								<div class="row">
+									<div class="col-md-5" style="border-right: 1px solid #e0e0e0">
+										<div class="form-group">
+											<label>Atas Nama</label>
+											<br>
+											<br>
+											<!-- Buat namanya -->
+											<h4 style="margin: 0px" class="text-primary"></h4>
+											
 										</div>
-										<div class="timeline-label">
-											<p class="text-bold text-main" style="margin: 0px">Penagihan</p>
-											<small>Antrian dibuat pada </small>
+
+										<div class="form-group">
+											<label>Alamat</label>
+											<br>
+											<br>
+											<!-- Buat namanya -->
+											<h4 style="margin: 0px" class="text-primary"></h4>
+											
 										</div>
-									</div>
-									
-									
-									<div class="timeline-entry">
-										<div class="timeline-stat">
-											<div class="timeline-icon"><i class="ion-ios-bookmarks-outline icon-2x"></i></div>
-											<div class="timeline-time">Status</div>
+
+
+										<div class="form-group">
+										<label>Informasi Pelanggan</label><br>
+											<label><i class="fa fa-envelope-o"></i> </label><br>
+											<label><i class="fa fa-phone"></i>&nbsp; </label>
 										</div>
-										<div class="timeline-label">
-											<p class="text-bold text-main" style="margin: 0px">Status Penagihan</p>
-											<small>Status permintaan antrian saat ini
-											<label href="javascript:void(0)" class="text-semibold text-main"></label></small>
-											<?php echo $buttonStatus ?>
+
+										<hr>
+										
+										<small><i class="fa fa-envelope-open-o"></i> Isi pesan atau keperluan :</small>
+										<div class="well well-sm" style="border: 1px solid #e0e0e0">
+											<div style="text-align: justify;"><small>Rincian Keperluan</small><br>"<span class="text-semibold text-main"></div><br><br>
+
+											<small class="text-muted">Ditulis pada </small>
 										</div>
-									</div>
-									
-									
-									<div class="timeline-entry">
+
+										</div>
+										<div class="col-md-7">
+											<!-- Timeline -->
+											<!--===================================================-->
+											<div class="timeline">
+							
+												<!-- Timeline header -->
+												<div class="timeline-header">
+													<div class="timeline-header-title bg-primary text-bold text-sm">Rincian</div>
+												</div>
+							
+												<div class="timeline-entry">
+													<div class="timeline-stat">
+														<div class="timeline-icon"><i class="ion-ios-list-outline icon-2x"></i></div>
+														<div class="timeline-time"></div>
+													</div>
+													<div class="timeline-label">
+														<p class="text-bold text-main" style="margin: 0px">Penagihan</p>
+														<small>Penagihan dibuat pada </small>
+													</div>
+											</div>
+
+										<div class="timeline-entry">
+											<div class="timeline-stat">
+												<div class="timeline-icon"><i class="ion-ios-bookmarks-outline icon-2x"></i></div>
+												<div class="timeline-time">Status</div>
+											</div>
+											<div class="timeline-label">
+												<p class="text-bold text-main" style="margin: 0px">Status Pelanggan</p>
+												<small>Status pelanggan saat ini
+												<label href="javascript:void(0)" class="text-semibold text-main"></label></small>
+												<!-- <?php echo $buttonStatus ?> -->
+											</div>
+										</div>
+
+										<div class="timeline-entry">
 										<div class="timeline-stat">
 											<div class="timeline-icon"><i class="fa fa-handshake-o" style="font-size: 20px"></i></div>
 											<div class="timeline-time">Pelayanan</div>
@@ -228,279 +157,32 @@ if (  "pending" ) {
 										<div class="timeline-label">
 											<p class="text-bold text-main" style="margin: 0px">Pelayanan </p>
 											<small>Status permintaan antrian saat ini
-											<?php echo $buttonFinish ?>
+											<!-- <?php echo $buttonFinish ?> -->
 										</div>
 									</div>
 
 								</div>
-								<!--===================================================-->
-								<!-- End Timeline -->
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>
 
 
-<!--AcceptSmall Bootstrap Modal-->
-<!--===================================================-->
-<div id="modal-accept" class="modal fade" tabindex="-1">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-			</div>
-			<form action="<?php echo base_url('queue/onUpdateDataAccept') ?>" method="GET">
-			
-			<input type="hidden" name="id" value="<?php echo encrypt_data($dataQueue['id_antrian']) ?>">
-			<div class="modal-body">
-				<h4>Pemberitahuan</h4>
-				<p>Dengan mensetujui antrian ini, pengguna atas nama <span class="text-semibold text-main"><?php echo $dataQueue['name'] ?></span> dapat menerima kode antrian 
-				yang dapat diunduh melalui email. 
-				<br><br>
-				<label><i class="fa fa-envelope-o"></i> <?php echo $dataQueue['email'] ?></label>
-				
-				<hr>
 
-				<label>Kode Antrian</label>
-				<h5 style="margin: 0px"><?php echo $dataQueue['code'] ?></h5>
-				</p>
 
-				<label>Keterangan Tambahan</label>
-				<label class="text-semibold">Waktu </label>
-				<div class="row">
-					<div class="col-md-7">
-						<div class="form-group">
-							<div id="demo-dp-txtinput">
-								<input type="text" class="form-control" name="date" value="<?php echo date('m/d/Y') ?>">
-							</div>
-						</div>
-					</div>
-					<div class="col-md-5">
-						<div class="form-group">
-						<!--Bootstrap Timepicker : Text Input-->
-						<!--===================================================-->
-						<input id="demo-tp-textinput" type="text" class="form-control" name="timepicker" value="<?php echo date('H:i A') ?>">
-						</div>
-					</div>
+                               
+                        </div>
 				</div>
 
-
-				<label>Keterangan Tambahan</label>
-				<label class="text-semibold">Tempat </label>
-				<div class="form-group">
-					<textarea name="location" class="form-control" placeholder="Tambahkan keterangan tempat atau ruangan . . ." required=""></textarea>
-					<small>Menambah informasi keterangan ruangan atau tempat</small>
-				</div>
-
-			</div>
-			<!--Modal footer-->
-			<div class="modal-footer">
-				<button data-dismiss="modal" class="btn btn-default btn-sm" type="button">Batal</button>
-				<!-- <a href="<?php echo base_url('queue/onUpdateDataQueue?id='. encrypt_data($dataQueue['id_antrian']). '&type-update=accept' ) ?>" class="btn btn-info btn-sm btn-labeled"><i class="btn-label ti-check"></i> Setujui Antrian</a> -->
-				<button class="btn btn-info btn-sm btn-labeled"><i class="btn-label ti-check"></i> Setujui Antrian</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!--===================================================-->
-<!--End Small Bootstrap Modal-->
-
-
-
-<!--Decline Bootstrap Modal-->
-<!--===================================================-->
-<div id="modal-decline" class="modal fade" tabindex="-1">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-			</div>
-			<form action="">
-			<div class="modal-body">
-				<h4>Pemberitahuan</h4>
-				<p>Pengguna atas nama <span class="text-semibold text-main"><?php echo $dataQueue['name'] ?></span>, status antrian ditolak
-				<br><br>
-				<label><i class="fa fa-envelope-o"></i> <?php echo $dataQueue['email'] ?></label><br>
-				
-				<hr>
-
-				<label>Kode Antrian</label>
-				<h5 style="margin: 0px"><?php echo $dataQueue['code'] ?></h5>
-				</p>
-				
-			</div>
-			<!--Modal footer-->
-			<div class="modal-footer">
-				<button data-dismiss="modal" class="btn btn-default btn-sm" type="button">Batal</button>
-				<a href="<?php echo base_url('queue/onUpdateDataQueue?id='. encrypt_data($dataQueue['id_antrian']). '&type-update=decline' ) ?>" class="btn btn-danger btn-sm btn-labeled"><i class="btn-label ti-close"></i> Tolak Antrian</a>
-			</div>
-			</form>
-		</div>
-	</div>
-</div>
-<!--===================================================-->
-<!--End Small Bootstrap Modal-->
-
-
-
-<!--Decline Bootstrap Modal-->
-<!--===================================================-->
-<div id="modal-decline" class="modal fade" tabindex="-1">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-			</div>
-			<div class="modal-body">
-				<h4>Pemberitahuan</h4>
-				<p>Pengguna atas nama <span class="text-semibold text-main"><?php echo $dataQueue['name'] ?></span>, status antrian ditolak
-				<br><br>
-				<label><i class="fa fa-envelope-o"></i> <?php echo $dataQueue['email'] ?></label>
-				<hr>
-
-				<label>Kode Antrian</label>
-				<h5 style="margin: 0px"><?php echo $dataQueue['code'] ?></h5>
-				</p>
-			</div>
-			<!--Modal footer-->
-			<div class="modal-footer">
-				<button data-dismiss="modal" class="btn btn-default btn-sm" type="button">Batal</button>
-				<a href="<?php echo base_url('queue/onUpdateDataQueue?id='. encrypt_data($dataQueue['id_antrian']). '&type-update=decline' ) ?>" class="btn btn-danger btn-sm btn-labeled"><i class="btn-label ti-close"></i> Tolak Antrian</a>
-			</div>
-		</div>
-	</div>
-</div>
-<!--===================================================-->
-<!--End Small Bootstrap Modal-->
-
-
-
-
-<!--finished Bootstrap Modal-->
-<!--===================================================-->
-<div id="modal-finished" class="modal fade" tabindex="-1">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-			</div>
-			<div class="modal-body">
-				<h4>Pemberitahuan</h4>
-				<p>Menambahkan keterangan pengantri bahwa telah dilayani atas nama <span class="text-semibold text-main"><?php echo $dataQueue['name'] ?></span>.
-				<br><br>
-				<a href="<?php echo base_url('queue/printQueue?id='. encrypt_data($dataQueue['id_antrian']) ) ?>" class="btn-link text-main" target="_blank"><i class="fa fa-print"></i> Cetak Antrian - <?php echo $dataQueue['code'] ?></a>
-				
-				<hr>
-
-				<label>Kode Antrian</label>
-				<h5 style="margin: 0px"><?php echo $dataQueue['code'] ?></h5>
-				</p>
-			</div>
-			<!--Modal footer-->
-			<div class="modal-footer">
-				<button data-dismiss="modal" class="btn btn-default btn-sm" type="button">Batal</button>
-				<a href="<?php echo base_url('queue/onUpdateDataQueue?id='. encrypt_data($dataQueue['id_antrian']). '&type-update=finished' ) ?>" class="btn btn-success btn-sm btn-labeled"><i class="btn-label ti-check"></i> Sudah dilayani</a>
-			</div>
-		</div>
-	</div>
-</div>
-<!--===================================================-->
-<!--End Small Bootstrap Modal-->
-
-
+                               
+					            <!--===================================================-->
+					            <!--End Panel 2-->
 					
+                               
+					        </div>
 
-
-				
-
-					<!--===================================================-->
-					<!-- END OF MAIL INBOX -->
-
-
+					    </div>
 					</div>
-					<!--===================================================-->
-					<!--End page content-->
-
-					</div>
-					</div>
-					<!--===================================================-->
-					<!--END CONTENT CONTAINER-->
-
-<?php
+				</div>
+            </div>
+    </div>
 
 
-	function svg() {
-
-		return '<?xml version="1.0" encoding="iso-8859-1"?>
-		<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-		<svg style="width: 130px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-		<g>
-			<circle style="fill:#2C5871;" cx="256" cy="256" r="256"/>
-			<path style="fill:#133142;" d="M511.324,273.684C510.699,273.679,390.2,153.539,390.2,152.54H140.692
-				c0,10.752-8.714,19.466-19.466,19.466v18.79l-0.538-0.133l-29.138,80.973c1.198,0.43,2.314,0.983,3.369,1.613l-0.466,1.295
-				c1.198,0.43,2.314,0.983,3.369,1.613l-0.466,1.295c1.198,0.43,2.314,0.983,3.369,1.613l-0.466,1.295
-				c0.758,0.271,1.434,0.666,2.135,1.019c2.248,4.572,2.739,9.999,0.876,15.171c0,0,209.372,208.584,209.178,209.137
-				C421.094,481.208,503.537,387.732,511.324,273.684z"/>
-			<path style="fill:#D7ECED;" d="M103.281,296.54l234.767,84.475c3.64-10.117,14.792-15.365,24.909-11.725l29.138-80.973
-				c-10.117-3.64-15.365-14.792-11.725-24.904l-234.772-84.475c-3.64,10.117-14.792,15.365-24.909,11.725l-29.138,80.973
-				C101.673,275.272,106.921,286.423,103.281,296.54z M332.365,255.585l-4.925-1.772l1.771-4.925l4.925,1.772L332.365,255.585z
-				 M328.822,265.436l-4.925-1.772l1.772-4.925l4.925,1.772L328.822,265.436z M325.274,275.292l-4.925-1.772l1.772-4.925l4.925,1.772
-				L325.274,275.292z M321.731,285.143l-4.925-1.772l1.772-4.925l4.925,1.772L321.731,285.143z M290.217,357.258l4.925,1.772
-				l-1.772,4.925l-4.925-1.772L290.217,357.258z M293.76,347.407l4.925,1.772l-1.772,4.925l-4.925-1.772L293.76,347.407z
-				 M297.308,337.556l4.925,1.772l-1.772,4.925l-4.925-1.772L297.308,337.556z M300.851,327.706l4.925,1.772l-1.772,4.925
-				l-4.925-1.772L300.851,327.706z M295.035,296.545c3.384-9.4,13.747-14.28,23.148-10.895c9.4,3.384,14.28,13.747,10.895,23.148
-				c-3.016,8.381-11.576,13.128-20.06,11.668l-1.469,4.086l-4.925-1.772l1.434-3.983C295.936,314.767,291.891,305.28,295.035,296.545z
-				"/>
-			<path style="fill:#E64500;" d="M145.597,178.939l146.534,52.726l-42.317,117.601L103.281,296.54
-				c3.64-10.117-1.608-21.268-11.725-24.909l29.138-80.973C130.806,194.299,141.957,189.051,145.597,178.939z"/>
-			<path style="fill:#FFFFFF;" d="M121.226,172.006v86.057c10.752,0,19.466,8.714,19.466,19.466H390.2
-				c0-10.752,8.714-19.466,19.466-19.466v-86.057c-10.752,0-19.466-8.714-19.466-19.466H140.692
-				C140.692,163.292,131.978,172.006,121.226,172.006z M342.385,273.874h-5.238v-5.238h5.238V273.874z M342.385,263.404h-5.238v-5.233
-				h5.238V263.404z M342.385,252.933h-5.238V247.7h5.238V252.933z M342.385,242.463h-5.238v-5.233h5.238V242.463z M337.147,153.462
-				h5.238v5.233h-5.238V153.462z M337.147,163.932h5.238v5.233h-5.238V163.932z M337.147,174.403h5.238v5.238h-5.238V174.403z
-				 M337.147,184.873h5.238v5.238h-5.238V184.873z M337.147,199.578v-4.234h5.238v4.342c8.474,1.5,14.925,8.863,14.925,17.772
-				c0,9.989-8.1,18.089-18.089,18.089c-9.994,0-18.089-8.1-18.089-18.089C321.126,208.179,328.141,200.617,337.147,199.578z"/>
-			<path style="fill:#FC611F;" d="M140.692,277.524h155.73V152.54h-155.73c0,10.752-8.714,19.466-19.466,19.466v86.057
-				C131.978,258.063,140.692,266.778,140.692,277.524z"/>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		<g>
-		</g>
-		</svg>
-		';
-	}
-?>
+    
+    

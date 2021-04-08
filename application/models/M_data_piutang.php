@@ -24,13 +24,10 @@
                     FROM piutang
                     JOIN data_pelanggan ON piutang.no_ref = data_pelanggan.no_ref";
             }
-            
             $query = $this->db->query($sql);
 
             return $query;
         }
-
-
 
 
         // get data piutang, data pelanggan, domisili, master domisili, mastersubdomisili
@@ -100,7 +97,6 @@
                             $totalPelunasan += $rowPenagihan['pembayaran'];
                         }
                     }
-
 
 
                     // keputusan | lunas, segel (belum lunas), cabut

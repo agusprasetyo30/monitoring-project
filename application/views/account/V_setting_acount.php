@@ -58,7 +58,8 @@
 					            </div>
 					            <div class="media-body pad-top">
 					                <div class="box-inline">
-					                    
+                                        <span class="text-lg text-semibold text-main"><?php echo $dataUser['data'][0]['username'] ?></span>
+					                    <p class="text-sm"><?php echo date('d F Y H.i A', strtotime($dataUser['data'][0]['last_logged'])) ?></p>
 					                </div>
 					            </div>
 					        </div>

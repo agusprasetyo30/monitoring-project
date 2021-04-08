@@ -10,19 +10,47 @@
 
             parent::__construct();
 
+            $this->load->model('M_setting');
+
        
         }
 
+        // csrf
+        function getCSRF() {
+            $data = array(
+        
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+                echo json_encode( $data );
+        }
+        
+
         public function index(){
             
+            $id_userinfo = $this->session->userdata('sess_id_user_info');
+            $dataUser = $this->account->getAccountByAdmin();
+
+            if ( $this->session->userdata('sess_type') != "owner" ) {
+
+                $dataUser = $this->account->getDataAccount(['id_user_info' => $id_userinfo]);
+            }
+            // $dataEmail  = $this->setting->getDataEmail( ['type' => $typeAccount] );
             $data = array(
 
                 'folder'    => "account",
-                'view'      => "V_setting_acount",
+                'view'  => "V_setting_acount",
 
+                // 'response'  => $dataEmail,
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash(),
+                
+                'dataUser'  => $dataUser
             );
-            $this->load->view( 'template/template_backend', $data );
+            $this->load->view( 'template/backend_template', $data );
         }   
+
+
 
         function onUpdateAccount() {
 

@@ -33,14 +33,11 @@
 										 <!--Submenu-->
 										 <ul class="collapse">
 										 
-						                    <li><a href="<?php echo base_url('account/viewPetugasLapangan/') ?>">Pengaturan Akun</a></li>
+						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=petugas_lapangan&id=') ?>">Pengaturan Akun</a></li>
 											<li><a href="<?php echo base_url('setting') ?>">Pengaturan Password</a></li>
-										
 											
 						                </ul>
 						            </li>
 
-                                   
-
-
-                                </ul>
+                                
+</ul>
