@@ -58,8 +58,7 @@
 					            </div>
 					            <div class="media-body pad-top">
 					                <div class="box-inline">
-					                    <span class="text-lg text-semibold text-main"></span>
-					                    <p class="text-sm"></p>
+					                    
 					                </div>
 					            </div>
 					        </div>

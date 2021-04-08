@@ -124,9 +124,15 @@
 
 
 
-        function detail( $id = null) {
+        function detailPenagihan() {
 
             
+            $data = array(
+
+                'folder'    => "penagihan",
+                'view'      => "V_penagihan_detail",
+            );
+            $this->load->view('template/template_backend', $data);
         }
 
 
