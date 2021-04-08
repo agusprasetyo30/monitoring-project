@@ -37,47 +37,98 @@ if (  "pending" ) {
 }
 
 ?>
-		
-
-		
-		<!--Page Title-->
-		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<div id="page-title">
-
-			<h1 class="page-header text-overflow">Rincian Detail Antrian <a class="btn-link">#</a></h1>
-		</div>
-		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<!--End page title-->
-
-
-		<!--Breadcrumb-->
-		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<ol class="breadcrumb">
-		<li><a href="<?php echo base_url('dashboard') ?>"><i class="demo-pli-home"></i></a></li>
-		<li><a href="<?php echo base_url('queue') ?>">Semua Antrian</a></li>
-		<li class="active">Detail Antrian dari kode </li>
-		</ol>
-		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<!--End breadcrumb-->
-
-	</div>
-
-		<!--CONTENT CONTAINER-->
+<!--CONTENT CONTAINER-->
             <!--===================================================-->
             <div id="content-container">
-                <div id="page-head">
-	<!--Page content-->
-	<!--===================================================-->
-	<div id="page-content">
+                <div id="page-head"></div>
 
-		<!-- Contact Toolbar -->
-		<!---------------------------------->
-		<div class="row pad-btm">
-			<div class="col-sm-6 toolbar-left">
-			
-			</div>
-		</div>
-		<!---------------------------------->
+                
+                <!--Page content-->
+                <!--===================================================-->
+                <div id="page-content">
+                    
+					    <!-- MAIL INBOX -->
+					    <!--===================================================-->
+					    <div class="panel">
+					        <div class="panel-body">
+					            <div class="fixed-fluid">
+					                <div class="fixed-sm-200 pull-sm-left fixed-right-border">
+					
+										<input type="hidden" name="status_antrian" value="all" />
+										<input type="hidden" name="specific" />
+					
+					                    <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Informasi Penagihan</p>
+					                    <div class="list-group bg-trans pad-btm bord-btm">
+					                        <a href="javascript:void(0)" class="list-group-item select-by" data-status="pending">
+					                            <i class="ti-email icon-lg icon-fw"></i> Akan Ditagih
+					                        </a>
+					                        <a href="javascript:void(0)" class="list-group-item select-by" data-status="accept">
+					                            <i class="ti-time icon-lg icon-fw"></i> Sudah Ditagih
+					                        </a>
+					                       
+
+											<?php if ( $this->session->userdata('sess_level') != "super_admin" ) { ?>
+					                        <a href="javascript:void(0)" class="list-group-item select-by" data-status="priority">
+					                            &nbsp;<i class="ti-star icon-lg icon-fw"></i> Prioritas <span id="qty-priority"></span>
+					                        </a>
+											<?php } ?>
+					                    </div>
+										
+										<?php if ( $this->session->userdata('sess_level') == "super_admin" ) { ?>
+					                   
+										<?php } else { ?>
+											
+									
+					                    <div class="list-group bg-trans pad-ver bord-ver">
+
+					                        <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Jenis Bagian</p>
+					
+					                        <!-- Menu list item -->
+					                        <a href="javascript:void(0)" data-bagian="tu" class="list-group-item select-bagian list-item-sm">
+					                            <span class="badge badge-purple badge-icon badge-fw pull-left"></span>
+					                            Kota
+					                        </a>
+					                        <a href="javascript:void(0)" data-bagian="renvapor" class="list-group-item select-bagian list-item-sm">
+					                            <span class="badge badge-info badge-icon badge-fw pull-left"></span>
+					                            Kabupaten
+					                        </a>
+					                      
+
+					                    </div>
+										<?php } ?>
+					
+					
+					                </div>
+					                <div class="fluid">
+					                    <div id="demo-email-list">
+					                        <div class="row">
+					                            <div class="col-sm-7 toolbar-left">
+					
+					                                <!-- Mail toolbar -->
+					                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+					
+					                                <!--Refresh button-->
+					                                <button id="ref-btn" class="btn btn-default" type="button"><i class="demo-psi-repeat-2"></i></button>
+					
+					                            </div>
+					                            <div class="col-sm-5 toolbar-right">
+													<div class="form-group has-feedback">
+														<input type="text" class="form-control" name="keyword" placeholder="Cari">
+														<i class="ti-search form-control-feedback"></i>
+													</div>
+					                            </div>
+					                        </div>
+					
+					                        <!--Mail list group-->
+											<hr>
+											
+											<label class="text-main text-semibold">INFORMASI DETAIL</label>
+											<h5 class="text-thin" style="margin: 0px"><span id="text-bagian">Penagihan</span> | 
+											<br><br><br><br>
+											  <!--Purple Panel-->
+					        <!--===================================================-->
+					       <!-- Contact Toolbar -->
+		
 
 		<div class="row">
 			<!--Premium Plan-->
@@ -92,9 +143,9 @@ if (  "pending" ) {
 								<?php echo svg() ?>
 							</div>
 							<div class="col-md-9">
-								<h2 class="text-thin">Kartu Antrian</h2>
-								<p style="margin: 0px">Dengan kode antrian <b class="text-main"></b></p>
-								<p>Bagian antrian sebagai </p>
+								<h2 class="text-thin">Informasi Penagihan</h2>
+								<p style="margin: 0px">No ref <b class="text-main"></b></p>
+							
 							</div>
 						</div>
 
@@ -103,9 +154,9 @@ if (  "pending" ) {
 						<div class="row">
 							<div class="col-md-5" style="border-right: 1px solid #e0e0e0">
 								<div class="form-group">
-									<label>Kode Antrian</label>
+									<label>No Ref</label>
 									<h4 style="margin: 0px"></h4>
-									<small>Memiliki kode antrian</small>
+									<small>Memiliki noref</small>
 								</div>
 
 
@@ -149,7 +200,7 @@ if (  "pending" ) {
 											<div class="timeline-time"></div>
 										</div>
 										<div class="timeline-label">
-											<p class="text-bold text-main" style="margin: 0px">Pembuatan Antrian</p>
+											<p class="text-bold text-main" style="margin: 0px">Penagihan</p>
 											<small>Antrian dibuat pada </small>
 										</div>
 									</div>
@@ -161,7 +212,7 @@ if (  "pending" ) {
 											<div class="timeline-time">Status</div>
 										</div>
 										<div class="timeline-label">
-											<p class="text-bold text-main" style="margin: 0px">Status Antrian</p>
+											<p class="text-bold text-main" style="margin: 0px">Status Penagihan</p>
 											<small>Status permintaan antrian saat ini
 											<label href="javascript:void(0)" class="text-semibold text-main"></label></small>
 											<?php echo $buttonStatus ?>
@@ -175,7 +226,7 @@ if (  "pending" ) {
 											<div class="timeline-time">Pelayanan</div>
 										</div>
 										<div class="timeline-label">
-											<p class="text-bold text-main" style="margin: 0px">Pelayanan Antrian</p>
+											<p class="text-bold text-main" style="margin: 0px">Pelayanan </p>
 											<small>Status permintaan antrian saat ini
 											<?php echo $buttonFinish ?>
 										</div>
@@ -362,6 +413,24 @@ if (  "pending" ) {
 <!--===================================================-->
 <!--End Small Bootstrap Modal-->
 
+
+					
+
+
+				
+
+					<!--===================================================-->
+					<!-- END OF MAIL INBOX -->
+
+
+					</div>
+					<!--===================================================-->
+					<!--End page content-->
+
+					</div>
+					</div>
+					<!--===================================================-->
+					<!--END CONTENT CONTAINER-->
 
 <?php
 
