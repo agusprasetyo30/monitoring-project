@@ -6,14 +6,15 @@
     class M_setting extends CI_Model {
 
 
-            // menampilkan data akun login
-        function getDataTable( $where = null, $table ) {
+        // get data user login by id_profile 
+        function getDataUserLogin() {
 
-            if ( $where ) {
-                return $this->db->get_where($table, $where);    
-            } else {
-              return $this->db->get($table);
-            }
+
+            $id_login = $this->session->userdata('sess_idlogin');
+
+            $query = "SELECT * FROM `user_login` WHERE id_login = '$id_login'";
+            return $this->db->query( $query )->row_array();
+            
         }
 
 

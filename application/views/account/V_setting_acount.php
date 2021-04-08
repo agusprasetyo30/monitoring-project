@@ -58,8 +58,8 @@
 					            </div>
 					            <div class="media-body pad-top">
 					                <div class="box-inline">
-                                        <span class="text-lg text-semibold text-main"><?php echo $dataUser['data'][0]['username'] ?></span>
-					                    <p class="text-sm"><?php echo date('d F Y H.i A', strtotime($dataUser['data'][0]['last_logged'])) ?></p>
+                                        <span class="text-lg text-semibold text-main"><?php echo $account['username'] ?></span>
+					                    <p class="text-sm"><?php echo date('d F Y H.i A', strtotime($account['last_logged'])) ?></p>
 					                </div>
 					            </div>
 					        </div>
@@ -74,7 +74,7 @@
                             <div class="">
                                 <div class="form-group">
                                     <label class="text-semibold">Username <small>*</small> </label>
-                                    <h5 style="margin: 0px" class="text-thin">@</h5>
+                                    <h5 style="margin: 0px" class="text-thin">@<?php echo $account['username'] ?></h5>
                                 </div>
                                 <div class="form-group">
                                     <label class="text-semibold">Kata sandi lama</label>
