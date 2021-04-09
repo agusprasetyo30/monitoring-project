@@ -44,7 +44,7 @@
 
 										<h4>Riwayat Penagihan</h4>
 										<label class="text-main">Daftar riwayat tagihan</label> <br>
-										<a href="" class="btn btn-sm btn-primary"><i class="fa fa-money"></i> Tambah Pembayaran</a>
+										<button data-target="#tambah_pembayaran" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-money"></i> Tambah Pembayaran</button>
 										<hr>
 
 										<div class="" style="border: 1px solid #e0e0e0; padding: 10px; margin-bottom: 10px">
@@ -169,11 +169,6 @@
 
 										</div>
 
-								
-
-
-
-
 
 									
 										
@@ -220,6 +215,83 @@
 										</table>
 
 									</div>
+									<!-- End History -->
+
+
+
+
+
+									<!-- Modal Tambah Pembayaran -->
+									<!--===================================================-->
+									<div class="modal fade" id="tambah_pembayaran" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+
+												<!--Modal header-->
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+													<h4 class="modal-title">Tambah Pembayaran</h4>
+												</div>
+
+												<!--Modal body-->
+												<div class="modal-body">
+                                                                
+                                                    <div class="form-group">
+													<label for="demo-is-inputnormal" class="col-sm-3 control-label">Jenis Pembayaran</label>
+                                                        <div class="radio">
+                                                            <!-- Inline radio buttons -->
+                                                            <input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="debit" value="debit">
+                                                            <label for="demo-inline-form-radio-edit">Debit</label>
+                                
+        	                                                <input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="tunai" value="tunai">
+                                                            <label for="demo-inline-form-radio-edit-2">Tunai</label> <br>
+                                                        
+														<small>Masukkan jenis pembayaran</small>
+                                                    </div>
+
+													<div class="form-group">
+														<label for="demo-is-inputnormal" class="col-sm-3 control-label">Pembayaran</label>
+														<div class="col-sm-6">
+															<input type="number" name="pembayaran" class="form-control" placeholder="..." id="" required="" />
+															<small>Masukkan nominal pembayaran</small>
+														</div>
+                                    				</div><br><br><br>
+
+													<div class="form-group">
+														<label for="demo-is-inputnormal" class="col-sm-3 control-label">Tanggal</label>
+														<div class="col-sm-6">
+															<input name="tanggalpenagihan" type="date" class="form-control" id="demo-is-inputnormal" required="">
+															<small>Masukkan tanggal pembayaran</small>
+														</div>
+                                    				</div><br><br><br>
+
+													<div class="form-group">
+														<label for="demo-is-inputnormal" class="col-sm-3 control-label">Upload Bukti Bayar</label>
+														<div class="col-sm-6">
+														<input name="foto" type="file" placeholder="Masukkan bukti pembayaran.."  class="form-control" id="demo-is-inputnormal">
+															<small>Masukkan file .jpg/.png/.jpeg</small>
+														</div>
+                                    				</div>
+                                                </div><br><br><br>
+
+												<div class="form-group">
+													<label for="demo-is-inputnormal" class="col-sm-3 control-label">Catatan</label>
+													<div class="col-sm-8">
+													<textarea placeholder="Masukkan catatan..." rows="4" class="form-control" name="catatan" required=""></textarea>
+													</div>
+					                    		</div>
+												<br><br><br><br><br>
+
+												<!--Modal footer-->
+												<div class="modal-footer">
+													<button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+													<button class="btn btn-primary">Save changes</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--===================================================-->
+									<!-- End Modal  -->
 
 
 
