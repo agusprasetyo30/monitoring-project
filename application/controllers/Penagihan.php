@@ -28,6 +28,7 @@
             // load model 
             $this->load->model('M_domisili');
             $this->load->model('M_data_piutang');
+            $this->load->model('M_penagihan');
 
 
             
@@ -126,16 +127,40 @@
 
         function detailPenagihan() {
 
-            
-            $data = array(
+            $no_ref = $this->input->get('no_ref');
 
-                'folder'    => "penagihan",
-                'view'      => "V_penagihan_detail",
-            );
-            $this->load->view('template/template_backend', $data);
+            $dataInformasiPiutang = $this->M_data_piutang->getAllDataPiutang( $no_ref );
+            
+            if ( count($dataInformasiPiutang) > 0 ) {
+
+
+                $data = array(
+
+                    'folder'    => "penagihan",
+                    'view'      => "V_penagihan_detail",
+
+                    // data
+                    'row'   => $dataInformasiPiutang[0]
+                );
+                $this->load->view('template/template_backend', $data);
+            } else {
+
+                // not found
+                show_404();
+            }
+
+            
         }
 
 
+
+
+
+        /**  */
+        function prosesTambahPembayaran() {
+
+            $this->M_penagihan->processInsertDataPembayaran();
+        }
 
     
     }

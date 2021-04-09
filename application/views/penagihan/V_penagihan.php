@@ -198,7 +198,7 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <small>Lihat Lebih lanjut</small>
-                                                    <a href="<?php echo base_url('penagihan/detailPenagihan')?>" class="btn btn-sm btn-primary btn-labeled"><i class="btn-label ti-pencil"></i> Buat Catatan Penagihan</a>
+                                                    <a href="<?php echo base_url('penagihan/detailPenagihan?no_ref='. $row['informasi_detail']['no_ref'])?>" class="btn btn-sm btn-primary btn-labeled"><i class="btn-label ti-pencil"></i> Buat Catatan Penagihan</a>
                                                 </td>
                                             </tr>
                                             <?php }  // end foreach

@@ -90,13 +90,33 @@
                     $totalTagihan   = $rowPiutang['sub_total']; 
                     $totalPelunasan = 0;
 
+                    $dataTagihan = array();
+
                     if ( $getDataPenagihan->num_rows() > 0 ) {
 
                         foreach ( $getDataPenagihan->result_array() AS $rowPenagihan ) {
 
                             $totalPelunasan += $rowPenagihan['pembayaran'];
+                            array_push( $dataTagihan, $rowPenagihan );
                         }
                     }
+
+
+
+
+                    // data activity 
+                    $dataRiwayatTransaksi = array();
+                    $getDataRiwayat = $this->db->get_where('riwayat_transaksi', $where);
+
+                    if ( $getDataRiwayat->num_rows() > 0 ) {
+
+                        foreach ( $getDataRiwayat->result_array() AS $rowRiwayat ) {
+                            array_push( $dataRiwayatTransaksi, $rowRiwayat );
+                        }
+                    }
+
+
+
 
 
                     // keputusan | lunas, segel (belum lunas), cabut
@@ -121,7 +141,9 @@
                     array_push( $dataPiutang, array(
 
 
-                        'informasi_detail'  => $rowPiutang,
+                        'informasi_detail'      => $rowPiutang,
+                        'informasi_penagihan'   => $dataTagihan,
+                        'informasi_riwayat_tr'  => $dataRiwayatTransaksi,
                         'status_piutang'    => $status,
                         'total_pelunasan'   => $totalPelunasan,
                         'total_tagihan'     => $totalTagihan

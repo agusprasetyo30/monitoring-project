@@ -45,14 +45,145 @@
 										<h4>Riwayat Penagihan</h4>
 										<label class="text-main">Daftar riwayat tagihan</label> <br>
 										<button data-target="#tambah_pembayaran" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-money"></i> Tambah Pembayaran</button>
+										<!-- Modal Tambah Pembayaran -->
+										<!--===================================================-->
+										<div class="modal fade" id="tambah_pembayaran" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+
+													<!--Modal header-->
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+														<h4 class="modal-title">Tambah Pembayaran</h4>
+													</div>
+
+													<!--Modal body-->
+
+													<form action="<?php echo base_url('penagihan/prosesTambahPembayaran') ?>" method="POST">
+
+													<div class="modal-body">
+														
+														<div class="form-group">
+
+															<label class="text-semibold">Tanggal Penagihan</label>
+
+															<input type="hidden" name="no_ref" value="<?php echo $this->input->get('no_ref') ?>">
+
+															<input type="date" name="tanggal" class="form-control" value="<?php echo date('Y-m-d') ?>">
+															<small>Tanggal Catatan Penagihan</small>
+														</div>
+
+
+
+
+
+														<div class="row">
+														
+															<div class="col-md-6">
+
+																<div class="form-group">
+
+																	<label class="text-semibold">Jenis Pembayaran</label>
+																	<div class="radio">
+																		<!-- Inline radio buttons -->
+																		<input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="jenis_pembayaran" value="debit">
+																		<label for="demo-inline-form-radio-edit">Debit</label>
+											
+																		<input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="jenis_pembayaran" value="tunai">
+																		<label for="demo-inline-form-radio-edit-2">Tunai</label> <br>
+																		<small>Tanggal Catatan Penagihan</small>
+																	</div>
+																</div>
+															
+															</div>
+															<div class="col-md-6">
+
+																<div class="form-group">
+																	<label class="text-semibold">Pembayaran</label>
+																	<input type="number" name="pembayaran" class="form-control" placeholder="..." id="" required="" />
+																	<small>Tanggal Catatan Penagihan</small>
+																</div>
+															
+															</div>
+														</div>
+
+
+
+
+
+														<div class="row">
+
+															<div class="col-md-12">
+																<div class="form-group">
+																	<label class="text-semibold">Bukti Pembayaran</label>
+																	<input type="file" name="userfile" class="form-control" required="" />
+																	<small>Masukkan bukti pembayaran</small>
+																</div>
+															</div>
+														</div>
+
+
+														<div class="">
+															<div class="form-group">
+																<label class="text-semibold">Keterangan</label>
+																<textarea name="keterangan" class="form-control" placeholder="Masukkan catatan bila perlu"></textarea>
+																<small>Berikan catatan apabila diperlukan (Opsional)</small>
+															</div>
+														</div>
+
+
+													
+													</div>
+
+													
+													
+
+													<!--Modal footer-->
+													<div class="modal-footer">
+														<button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+														<button class="btn btn-primary">Tambahkan dan Simpan</button>
+													</div>
+
+
+													</form>
+												</div>
+											</div>
+										</div>
+										<!--===================================================-->
+										<!-- End Modal  -->
+
+
+
+
+
+
+
+
+
+
+
 										<hr>
 
+										<?php if ( count($row['informasi_penagihan']) > 0 ) : ?>
+
+
+										<?php foreach ( $row['informasi_penagihan'] AS $penagihan ) : 
+											
+											
+											$color = "";
+											
+											if ( $penagihan['pembayaran'] == 0 ) {
+
+												$color = "#f44336";
+											}
+										?>
+
 										<div class="" style="border: 1px solid #e0e0e0; padding: 10px; margin-bottom: 10px">
-											<small class="pull-right"><?php echo date('d F Y H.i A') ?></small>
-											<h4>Rp <?php echo number_format(5000000, 2) ?></h4>
+											<small class="pull-right"><?php echo date('d F Y', strtotime($penagihan['tanggal_penagihan'])) ?></small>
+											<h4 style="color: <?php echo $color ?>">Rp <?php echo number_format($penagihan['pembayaran'], 2) ?></h4>
 											<small>Keterangan :</small>
 											<div class="well well-sm" style="margin: 0px">
-												"Lorepisum dolar sit amlet"
+												"<?php echo $penagihan['catatan'] ?>"
 												<br> <a href="" class="text-sm text-main btn-link"><i class="ti-arrow-down"></i> Unduh Bukti Pembayaran</a>
 											</div>
 
@@ -62,23 +193,14 @@
 					                            </button>
 					                            <ul class="dropdown-menu dropdown-menu-right">
 					                            	<li class="dropdown-header">Pengubahan</li>
-					                                <li class="active"><a href="#">Sunting</a></li>
+					                                <li class=""><a href="#">Sunting</a></li>
 					                                <li class="divider"></li>
 					                                <li><a href="#">Hapus</a></li>
 					                            </ul>
 					                        </div>
 										</div>
 
-
-
-										<div class="" style="border: 1px solid #e0e0e0; padding: 10px">
-											<small class="pull-right"><?php echo date('d F Y H.i A') ?></small>
-											<h4 style="color: #f44336">Rp <?php echo number_format(0, 2) ?></h4>
-											<small>Keterangan :</small>
-											<div class="well well-sm">
-												"Tidak ada respon terhadap pelanggan"
-											</div>
-										</div>
+										<?php endforeach; endif; ?>
 
 
 										
@@ -112,7 +234,7 @@
 													<label>Atas Nama</label>
 													<br>
 													<!-- Buat namanya -->
-													<h4 style="margin: 0px" class="text-primary">Dwi Nur Cahyo</h4>
+													<h4 style="margin: 0px" class="text-primary"><?php echo $row['informasi_detail']['nama'] ?></h4>
 													
 												</div>
 
@@ -158,8 +280,11 @@
 															<div class="timeline-time"></div>
 														</div>
 														<div class="timeline-label">
-															<p class="text-bold text-main" style="margin: 0px">Total Piutang : <label class="label label-default">4 Bulan</label></p>
-															<h4 class="text-thin">Rp <?php echo number_format(400000, 2) ?></h4>
+															<p class="text-bold text-main" style="margin: 0px">Total Piutang : <label class="label label-default"><?php echo count($row['informasi_penagihan']) ?> Bulan</label></p>
+															<h4 class="text-thin">Rp <?php echo number_format($row['total_tagihan'], 2) ?></h4>
+															
+															<small>Total yang sudah dibayarkan : </small>
+															<h4 class="text-thin">Rp <?php echo number_format($row['total_pelunasan'], 2) ?></h4>
 														</div>
 													</div>
 
@@ -193,23 +318,21 @@
 												<th>Keterangan</th>
 												<th>Waktu</th>
 											</tr>
+											
 
+											<?php if ( count($row['informasi_riwayat_tr']) > 0 ) { ?>
+											
+											<?php $no = 1; foreach ( $row['informasi_riwayat_tr'] AS $rowRiwayat ) : ?>
 											<tr>
 											
-												<td>1</td>
-												<td>Penambahan</td>
-												<td>Menambahkan pembayaran piutang sebesar 10.000</td>
-												<td><?php echo date('Y-m-d H.i A') ?></td>
+												<td><?php echo $no++ ?></td>
+												<td><?php echo ucfirst( $rowRiwayat['activity'] ) ?></td>
+												<td><?php echo $rowRiwayat['notes'] ?></td>
+												<td><?php echo date('Y-m-d H.i A', strtotime( $rowRiwayat['created_at'] )) ?></td>
 											</tr>
-
-
-											<tr>
 											
-												<td>2</td>
-												<td>Mengubah</td>
-												<td>Mengubah nominal pembayaran piutang dari 10.000 menjadi 8.000</td>
-												<td><?php echo date('Y-m-d H.i A') ?></td>
-											</tr>
+											<?php endforeach; ?>
+											<?php } ?>
 
 
 										</table>
@@ -221,77 +344,7 @@
 
 
 
-									<!-- Modal Tambah Pembayaran -->
-									<!--===================================================-->
-									<div class="modal fade" id="tambah_pembayaran" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-
-												<!--Modal header-->
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-													<h4 class="modal-title">Tambah Pembayaran</h4>
-												</div>
-
-												<!--Modal body-->
-												<div class="modal-body">
-                                                                
-                                                    <div class="form-group">
-													<label for="demo-is-inputnormal" class="col-sm-3 control-label">Jenis Pembayaran</label>
-                                                        <div class="radio">
-                                                            <!-- Inline radio buttons -->
-                                                            <input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="debit" value="debit">
-                                                            <label for="demo-inline-form-radio-edit">Debit</label>
-                                
-        	                                                <input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="tunai" value="tunai">
-                                                            <label for="demo-inline-form-radio-edit-2">Tunai</label> <br>
-                                                        
-														<small>Masukkan jenis pembayaran</small>
-                                                    </div>
-
-													<div class="form-group">
-														<label for="demo-is-inputnormal" class="col-sm-3 control-label">Pembayaran</label>
-														<div class="col-sm-6">
-															<input type="number" name="pembayaran" class="form-control" placeholder="..." id="" required="" />
-															<small>Masukkan nominal pembayaran</small>
-														</div>
-                                    				</div><br><br><br>
-
-													<div class="form-group">
-														<label for="demo-is-inputnormal" class="col-sm-3 control-label">Tanggal</label>
-														<div class="col-sm-6">
-															<input name="tanggalpenagihan" type="date" class="form-control" id="demo-is-inputnormal" required="">
-															<small>Masukkan tanggal pembayaran</small>
-														</div>
-                                    				</div><br><br><br>
-
-													<div class="form-group">
-														<label for="demo-is-inputnormal" class="col-sm-3 control-label">Upload Bukti Bayar</label>
-														<div class="col-sm-6">
-														<input name="foto" type="file" placeholder="Masukkan bukti pembayaran.."  class="form-control" id="demo-is-inputnormal">
-															<small>Masukkan file .jpg/.png/.jpeg</small>
-														</div>
-                                    				</div>
-                                                </div><br><br><br>
-
-												<div class="form-group">
-													<label for="demo-is-inputnormal" class="col-sm-3 control-label">Catatan</label>
-													<div class="col-sm-8">
-													<textarea placeholder="Masukkan catatan..." rows="4" class="form-control" name="catatan" required=""></textarea>
-													</div>
-					                    		</div>
-												<br><br><br><br><br>
-
-												<!--Modal footer-->
-												<div class="modal-footer">
-													<button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-													<button class="btn btn-primary">Save changes</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--===================================================-->
-									<!-- End Modal  -->
+									
 
 
 
