@@ -44,11 +44,10 @@
 
 
                 <?php echo $this->session->flashdata('msg') ?>
+                <form method="GET" id="form-account">
 
                 <!-- Information detail -->
                 <div class="panel panel-body" style="border : 1px solid #e0e0e0">
-
-                    <form method="GET" id="form-account">
 
                     <div class="row">
                         <div class="col-md-5">
@@ -113,10 +112,11 @@
 
 
 
+
+
 <script>
 
     $(function() {
-
 
 
         $('#form-account').on('submit', function( e ) {

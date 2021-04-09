@@ -32,11 +32,11 @@
 
         function onUpdateAccount() {
 
-            $where = array('id_login' => $this->session->userdata('sess_id'));
+            $where = array('id_login' => $this->session->userdata('sess_idlogin'));
             
             // init
             $old_password = $this->input->get('old-password');
-            $dataLogin = $this->account->getDataLogin( $where )->row()->password;
+            $dataLogin = $this->setting->getDataUserLogin( $where )->row()->password;
 
             if ( password_verify( $old_password, $dataLogin ) ) {
 
@@ -50,9 +50,6 @@
             
             } else echo json_encode( false );
 
-
-
-            
         }
         
 
