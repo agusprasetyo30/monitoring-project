@@ -154,14 +154,6 @@
 
 
 
-
-
-
-
-
-
-
-
 										<hr>
 
 										<?php if ( count($row['informasi_penagihan']) > 0 ) : ?>
@@ -178,6 +170,137 @@
 											}
 										?>
 
+										
+										<!-- Modal Sunting Pembayaran -->
+										<!--===================================================-->
+										<div class="modal fade" id="sunting_pembayaran-<?php echo $penagihan['id_penagihan'] ?>" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+
+													<!--Modal header-->
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+														<h4 class="modal-title">Sunting Pembayaran</h4>
+													</div>
+
+													<!--Modal body-->
+
+													<form action="<?php echo base_url('penagihan/prosesUbahPembayaran') ?>" method="POST">
+
+													<div class="modal-body">
+														
+														<div class="form-group">
+
+															<label class="text-semibold">Tanggal Penagihan</label>
+
+															<input type="hidden" name="no_ref" value="<?php echo $this->input->get('no_ref') ?>">
+															<input type="hidden" name="id" value="<?php echo $penagihan['id_penagihan'] ?>">
+
+															<input type="date" name="tanggal" class="form-control" value="<?php echo $penagihan['tanggal_penagihan'] ?>">
+															<small>Tanggal Catatan Penagihan</small>
+														</div>
+
+
+
+
+
+														<div class="row">
+														
+															<div class="col-md-6">
+
+																<div class="form-group">
+
+																	<label class="text-semibold">Jenis Pembayaran</label>
+																	<div class="radio">
+																		<!-- Inline radio buttons -->
+																		<input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="jenis_pembayaran" value="debit"<?php if ( $penagihan['jenis_pembayaran'] == "debit" ) echo 'checked'; ?>>
+																		<label for="demo-inline-form-radio-edit">Debit</label>
+											
+																		<input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="jenis_pembayaran" value="tunai"<?php if ( $penagihan['jenis_pembayaran'] == "tunai" ) echo 'checked'; ?>>
+																		<label for="demo-inline-form-radio-edit-2">Tunai</label> <br>
+																		<small>Tanggal Catatan Penagihan</small>
+																	</div>
+																</div>
+															
+															</div>
+															<div class="col-md-6">
+
+																<div class="form-group">
+																	<label class="text-semibold">Pembayaran</label>
+																	<input type="number" name="pembayaran" class="form-control" value="<?php echo $penagihan['pembayaran'] ?>" placeholder="..." id="" required="" />
+																	<small>Tanggal Catatan Penagihan</small>
+																</div>
+															
+															</div>
+														</div>
+
+														<div class="row">
+
+															<div class="col-md-12">
+																<div class="form-group">
+																	<label class="text-semibold">Bukti Pembayaran</label>
+																	<input type="file" name="userfile" class="form-control" required="" />
+																	<small>Masukkan bukti pembayaran</small>
+																</div>
+															</div>
+														</div>
+
+
+														<div class="">
+															<div class="form-group">
+																<label class="text-semibold">Keterangan</label>
+																<textarea name="keterangan" class="form-control" placeholder="Masukkan catatan bila perlu"><?php echo $penagihan['catatan'] ?></textarea>
+																<small>Berikan catatan apabila diperlukan (Opsional)</small>
+															</div>
+														</div>
+													
+													</div>
+
+													<!--Modal footer-->
+													<div class="modal-footer">
+														<button data-dismiss="modal" class="btn btn-default" type="button">Reset</button>
+														<button class="btn btn-primary">Simpan</button>
+													</div>
+
+
+													</form>
+												</div>
+											</div>
+										</div>
+										<!--===================================================-->
+
+										<!-- End Modal  -->
+
+										 <!-- Modal hapus -->
+                                                <!--===================================================-->
+                                                <div id="hapus-pembayaran-<?php echo $penagihan['id_penagihan'] ?>" class="modal fade" tabindex="-1">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                                                                <h4 class="modal-title" id="mySmallModalLabel">Hapus Pembayaran</h4>
+                                                            </div>
+                                                            
+                                                            <div class="modal-body">
+
+                                                                <label for="">Pembayaran dengan nominal : <span class="text-main text-semibold"><?php echo $penagihan['pembayaran'] ?></span></label><br>
+                                                                <hr>
+
+                                                                <small><span class="text-danger">*</span> Catatan</small> <br>
+                                                                <small>Apakah anda yakin ingin menghapus informasi pembayaran ini. Data yang telah dihapus tidak dapat dipulihkan kembali</small>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Batal</button>
+                                                                <a href="<?php echo base_url('penagihan/prosesHapusPembayaran/'. $penagihan['id_penagihan']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- End Modal Hapus -->
+
+
 										<div class="" style="border: 1px solid #e0e0e0; padding: 10px; margin-bottom: 10px">
 											<small class="pull-right"><?php echo date('d F Y', strtotime($penagihan['tanggal_penagihan'])) ?></small>
 											<h4 style="color: <?php echo $color ?>">Rp <?php echo number_format($penagihan['pembayaran'], 2) ?></h4>
@@ -193,9 +316,9 @@
 					                            </button>
 					                            <ul class="dropdown-menu dropdown-menu-right">
 					                            	<li class="dropdown-header">Pengubahan</li>
-					                                <li class=""><a href="#">Sunting</a></li>
+					                                <li class=""><button data-target="#sunting_pembayaran-<?php echo $penagihan['id_penagihan'] ?>" data-toggle="modal" class="btn btn-sm btn-primary">Sunting</button></li>
 					                                <li class="divider"></li>
-					                                <li><a href="#">Hapus</a></li>
+					                                <li><button data-target="#hapus-pembayaran-<?php echo $penagihan['id_penagihan'] ?>" data-toggle="modal" class="btn btn-sm btn-primary">Hapus</button></li>
 					                            </ul>
 					                        </div>
 										</div>
@@ -219,7 +342,7 @@
 											</div>
 											<div class="col-md-9">
 												<h2 class="text-thin">Catatan Penagihan</h2>
-												<p style="margin: 0px">No ref.........<b class="text-main"></b></p>
+												<h4 style="margin: 0px">No Ref : <?php echo $row['informasi_detail']['no_ref'] ?><b class="text-main"></b></h4>
 												<br>
 											</div>
 										</div>
@@ -242,14 +365,14 @@
 													<label>Alamat</label>
 													<br>
 													<!-- Buat namanya -->
-													<label style="margin: 0px" class="text-primary">JL.Perumahan Griyaasri blok R-11 RT.09 RW.04 Pandanwangi Blimbing Malang 65124</label>
+													<label style="margin: 0px" class="text-primary"><?php echo $row['informasi_detail']['alamat'] ?></label>
 													
 												</div>
 
 												<div class="form-group">
 													<label>Domisili</label><br>
-													<label><i class="fa fa-envelope-o"></i> Probolinggo</label><br>
-													<label><i class="fa fa-phone"></i>&nbsp; Mayangan</label>
+													<label><i class="fa fa-envelope-o"></i>&nbsp; <?php echo $row['informasi_detail']['wilayah'].' - '. $row['informasi_detail']['kota'] ?></label><br>
+													<label><i class="fa fa-phone"></i>&nbsp; <?php echo $row['informasi_detail']['kecamatan'].' - '. $row['informasi_detail']['kelurahan']?></label>
 												</div>
 
 											</div>
@@ -270,7 +393,7 @@
 														</div>
 														<div class="timeline-label">
 															<p class="text-bold text-main" style="margin: 0px">Penagihan</p>
-															<small>Status Penagihan : Lunas</small>
+															<small>Status Penagihan : <?php echo $row['status_piutang']?></small>
 														</div>
 													</div>
 

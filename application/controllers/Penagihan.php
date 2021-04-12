@@ -162,6 +162,16 @@
             $this->M_penagihan->processInsertDataPembayaran();
         }
 
+        function prosesUbahPembayaran() {
+
+            $this->M_penagihan->processEditDataPembayaran();
+        }
+
+        function prosesHapusPembayaran($id_penagihan) {
+
+            $this->M_penagihan->processDeleteDataPembayaran($id_penagihan);
+        }
+
     
     }
     
