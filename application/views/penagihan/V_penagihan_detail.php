@@ -193,16 +193,12 @@
 
 															<label class="text-semibold">Tanggal Penagihan</label>
 
+															<input type="date" name="tanggal" class="form-control" value="<?php echo $penagihan['tanggal_penagihan'] ?>">
 															<input type="hidden" name="no_ref" value="<?php echo $this->input->get('no_ref') ?>">
 															<input type="hidden" name="id" value="<?php echo $penagihan['id_penagihan'] ?>">
-
-															<input type="date" name="tanggal" class="form-control" value="<?php echo $penagihan['tanggal_penagihan'] ?>">
+															
 															<small>Tanggal Catatan Penagihan</small>
 														</div>
-
-
-
-
 
 														<div class="row">
 														

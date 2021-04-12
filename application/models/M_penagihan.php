@@ -27,20 +27,16 @@
             $this->db->insert('penagihan', $data);
             $this->session->set_flashdata('msg', 'tambah');
 
-            
-            
-            
-            
             // activity 
             $notes = "Menambahkan pembayaran sebesar ". $data['pembayaran'];
             $this->rekap_transaksi( $data['no_ref'], "tambah", $notes );
-            
-
             
             // redirect
             redirect('penagihan/detailPenagihan?no_ref=' . $data['no_ref']);
             
         }
+
+
 
         function processEditDataPembayaran() {
 
@@ -68,14 +64,21 @@
             $notes = "Mengubah pembayaran sebesar ". $data['pembayaran'];
             $this->rekap_transaksi_sunting( $data['no_ref'], "sunting", $notes );
             
-
-            
             // redirect
             redirect('penagihan/detailPenagihan?no_ref=' . $data['no_ref']);
             
         }
 
+
+
         function processDeleteDataPembayaran( $id_penagihan ) {
+
+            $data = array(
+
+                'no_ref'    => $this->input->post('no_ref'),
+                'pembayaran'        => $this->input->post('pembayaran'),
+            );
+
             // hapus data master_domisili
             $where = ['id_penagihan' => $id_penagihan];
             $this->db->where( $where )->delete('penagihan');
@@ -83,15 +86,30 @@
                 $this->session->set_flashdata('msg', 'hapus');
 
 
-                // $notes = "Menghapus pembayaran sebesar ". $data['pembayaran'];
-                // $this->rekap_transaksi_sunting( $data['no_ref'], "hapus", $notes );
+                $notes = "Menghapus pembayaran sebesar ". $data['pembayaran'];
+                $this->rekap_transaksi_hapus( $data['no_ref'], "hapus", $notes );
                 
                 // kembali ke halaman
                 redirect('penagihan/detailPenagihan?no_ref=' . $data['no_ref']);
         }
 
+        
+        //TAMBAH
+        function rekap_transaksi( $no_ref, $activity, $notes ) {
+
+            $id_login = $this->session->userdata('sess_idlogin');
+            $dataActivity = array(
+
+                'id_login'  => $id_login,
+                'no_ref'    => $this->input->post('no_ref'),
+                'activity'  => "tambah",
+                'notes'     => "Menambahkan pembayaran sebesar ". $this->input->post('pembayaran')
+            );
+            $this->db->insert( 'riwayat_transaksi', $dataActivity );
+        }
+
        
-      
+      //SUNTING
         function rekap_transaksi_sunting( $no_ref, $activity, $notes ) {
 
             $id_login = $this->session->userdata('sess_idlogin');
@@ -106,20 +124,22 @@
         }
 
 
-
-
-        function rekap_transaksi( $no_ref, $activity, $notes ) {
+        //HAPUS
+        function rekap_transaksi_hapus ($no_ref, $activity, $notes ) {
 
             $id_login = $this->session->userdata('sess_idlogin');
             $dataActivity = array(
 
                 'id_login'  => $id_login,
                 'no_ref'    => $this->input->post('no_ref'),
-                'activity'  => "tambah",
-                'notes'     => "Menambahkan pembayaran sebesar ". $this->input->post('pembayaran')
+                'activity'  => "hapus",
+                'notes'     => "Menghapus pembayaran sebesar ". $this->input->post('pembayaran')
             );
-            $this->db->insert( 'riwayat_transaksi', $dataActivity );
+            $this->db->delete( 'riwayat_transaksi', $dataActivity );
         }
+
+
+
     
     }
     
