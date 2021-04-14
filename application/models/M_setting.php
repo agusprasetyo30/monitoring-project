@@ -19,10 +19,40 @@
 
 
         // update account
-        function onUpdateAccount( $where, $data ){
-            return $this->db->where( $where )->update('user_login', $data);
-        }
+         function onUpdateAccount() {
+
+            $where = array('id_login' => $this->session->userdata('sess_idlogin'));
+            
+            
+            // init
+            $old_password = $this->input->post('old-password');
+           
+            $dataLogin = $this->getDataUserLogin();
+            $new_password = $dataLogin['password'];
+
+            // var_dump($dataLogin);
+            // die;
+            if ( password_verify( $old_password, $new_password ) ) {
+               
+
+                $data  = array(
+
+                    'password'  => password_hash($this->input->post('new-password'), PASSWORD_BCRYPT)
+                );
+                // var_dump($data);
+                // die;
     
+                $this->db->where($where);
+                $this->db->update('user_login', $data);
+                $msg = '<div class="alert alert-success"><small>Kata sandi berhasil diubah</small></div>';
+                $this->session->set_flashdata( 'refresh', $msg );
+
+            
+            } else{
+                $msg = '<div class="alert alert-danger"><small>Kata sandi lama salah</small></div>';
+                $this->session->set_flashdata( 'refresh', $msg );
+        }
+    }
         
     
     }

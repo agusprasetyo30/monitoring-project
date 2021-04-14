@@ -43,8 +43,8 @@
             <div class="col-md-8 col-md-offset-2">
 
 
-                <?php echo $this->session->flashdata('msg') ?>
-                <form method="GET" id="form-account">
+                <?php echo $this->session->flashdata('refresh') ?>
+                <form action="<?php echo base_url('setting/prosesUbahPassword') ?>" method="POST">
 
                 <!-- Information detail -->
                 <div class="panel panel-body" style="border : 1px solid #e0e0e0">
@@ -114,7 +114,7 @@
 
 
 
-<script>
+<!-- <script>
 
     $(function() {
 
@@ -159,4 +159,4 @@
         }
     }); 
 
-</script>
+</script> -->

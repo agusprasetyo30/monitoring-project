@@ -277,10 +277,11 @@
                                                                 <h4 class="modal-title" id="mySmallModalLabel">Hapus Pembayaran</h4>
                                                             </div>
                                                             
+												
                                                             <div class="modal-body">
-
                                                                 <label for="">Pembayaran dengan nominal : <span class="text-main text-semibold"><?php echo $penagihan['pembayaran'] ?></span></label><br>
                                                                 <hr>
+																
 
                                                                 <small><span class="text-danger">*</span> Catatan</small> <br>
                                                                 <small>Apakah anda yakin ingin menghapus informasi pembayaran ini. Data yang telah dihapus tidak dapat dipulihkan kembali</small>
@@ -288,7 +289,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Batal</button>
-                                                                <a href="<?php echo base_url('penagihan/prosesHapusPembayaran/'. $penagihan['id_penagihan']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
+                                                                <a href="<?php echo base_url('penagihan/prosesHapusPembayaran/'. $penagihan['id_penagihan'].'/'.$penagihan['no_ref']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
                                                             </div>
                                                         </div>
                                                     </div>
