@@ -33,8 +33,7 @@
 					    <!---------------------------------->
 					    <div class="row pad-btm">
 					        <div class="col-sm-4 toolbar-left">
-					            <button id="demo-btn-addrow" class="btn btn-purple">Add New</button>
-					            <button class="btn btn-default"><i class="demo-pli-printer"></i></button>
+					            <!-- <button class="btn btn-default"><i class="demo-pli-printer"></i></button> -->
 					        </div>
 					        <div class="col-sm-8 toolbar-right text-right">
 					            
@@ -179,11 +178,18 @@
                                                             <?php
                                                                 
                                                                 $labelColor = "";
+                                                                $text = $row['status_piutang'];
 
-                                                                if ( $row['status_piutang'] == "lunas" ) {
+                                                                if ( $row['total_pelunasan'] == 0 ) { 
+
+                                                                    $labelColor = "label-default";
+                                                                    $text = "Belum Membayar";
+
+                                                                } else if ( $row['status_piutang'] == "lunas" ) {
 
                                                                     $labelColor = "label-success";
-                                                                } else if ( $row['status_piutang'] == "segel" ) {
+
+                                                                } else if ( $row['status_piutang'] == "cicil" ) {
 
                                                                     $labelColor = "label-warning";
                                                                 } else {
@@ -192,7 +198,7 @@
                                                                 }
                                                             ?>
 
-                                                            <label class="label <?php echo $labelColor ?>">Status Penagihan : <?php echo $row['status_piutang'] ?></label>
+                                                            <label class="label <?php echo $labelColor ?>">Status Penagihan : <?php echo $text ?></label>
                                                         </div>
                                                     </div>
                                                 </td>

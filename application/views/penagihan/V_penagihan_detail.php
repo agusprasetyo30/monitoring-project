@@ -44,7 +44,21 @@
 
 										<h4>Riwayat Penagihan</h4>
 										<label class="text-main">Daftar riwayat tagihan</label> <br>
-										<button data-target="#tambah_pembayaran" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-money"></i> Tambah Pembayaran</button>
+
+										<?php
+
+											$data_target = "#tambah_pembayaran";
+											$colorBtn = "btn-primary";
+											$textBtn  = "Tambah Pembayaran";
+											if ( $row['status_piutang'] == "lunas" ) {
+
+												$data_target = "";
+												$colorBtn = "btn-success disabled";
+												$textBtn  = "Pembayaran Lunas";
+											}
+										
+										?>
+										<button data-target="<?php echo $data_target ?>" data-toggle="modal" class="btn btn-sm <?php echo $colorBtn ?>"><i class="fa fa-money"></i> <?php echo $textBtn ?></button>
 										<!-- Modal Tambah Pembayaran -->
 										<!--===================================================-->
 										<div class="modal fade" id="tambah_pembayaran" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
@@ -59,7 +73,7 @@
 
 													<!--Modal body-->
 
-													<form action="<?php echo base_url('penagihan/prosesTambahPembayaran') ?>" method="POST">
+													<form action="<?php echo base_url('penagihan/prosesTambahPembayaran') ?>" method="POST" enctype="multipart/form-data">
 
 													<div class="modal-body">
 														
@@ -89,7 +103,7 @@
 																		<input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="jenis_pembayaran" value="debit">
 																		<label for="demo-inline-form-radio-edit">Debit</label>
 											
-																		<input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="jenis_pembayaran" value="tunai">
+																		<input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="jenis_pembayaran" value="tunai" checked>
 																		<label for="demo-inline-form-radio-edit-2">Tunai</label> <br>
 																		<small>Tanggal Catatan Penagihan</small>
 																	</div>
@@ -100,7 +114,13 @@
 
 																<div class="form-group">
 																	<label class="text-semibold">Pembayaran</label>
-																	<input type="number" name="pembayaran" class="form-control" placeholder="..." id="" required="" />
+
+																	<?php
+																	
+																		$bayar = $row['total_tagihan'] - $row['total_pelunasan']; 
+																	
+																	?>
+																	<input type="number" name="pembayaran" class="form-control" placeholder="..." id="" value="<?php echo $bayar ?>" min="1" max="<?php echo $bayar ?>" required="" />
 																	<small>Tanggal Catatan Penagihan</small>
 																</div>
 															
@@ -185,7 +205,7 @@
 
 													<!--Modal body-->
 
-													<form action="<?php echo base_url('penagihan/prosesUbahPembayaran') ?>" method="POST">
+													<form action="<?php echo base_url('penagihan/prosesUbahPembayaran') ?>" method="POST" enctype="multipart/form-data">
 
 													<div class="modal-body">
 														
@@ -235,7 +255,7 @@
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="text-semibold">Bukti Pembayaran</label>
-																	<input type="file" name="userfile" class="form-control" required="" />
+																	<input type="file" name="userfile" class="form-control" />
 																	<small>Masukkan bukti pembayaran</small>
 																</div>
 															</div>
@@ -304,7 +324,12 @@
 											<small>Keterangan :</small>
 											<div class="well well-sm" style="margin: 0px">
 												"<?php echo $penagihan['catatan'] ?>"
-												<br> <a href="" class="text-sm text-main btn-link"><i class="ti-arrow-down"></i> Unduh Bukti Pembayaran</a>
+
+												<?php
+												
+													$img = base_url('assets/img/bukti-pembayaran/'. $penagihan['bukti_pembayaran']);
+												?>
+												<br> <a href="<?php echo $img ?>" target="_blank" class="text-sm text-main btn-link" download><i class="ti-arrow-down"></i> Unduh Bukti Pembayaran</a>
 											</div>
 
 											<div class="dropdown text-right">
@@ -313,9 +338,9 @@
 					                            </button>
 					                            <ul class="dropdown-menu dropdown-menu-right">
 					                            	<li class="dropdown-header">Pengubahan</li>
-					                                <li class=""><button data-target="#sunting_pembayaran-<?php echo $penagihan['id_penagihan'] ?>" data-toggle="modal" class="btn btn-sm btn-primary">Sunting</button></li>
+													<li><a data-target="#sunting_pembayaran-<?php echo $penagihan['id_penagihan'] ?>" data-toggle="modal">Sunting</a></li>
 					                                <li class="divider"></li>
-					                                <li><button data-target="#hapus-pembayaran-<?php echo $penagihan['id_penagihan'] ?>" data-toggle="modal" class="btn btn-sm btn-primary">Hapus</button></li>
+													<li><a data-target="#hapus-pembayaran-<?php echo $penagihan['id_penagihan'] ?>" data-toggle="modal">Hapus</a></li>
 					                            </ul>
 					                        </div>
 										</div>
@@ -331,6 +356,22 @@
 
 									<!-- profile -->
 									<div class="panel panel-body panel-bordered-default">
+
+										<?php
+										
+											$colorRibbon = "";
+
+											if ( $row['status_piutang'] == "lunas" ) {
+
+												$colorRibbon = "#4caf50";
+											} else if ( $row['status_piutang'] == "cicil" ) {
+
+												$colorRibbon = "#ffc107";
+											}
+										
+										?>
+
+										<div class="ribbon" style="margin-right: 10px;"><span style="background-color: <?php echo $colorRibbon ?>"><?php echo $row['status_piutang'] ?></span></div>
 
 										<!-- Header -->
 										<div class="row">

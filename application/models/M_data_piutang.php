@@ -129,7 +129,14 @@
                             $status = "lunas";
                         } else {
 
-                            $status = "segel"; // belum lunas
+                            if ( $totalPelunasan > 0 ) {
+
+                                $status = "cicil"; // belum lunas
+
+                            } else {
+
+                                $status = "belumbayar";
+                            }
                         }
                         
                     } else {

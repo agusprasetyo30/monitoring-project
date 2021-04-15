@@ -53,7 +53,7 @@
 
 
                         // menggunakan filter wilayah
-                        if ( !empty( $filter_wilayah ) ) {
+                        if ($filter_wilayah) {
 
                             $dataWilayah = $rowPiutang['informasi_detail']['wilayah'].'-'.$rowPiutang['informasi_detail']['kota'];
                             // [informasi_detail][wilayah] = kota | [informasi_detail][kota] = probolinggo 
@@ -84,7 +84,7 @@
                         } else if ( empty( $filter_wilayah ) ) {
 
 
-                            if ( !empty($filter_bulan) && ($rowPiutang['informasi_detail'] >= 3) ){
+                            if ( !empty($filter_bulan) && ($rowPiutang['informasi_detail']['total_bulan'] >= 3) ){
 
 
                                 // push 
