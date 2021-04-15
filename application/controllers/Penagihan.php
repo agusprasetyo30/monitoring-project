@@ -167,9 +167,9 @@
             $this->M_penagihan->processEditDataPembayaran();
         }
 
-        function prosesHapusPembayaran($id_penagihan, $no_ref) {
+        function prosesHapusPembayaran($id_penagihan, $no_ref, $pembayaran) {
 
-            $this->M_penagihan->processDeleteDataPembayaran($id_penagihan, $no_ref);
+            $this->M_penagihan->processDeleteDataPembayaran($id_penagihan, $no_ref, $pembayaran );
         }
 
     

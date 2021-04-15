@@ -100,7 +100,7 @@
 
 
                 $notes = "Menghapus pembayaran sebesar ". $data['pembayaran'];
-                $this->rekap_transaksi_hapus( $id_penagihan, $data['no_ref'], $notes );
+                $this->rekap_transaksi_hapus( $id_penagihan, $data['no_ref'], "hapus", $notes );
                 
                 // kembali ke halaman
                 redirect('penagihan/detailPenagihan?no_ref=' . $data['no_ref']);
@@ -145,7 +145,7 @@
 
 
         //HAPUS
-        function rekap_transaksi_hapus ($id_penagihan, $no_ref, $notes ) {
+        function rekap_transaksi_hapus ($id_penagihan, $no_ref, $activity, $notes ) {
 
             $id_login = $this->session->userdata('sess_idlogin');
             $dataActivity = array(

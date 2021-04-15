@@ -289,7 +289,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Batal</button>
-                                                                <a href="<?php echo base_url('penagihan/prosesHapusPembayaran/'. $penagihan['id_penagihan'].'/'.$penagihan['no_ref']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
+                                                                <a href="<?php echo base_url('penagihan/prosesHapusPembayaran/'. $penagihan['id_penagihan'].'/'.$penagihan['no_ref'].'/'.$penagihan['pembayaran']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
                                                             </div>
                                                         </div>
                                                     </div>
