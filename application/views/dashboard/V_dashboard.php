@@ -3,16 +3,119 @@
             <div id="content-container">
                 <div id="page-head">
                     
-                    <div class="pad-all text-center">
-                        <h3>Selamat Datang di Menu Dashboard Aplikasi Monitoring Penagihan Putang</h3>
-                        <p1>Aplikasi sedang dalam pengerjaan, tetap pantau pada github</p>
+                    <!--Page Title-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <div id="page-title">
+                        <h1 class="page-header text-overflow">Halaman Utama</h1>
                     </div>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End page title-->
+
+
+                    <!--Breadcrumb-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <ol class="breadcrumb">
+					<li><a href="http://localhost:8000/req-web-internship-queue-hae/dashboard"><i class="demo-pli-home"></i></a></li>
+					<li class="active">Dashboard Admin</li>
+                    </ol>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End breadcrumb-->
                 </div>
 
                 
-                <!--Page content-->
+                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content">
+                    
+					<!--Activated Users Chart-->
+					<!--===================================================-->
+					<div class="panel">
+					
+					    <!--Chart information-->
+					    <div class="panel-body">
+					        <div class="row mar-top">
+					            <div class="col-md-5">
+					                <h3 class="text-main text-normal text-2x mar-no">Aktivitas Penagihan Piutang</h3>
+					                <h5 class="text-uppercase text-muted text-normal">Jumlah dan tampilan statistik</h5>
+					                <hr class="new-section-xs">
+					                <div class="row mar-top">
+					                    <div class="col-sm-5">
+					                        <div class="text-lg"><p class="text-5x text-thin text-main mar-no">000</p></div>
+					                        <p class="text-sm">Pelanggan yang telah dilakukan penagihan, selama periode tahun</p>
+					                    </div>
+					                    <div class="col-sm-7">
+					                        <div class="list-group bg-trans mar-no">
+					                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg ion-stats-bars"></i> Presentase Piutang</a>
+                                                <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg ion-calculator"></i> Pembayaran</a>
+					                            <a class="list-group-item" href="#"><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i>Laporan</a>
+					                        </div>
+					                    </div>
+					                </div>
+					                <button class="btn btn-pink mar-ver">View Details</button>
+					                <p class="text-xs">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+					            </div>
+					            <div class="col-md-7">
+                                
+					                <div id="demo-bar-chart" style="height:250px"></div>
+					                <hr class="new-section-xs bord-no">
+					                <ul class="list-inline text-center">
+					                    <li><span class="label label-info">354</span> Piutang</li>
+					                    <li><span class="label label-warning">74</span> Pembayaran</li>
+					                    <li><span class="label label-default">25</span> Pencabutan</li>
+					                </ul>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					<!--===================================================-->
+					<!--End Activated Users chart-->
 
+
+                    <div class="row">
+					    <div class="col-lg-3">
+					        <div class="row">
+					            <div class="col-md-12">
+					
+					                <!--Tile-->
+					                <!--===================================================-->
+					                <div class="panel panel-default panel-colorful">
+					                    <div class="pad-all text-center">
+					                        <span class="text-3x text-thin">0</span>
+					                        <p style="margin: 0px">Total Pengguna</p>
+					                        <i class="ti-medall-alt"></i>
+					                    </div>
+					                </div>
+                                    <small>Pegawai Kantor, Petugas Lapangan, Manajer</small>
+					                <!--===================================================-->
+
+					            </div>
+
+
+
+
+
+
+
+                        
+					
                 </div>
+                <!--===================================================-->
+                <!--End page content-->
+            
             </div>
+
+
+
+    <!--=================================================-->
+
+
+    
+    <!--Flot Chart [ OPTIONAL ]-->
+    <script src="plugins/flot-charts/jquery.flot.min.js"></script>
+	<script src="plugins/flot-charts/jquery.flot.resize.min.js"></script>
+	<script src="plugins/flot-charts/jquery.flot.pie.min.js"></script>
+	<script src="plugins/flot-charts/jquery.flot.tooltip.min.js"></script>
+
+
+    <!--Flot Sample [ SAMPLE ]-->
+    <script src="js/demo/flot-charts.js"></script>

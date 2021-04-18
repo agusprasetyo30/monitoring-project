@@ -149,10 +149,8 @@
             $this->rekap_transaksi( $data['no_ref'], "ubah", $notes );
             
             // redirect
-            redirect('penagihan/detailPenagihan?no_ref=' . $data['no_ref']);
-            
+            redirect('penagihan/detailPenagihan?no_ref=' . $data['no_ref']);   
         }
-
 
         function processDeleteDataPembayaran( $id_penagihan, $no_ref, $pembayaran ) {
 
