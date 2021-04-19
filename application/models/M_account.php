@@ -40,7 +40,6 @@
         }
 
 
-
         // fungsi insert
         function insertDataOfficer() {
             
@@ -238,6 +237,11 @@
 
                 $text = "Petugas Lapangan";
                 $link = base_url('account/viewPetugasLapangan');
+
+           } else if ( $getDataOfficer['jabatan'] == "manajer" ) {
+
+                $text = "Manajer";
+                $link = base_url('account/viewManager');
             }  
 
 
