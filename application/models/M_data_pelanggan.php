@@ -12,19 +12,17 @@
 
 
                 $sql = "SELECT 
-                    data_pelanggan.id_pelanggan, data_pelanggan.no_ref, data_pelanggan.nama, data_pelanggan.alamat, master_jenis_pelanggan.id_jenis_pelanggan,
-                    master_domisili.id_domisili, master_subdomisili.id_subdomisili,master_jenis_pelanggan.nama_jenis, master_domisili.kota, master_domisili.wilayah, master_subdomisili.kelurahan, master_subdomisili.kecamatan
+                    data_pelanggan.pencabutan, data_pelanggan.id_pelanggan, data_pelanggan.no_ref, data_pelanggan.nama, data_pelanggan.alamat,
+                    master_domisili.id_domisili, master_subdomisili.id_subdomisili, master_domisili.kota, master_domisili.wilayah, master_subdomisili.kelurahan, master_subdomisili.kecamatan
                     FROM data_pelanggan
-                    JOIN master_jenis_pelanggan ON data_pelanggan.id_jenis_pelanggan = master_jenis_pelanggan.id_jenis_pelanggan 
                     JOIN master_domisili ON data_pelanggan.id_domisili = master_domisili.id_domisili
                     JOIN master_subdomisili ON data_pelanggan.id_subdomisili = master_subdomisili.id_subdomisili
                     WHERE data_pelanggan.id_pelanggan = '$id_pelanggan'";
             } else { 
                 $sql = "SELECT 
-                    data_pelanggan.id_pelanggan, data_pelanggan.no_ref, data_pelanggan.nama, data_pelanggan.alamat, master_jenis_pelanggan.id_jenis_pelanggan,
-                    master_domisili.id_domisili, master_subdomisili.id_subdomisili,master_jenis_pelanggan.nama_jenis, master_domisili.kota, master_domisili.wilayah, master_subdomisili.kelurahan, master_subdomisili.kecamatan
+                    data_pelanggan.pencabutan, data_pelanggan.id_pelanggan, data_pelanggan.no_ref, data_pelanggan.nama, data_pelanggan.alamat,
+                    master_domisili.id_domisili, master_subdomisili.id_subdomisili, master_domisili.kota, master_domisili.wilayah, master_subdomisili.kelurahan, master_subdomisili.kecamatan
                     FROM data_pelanggan
-                    JOIN master_jenis_pelanggan ON data_pelanggan.id_jenis_pelanggan = master_jenis_pelanggan.id_jenis_pelanggan 
                     JOIN master_domisili ON data_pelanggan.id_domisili = master_domisili.id_domisili
                     JOIN master_subdomisili ON data_pelanggan.id_subdomisili = master_subdomisili.id_subdomisili";
             }

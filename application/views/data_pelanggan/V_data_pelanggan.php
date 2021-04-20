@@ -31,7 +31,7 @@
                                             <th>No Ref</th>
                                             <th>Nama pelanggan</th>
                                             <th>Alamat</th>
-                                            <th>Status</th>
+                                            <th>Pencabutan</th>
                                             <th>Domisili</th>
                                             <th>Sub Domisili</th>
                                             <th>Aksi</th>
@@ -54,7 +54,7 @@
                                                 <small><?php echo $kolom['alamat'] ?></small> 
                                             <br></td>
                                             <td> 
-                                                <small><?php echo $kolom['nama_jenis'] ?></small> 
+                                                <small><?php echo $kolom['pencabutan'] ?></small> 
                                             <br></td>
                                             <td> 
                                                 <small><?php echo $kolom['wilayah'] ?></small> 

@@ -36,11 +36,11 @@
 					        <div class="row mar-top">
 					            <div class="col-md-5">
 					                <h3 class="text-main text-normal text-2x mar-no">Aktivitas Penagihan Piutang</h3>
-					                <h5 class="text-uppercase text-muted text-normal">Jumlah dan tampilan statistik</h5>
+					                <h5 class="text-uppercase text-muted text-normal">Jumlah dan tampilan statistik per-bulan <?php echo date('F'); ?> </h5>
 					                <hr class="new-section-xs">
 					                <div class="row mar-top">
 					                    <div class="col-sm-5">
-					                        <div class="text-lg"><p class="text-5x text-thin text-main mar-no">000</p></div>
+					                        <div class="text-lg"><p class="text-5x text-thin text-main mar-no"><?php echo $calPenagihan->jumlah ?></p></div>
 					                        <p class="text-sm">Pelanggan yang telah dilakukan penagihan, selama periode tahun</p>
 					                    </div>
 					                    <div class="col-sm-7">
@@ -111,11 +111,65 @@
 
     
     <!--Flot Chart [ OPTIONAL ]-->
-    <script src="plugins/flot-charts/jquery.flot.min.js"></script>
-	<script src="plugins/flot-charts/jquery.flot.resize.min.js"></script>
-	<script src="plugins/flot-charts/jquery.flot.pie.min.js"></script>
-	<script src="plugins/flot-charts/jquery.flot.tooltip.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/flot-charts/jquery.flot.min.js"></script>
+	<script src="<?php echo base_url() ?>assets/plugins/flot-charts/jquery.flot.resize.min.js"></script>
+	<script src="<?php echo base_url() ?>assets/plugins/flot-charts/jquery.flot.pie.min.js"></script>
+	<script src="<?php echo base_url() ?>assets/plugins/flot-charts/jquery.flot.tooltip.min.js"></script>
 
 
-    <!--Flot Sample [ SAMPLE ]-->
-    <script src="js/demo/flot-charts.js"></script>
+    <script>
+	
+	$(function() {
+
+
+		// FLOT CHART
+		// =================================================================
+		// Require Flot Charts
+		// -----------------------------------------------------------------
+		// http://www.flotcharts.org/
+		// =================================================================
+
+
+		var d1 = [[0, 85], [1, 45], [2, 58], [3, 35], [4, 95], [5, 25], [6, 65], [7, 12]],
+		    d2 = [[0, 50], [1, 30], [2, 80], [3, 29], [4, 95], [5, 70], [6, 15], [7, 73]];
+
+		$.plot("#demo-bar-chart", [
+			{
+				label: "Piutang",
+				data: d1
+			},{
+				label: "Pencabutan",
+				data: d2
+			}],{
+			series: {
+				bars: {
+					show: true,
+					lineWidth: 0,
+					barWidth: 0.25,
+					align: "center",
+					order: 1,
+					fillColor: { colors: [ { opacity: .9 }, { opacity: .9 } ] }
+				}
+			},
+			colors: ['#03a9f4', '#ffb300'],
+			grid: {
+				borderWidth: 0,
+				hoverable: true,
+				clickable: true
+			},
+			yaxis: {
+				ticks: 4, tickColor: 'rgba(0,0,0,.02)'
+			},
+			xaxis: {
+				ticks: 7,
+				tickColor: 'transparent'
+			},
+			tooltip: {
+				show: true,
+				content: "<div class='flot-tooltip text-center'><h5 class='text-main'>%s</h5>%y.0 </div>"
+			}
+		});
+
+	});
+	
+	</script>

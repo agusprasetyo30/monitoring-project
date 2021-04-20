@@ -19,6 +19,9 @@
 
                 redirect('login','refresh');
             }
+
+            // load model 
+            $this->load->model('M_dashboard');
         }
 
         public function index(){
@@ -31,10 +34,14 @@
             // pengecekan hak akses
             if ( $sess_level != "employee" ) {
 
+                // view :: pegawai kantor
                 $data = array(
 
                     'folder'    => "dashboard",
-                    'view'      => "V_dashboard"
+                    'view'      => "V_dashboard",
+                    
+                    'calPenagihan' => $this->M_dashboard->calculatePenagihanByMonth()->row()
+                   
                 );
                 $this->load->view('template/template_backend', $data);
 
@@ -44,7 +51,9 @@
                 $data = array(
 
                     'folder'    => "dashboard",
-                    'view'      => "V_dashboard_lapangan"
+                    'view'      => "V_dashboard_lapangan",
+
+                    'riwayat'   => $this->M_dashboard->getRiwayatTransaksiPelangganByIdLogin()
                 );
                 $this->load->view('template/template_backend', $data);
             }

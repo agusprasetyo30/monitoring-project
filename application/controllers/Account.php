@@ -27,12 +27,24 @@ class Account extends CI_Controller {
         // );
         // $this->load->view('template/template_backend', $data);
 
-        $data = array(
+        $sesi_level = $this->session->userdata('sess_level');
+        if ( $sesi_level == "employee" ) {
 
-            'folder'    => "account",
-            'view'      => "V_account_menu"
-        );
-        $this->load->view('template/template_backend', $data);
+            redirect('dashboard');
+
+        } else {
+
+            $data = array(
+
+                'folder'    => "account",
+                'view'      => "V_account_menu"
+            );
+            $this->load->view('template/template_backend', $data);
+        }
+
+        
+
+
     }
 
 

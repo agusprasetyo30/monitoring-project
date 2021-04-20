@@ -9,6 +9,9 @@
 								<?php
 								
 									$ambilJabatanFromURL = $this->input->get('jabatan');
+									$sesi_level = $this->session->userdata('sess_level');
+
+
 									$text = "";
 									$link = "";
 
@@ -24,6 +27,13 @@
 										$text = "Petugas Lapangan";
 										$link = base_url('account/viewPetugasLapangan');
 									}
+
+									if ( $sesi_level == "employee" ) {
+
+										$link = base_url('dashboard');
+									}
+
+
 								?>
                                 <h1 class="page-header text-overflow">Ubah <?php echo $text ?> </h1>
                             </div>
