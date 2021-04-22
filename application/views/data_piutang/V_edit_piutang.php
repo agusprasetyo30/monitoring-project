@@ -93,15 +93,15 @@
                                     <label for="demo-is-inputnormal" class="col-sm-3 control-label">Keterangan</label>
                                         <div class="col-sm-6">
                                         <textarea name="keterangan" id="" cols="30" class="form-control" rows="5"><?php echo $hasil['keterangan'] ?></textarea>
-                                        <small>Masukkan nama jenis pelanggan</small>
+                                        <small>Masukkan keterangan</small>
                                     </div>  
                                     </div>
 
                                     <div class="form-group">
                                     <label for="demo-is-inputnormal" class="col-sm-3 control-label">Alasan</label>
                                         <div class="col-sm-6">
-                                        <textarea name="keterangan" id="" cols="30" class="form-control" rows="5"><?php echo $hasil['alasan'] ?></textarea>
-                                        <small>Masukkan nama jenis pelanggan</small>
+                                        <textarea name="alasan" id="" cols="30" class="form-control" rows="5"><?php echo $hasil['alasan'] ?></textarea>
+                                        <small>Masukkan alasan</small>
                                     </div>
                                     </div>  
                                     <!-- TUTUP FORM -->

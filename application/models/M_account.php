@@ -287,14 +287,34 @@
             redirect( $link );
         }
 
-        function calculateAccount(){
+        function calculateAccountMan(){
 
-            $jabatan = $this->session->userdata('sess_jabatan');
-            $sql = "SELECT COUNT(*) AS tot FROM user_officer WHERE jabatan = '$jabatan'";
+            // $jabatan = $this->session->userdata('sess_jabatan');
+            $sql = "SELECT COUNT(*) AS man FROM user_officer WHERE jabatan = 'manajer'";
 
             $query = $this->db->query( $sql );
             return $query;
         }
+
+        function calculateAccountPeg(){
+
+            // $jabatan = $this->session->userdata('sess_jabatan');
+            $sql = "SELECT COUNT(*) AS peg FROM user_officer WHERE jabatan = 'pegawai_kantor'";
+
+            $query = $this->db->query( $sql );
+            return $query;
+        }
+
+        function calculateAccountPet(){
+
+            // $jabatan = $this->session->userdata('sess_jabatan');
+            $sql = "SELECT COUNT(*) AS pet FROM user_officer WHERE jabatan = 'petugas_lapangan'";
+
+            $query = $this->db->query( $sql );
+            return $query;
+        }
+
+
         
     }
     

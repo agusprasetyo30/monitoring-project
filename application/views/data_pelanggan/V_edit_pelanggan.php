@@ -125,7 +125,26 @@
                                             </select>
 					                        </div>
 					                    </div>
-                                   </div>
+
+
+										<div class="form-group pad-ver">
+					                    <label class="col-md-3 control-label text-semibold">Pencabutan</label>
+					                    <div class="col-md-6">
+					                        <div class="radio">
+					                            <!-- Inline radio buttons -->
+					                            <input id="pencabutan-1" class="magic-radio" type="radio" name="cabut" value="iya" <?php if ( $hasil['pencabutan'] == 'iya' ) echo 'checked' ?> required="" >
+					                            <label for="pencabutan-1">Iya</label>
+					
+					                            <input id="pencabutan-2" class="magic-radio" type="radio" name="cabut" value="tidak" <?php if ( $hasil['pencabutan'] == 'tidak' ) echo 'checked' ?> required="">
+					                            <label for="pencabutan-2">Tidak</label>			                 		
+					                        </div>
+                                            <small class="text-muted">Pilih status pencabutan pelangggan</small>
+											</div>
+										</div>
+
+                                   
+								   </div>
+
 								   <div class="modal-footer">
                                 <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
                                 <button class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-plus"></i> Simpan dan Perbarui</button>

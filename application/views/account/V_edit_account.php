@@ -26,7 +26,12 @@
 
 										$text = "Petugas Lapangan";
 										$link = base_url('account/viewPetugasLapangan');
-									}
+									} 
+									else if ( $ambilJabatanFromURL == "manajer" ) {
+
+									$text = "Manajer";
+									$link = base_url('dashboard');
+								} 
 
 									if ( $sesi_level == "employee" ) {
 

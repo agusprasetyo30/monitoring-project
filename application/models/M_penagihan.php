@@ -115,16 +115,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
             $data = array(
 
                 'id_penagihan' =>$id,

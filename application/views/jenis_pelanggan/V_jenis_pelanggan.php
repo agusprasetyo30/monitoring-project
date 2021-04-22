@@ -78,8 +78,9 @@
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                    <button data-target="#hapus-jenis_pelanggan-<?php echo $kolom['id_jenis_pelanggan'] ?>" data-toggle="modal" class="btn btn-sm btn-danger btn-labeled" ><i class="btn-label ti-trash"></i>Hapus</button>
+                            
                                                     <button data-target="#sunting-jenis_pelanggan-<?php echo $kolom['id_jenis_pelanggan'] ?>" data-toggle="modal" class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-pencil"></i> Sunting</button>
+                                                    <button data-target="#hapus-jenis_pelanggan-<?php echo $kolom['id_jenis_pelanggan'] ?>" data-toggle="modal" class="btn btn-sm btn-danger btn-labeled" ><i class="btn-label ti-trash"></i>Hapus</button>
                                             </div>
                                         </tr>
                                         

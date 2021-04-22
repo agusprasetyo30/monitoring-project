@@ -113,6 +113,22 @@
                                             </select>
 					                        </div>
 					                    </div>
+
+										<div class="form-group pad-ver">
+					                    <label class="col-md-3 control-label text-semibold">Pencabutan</label>
+					                    <div class="col-md-6">
+					                        <div class="radio">
+					                            <!-- Inline radio buttons -->
+					                            <input id="pencabutan-1" class="magic-radio" type="radio" name="pencabutan" value="iya" required="" >
+					                            <label for="pencabutan-1">Iya</label>
+					
+					                            <input id="pencabutan-2" class="magic-radio" type="radio" name="pencabutan" value="tidak" required="" checked>
+					                            <label for="pencabutan-2">Tidak</label>					
+					                        </div>
+                                            <small class="text-muted">Pilih status pencabutan pelanggan</small>
+											</div>
+										</div>
+
                                    </div>
 					            </div>
                             </div>  

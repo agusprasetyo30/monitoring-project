@@ -66,9 +66,9 @@
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
                                                    
-                                                <a href="<?php echo base_url('data_pelanggan/editPelanggan/').$kolom['id_pelanggan'] ?>" class="btn btn-sm btn-default btn-active-warning">Sunting</a>
+                                                <a href="<?php echo base_url('data_pelanggan/editPelanggan/').$kolom['id_pelanggan'] ?>" class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-pencil"></i>Sunting</a>
                                                 <a href="<?php echo base_url('data_pelanggan/prosesHapusPelanggan/'. $kolom['id_pelanggan']) ?>" 
-												    onclick="return confirm('Apakah anda yakin ingin menghapus pelanggan atas nama <?php echo $kolom['nama'] ?>')" class="btn btn-sm btn-default btn-active-warning">Hapus</a>
+												    onclick="return confirm('Apakah anda yakin ingin menghapus pelanggan atas nama <?php echo $kolom['nama'] ?>')" class="btn btn-sm btn-danger btn-labeled" ><i class="btn-label ti-trash"></i>Hapus</a>
                                                 </div>
                                         </tr>
 

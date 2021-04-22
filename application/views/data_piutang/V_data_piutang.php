@@ -72,8 +72,8 @@
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                <a href="<?php echo base_url('data_piutang/editPiutang/').$kolom['id_piutang'] ?>" class="btn btn-sm btn-default btn-active-warning">Sunting</a>
-                                                <button data-target="#hapus-data_piutang-<?php echo $kolom['id_piutang'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
+                                                <a href="<?php echo base_url('data_piutang/editPiutang/').$kolom['id_piutang'] ?>"class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-pencil"></i>Sunting</a>
+                                                <button data-target="#hapus-data_piutang-<?php echo $kolom['id_piutang'] ?>" data-toggle="modal" class="btn btn-sm btn-danger btn-labeled" ><i class="btn-label ti-trash"></i>Hapus</button>
                                                   
                                             </div>
                                         </tr>

@@ -51,8 +51,8 @@
 					                        </div>
 					                    </div>
 					                </div>
-					                <button class="btn btn-pink mar-ver">View Details</button>
-					                <p class="text-xs">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+					                <button class="btn btn-pink mar-ver">Lihat Detail</button>
+					
 					            </div>
 					            <div class="col-md-7">
                                 

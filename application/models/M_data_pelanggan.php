@@ -45,6 +45,7 @@
                 'id_jenis_pelanggan'   => $this->input->post('jenis'),
                 'id_domisili'   => $this->input->post('domisili'),
                 'id_subdomisili'   => $this->input->post('subdomisili'),
+                'pencabutan'   => $this->input->post('pencabutan'),
 
             );
 
@@ -69,6 +70,7 @@
                 'id_jenis_pelanggan'   => $this->input->post('jenis'),
                 'id_domisili'   => $this->input->post('domisili'),
                 'id_subdomisili'   => $this->input->post('subdomisili'),
+                'pencabutan'   => $this->input->post('cabut'),
             );
 
             $this->db->where('id_pelanggan', $id_pelanggan);

@@ -16,19 +16,9 @@ class Account extends CI_Controller {
     // menu utama
     function index(){
 
-        // $dataOfficer = $this->M_account->getDataOfficer();
-        // $data = array(
-
-        //     'folder'    => "account",
-        //     'view'      => "V_account",
-
-        //     // data
-        //     'dataOfficer'   => $dataOfficer
-        // );
-        // $this->load->view('template/template_backend', $data);
-
         $sesi_level = $this->session->userdata('sess_level');
         if ( $sesi_level == "employee") {
+            
             redirect('dashboard');
         }
         else if ($sesi_level == "admin"){
@@ -40,7 +30,9 @@ class Account extends CI_Controller {
                 'folder'    => "account",
                 'view'      => "V_account_menu",
 
-                'totAccount' => $this->M_account->calculateAccount()->row()
+                'man' => $this->M_account->calculateAccountMan()->row(),
+                'peg' => $this->M_account->calculateAccountPeg()->row(),
+                'pet' => $this->M_account->calculateAccountPet()->row()
 
               
             );
@@ -80,13 +72,6 @@ class Account extends CI_Controller {
 
 
 
-
-
-
-
-
-
-
     /** Controller - Pegawai Kantor */
 
         function viewPegawaiKantor() {
@@ -102,15 +87,6 @@ class Account extends CI_Controller {
             $this->load->view('template/template_backend', $data);
         }
     /** End Controller - Pegawai Kantor */
-
-
-
-
-
-
-
-
-
 
 
 
