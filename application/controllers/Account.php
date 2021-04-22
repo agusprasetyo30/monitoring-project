@@ -28,12 +28,11 @@ class Account extends CI_Controller {
         // $this->load->view('template/template_backend', $data);
 
         $sesi_level = $this->session->userdata('sess_level');
-        if ( $sesi_level == "employee" && "admin") {
-
+        if ( $sesi_level == "employee") {
             redirect('dashboard');
-            
-            
-
+        }
+        else if ($sesi_level == "admin"){
+            redirect('dashboard');
         } else {
 
             $data = array(

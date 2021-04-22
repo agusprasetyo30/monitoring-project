@@ -52,10 +52,6 @@
 
 
 
-
-
-
-
         // pemasangan session
         function tambahSession( $kolom ) {
 
