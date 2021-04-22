@@ -43,11 +43,14 @@
             <div class="col-md-8 col-md-offset-2">
 
 
-                <?php echo $this->session->flashdata('refresh') ?>
+                 <?php echo $this->session->flashdata('refresh') ?>
+                <?php echo $this->session->flashdata('msg') ?>
                 <form action="<?php echo base_url('setting/prosesUbahPassword') ?>" method="POST">
 
                 <!-- Information detail -->
                 <div class="panel panel-body" style="border : 1px solid #e0e0e0">
+
+                    <form method="GET" id="form-account">
 
                     <div class="row">
                         <div class="col-md-5">
@@ -74,10 +77,11 @@
                                 <div class="form-group">
                                     <label class="text-semibold">Username <small>*</small> </label>
                                     <h5 style="margin: 0px" class="text-thin">@<?php echo $account['username'] ?></h5>
+                                    <input type="hidden" name="id" value="<?php echo $account['id_login'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label class="text-semibold">Kata sandi lama</label>
-                                    <input type="text" name="old-password" class="form-control input-sm" placeholder="kata sandi lama" required="" />
+                                    <input type="text" name="old-password" class="form-control input-sm" <?php echo $account['username'] ?>placeholder="kata sandi lama" required="" />
                                     <small>Masukkan kata sandi lama anda</small>
                                 </div>
                                 
@@ -112,11 +116,10 @@
 
 
 
-
-
-<!-- <script>
+<script>
 
     $(function() {
+
 
 
         $('#form-account').on('submit', function( e ) {
@@ -159,4 +162,4 @@
         }
     }); 
 
-</script> -->
+</script>

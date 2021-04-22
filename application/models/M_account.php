@@ -286,6 +286,16 @@
             $this->session->set_flashdata('msg', $msg);
             redirect( $link );
         }
+
+        function calculateAccount(){
+
+            $jabatan = $this->session->userdata('sess_jabatan');
+            $sql = "SELECT COUNT(*) AS tot FROM user_officer WHERE jabatan = '$jabatan'";
+
+            $query = $this->db->query( $sql );
+            return $query;
+        }
+        
     }
     
     /* End of file M_account.php */

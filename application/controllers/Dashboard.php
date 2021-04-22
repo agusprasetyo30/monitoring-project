@@ -40,10 +40,13 @@
                     'folder'    => "dashboard",
                     'view'      => "V_dashboard",
                     
-                    'calPenagihan' => $this->M_dashboard->calculatePenagihanByMonth()->row()
+                    'calPenagihan' => $this->M_dashboard->calculatePenagihanByMonth()->row(),
+                    'calAccount' => $this->M_dashboard->calculateAccount()->row()
+                  
                    
                 );
                 $this->load->view('template/template_backend', $data);
+
 
             } else {
 

@@ -21,6 +21,14 @@
             $query = $this->db->query( $sql );
             return $query;
         }
+
+        function calculateAccount(){
+            $sql = "SELECT COUNT(*) AS jml FROM user_officer";
+            $query = $this->db->query( $sql );
+            return $query;
+        }
+
+        
         
 
 

@@ -80,7 +80,7 @@
 					                <!--===================================================-->
 					                <div class="panel panel-default panel-colorful">
 					                    <div class="pad-all text-center">
-					                        <span class="text-3x text-thin">0</span>
+					                        <span class="text-3x text-thin"><?php echo $calAccount->jml ?></span>
 					                        <p style="margin: 0px">Total Pengguna</p>
 					                        <i class="ti-medall-alt"></i>
 					                    </div>

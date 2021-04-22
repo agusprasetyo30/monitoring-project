@@ -343,6 +343,7 @@
 
 
                                     } else if ( $jabatan == "manajer" ) {
+                                        $this->load->view('template/navigation_manajer');
 
 
 

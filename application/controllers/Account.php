@@ -28,16 +28,22 @@ class Account extends CI_Controller {
         // $this->load->view('template/template_backend', $data);
 
         $sesi_level = $this->session->userdata('sess_level');
-        if ( $sesi_level == "employee" ) {
+        if ( $sesi_level == "employee" && "admin") {
 
             redirect('dashboard');
+            
+            
 
         } else {
 
             $data = array(
 
                 'folder'    => "account",
-                'view'      => "V_account_menu"
+                'view'      => "V_account_menu",
+
+                'totAccount' => $this->M_account->calculateAccount()->row()
+
+              
             );
             $this->load->view('template/template_backend', $data);
         }
@@ -60,6 +66,7 @@ class Account extends CI_Controller {
                 'view'      => "V_manager",
 
                 'dataOfficer'   => $dataOfficer
+              
             );
 
             $this->load->view('template/template_backend', $data);
