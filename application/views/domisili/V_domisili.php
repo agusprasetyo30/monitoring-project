@@ -87,19 +87,19 @@
                                     <tbody>
 
 
-                                        <?php foreach ( $domisili->result_array() AS $kolom ) { ?>
+                                        <?php foreach ( $domisili AS $kolom ) { ?>
                                         <tr>
                                             <td>1</td>
                                             <td>
                                                 <small>Informasi Kota</small> <br>
-                                                <a href="" class="btn-link text-semibold text-main"><?php echo $kolom['kota'] ?></a>
+                                                <a href="" class="btn-link text-semibold text-main"><?php echo $kolom['info_domisili']['kota'] ?></a>
                                             </td>
                                             <td>
                                                 <small>Wilayah</small> <br>
                                                 <?php
 
                                                     $colorBadge = "";
-                                                    if ( $kolom['wilayah'] == "kota" ) {
+                                                    if ( $kolom['info_domisili']['wilayah'] == "kota" ) {
 
                                                         $colorBadge = "badge-mint";
                                                     } else {
@@ -107,17 +107,28 @@
                                                         $colorBadge = "badge-primary";
                                                     }
                                                 ?>
-                                                <span for="" class="badge <?php echo $colorBadge ?>"><?php echo $kolom['wilayah'] ?></span>
+                                                <span for="" class="badge <?php echo $colorBadge ?>"><?php echo $kolom['info_domisili']['wilayah'] ?></span>
                                             </td>
                                             <td>
                                                 <small>Total Kecamatan : </small> <br>
-                                                <a href="<?php echo base_url('domisili/subdomisili/'. $kolom['id_domisili']) ?>" class="text-main btn-link">10 Kecamatan <small>(Klik untuk mendetail)</small></a>
+                                                <?php
+
+                                                    if ( $kolom['info_totalsub'] != 0 ) {
+
+
+                                                        $sub_text = $kolom['info_totalsub'] . " Kecamatan <small>(Klik untuk mendetail)</small>";
+                                                    } else {
+
+                                                        $sub_text = "Belum menambahkan kecamatan";
+                                                    }
+                                                ?>
+                                                <a href="<?php echo base_url('domisili/subdomisili/'. $kolom['info_domisili']['id_domisili']) ?>" class="text-main btn-link"><?php echo $sub_text ?></a>
                                             </td>
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                    <button data-target="#sunting-domisili-<?php echo $kolom['id_domisili'] ?>" data-toggle="modal" class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-pencil"></i>Sunting</button>
-                                                    <button data-target="#hapus-domisili-<?php echo $kolom['id_domisili'] ?>" data-toggle="modal" class="btn btn-sm btn-danger btn-labeled" ><i class="btn-label ti-trash"></i>Hapus</button>
+                                                    <button data-target="#sunting-domisili-<?php echo $kolom['info_domisili']['id_domisili'] ?>" data-toggle="modal" class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-pencil"></i>Sunting</button>
+                                                    <button data-target="#hapus-domisili-<?php echo $kolom['info_domisili']['id_domisili'] ?>" data-toggle="modal" class="btn btn-sm btn-danger btn-labeled" ><i class="btn-label ti-trash"></i>Hapus</button>
                                                 </div>
 
 
@@ -125,7 +136,7 @@
 
                                                 <!-- Modal sunting -->
                                                 <!--===================================================-->
-                                                <div id="sunting-domisili-<?php echo $kolom['id_domisili'] ?>" class="modal fade" tabindex="-1">
+                                                <div id="sunting-domisili-<?php echo $kolom['info_domisili']['id_domisili'] ?>" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -138,9 +149,9 @@
                                                                 
                                                                 <div class="form-group">
                                                                     <label for="" class="text-semibold">Nama Domisili</label>
-                                                                    <input type="text" name="nama_domisili" class="form-control" value="<?php echo $kolom['kota'] ?>" placeholder="..." id="" required="" /> <br>
+                                                                    <input type="text" name="nama_domisili" class="form-control" value="<?php echo $kolom['info_domisili']['kota'] ?>" placeholder="..." id="" required="" /> <br>
                                                                     
-                                                                    <input type="text" name="id" value="<?php echo $kolom['id_domisili'] ?>">
+                                                                    <input type="hidden" name="id" value="<?php echo $kolom['info_domisili']['id_domisili'] ?>">
 
                                                                     <small>Masukkan nama domisili ex.Probolinggo</small>
                                                                 </div> <br><br>
@@ -150,10 +161,10 @@
                                                                     <div class="radio">
                                     
                                                                         <!-- Inline radio buttons -->
-                                                                        <input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="wilayah" value="kota" <?php if ( $kolom['wilayah'] == "kota" ) echo 'checked'; ?>>
+                                                                        <input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="wilayah" value="kota" <?php if ( $kolom['info_domisili']['wilayah'] == "kota" ) echo 'checked'; ?>>
                                                                         <label for="demo-inline-form-radio-edit">Kota</label>
                                             
-                                                                        <input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="wilayah" value="kabupaten" <?php if ( $kolom['wilayah'] == "kabupaten" ) echo 'checked'; ?>>
+                                                                        <input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="wilayah" value="kabupaten" <?php if ( $kolom['info_domisili']['wilayah'] == "kabupaten" ) echo 'checked'; ?>>
                                                                         <label for="demo-inline-form-radio-edit-2">Kabupaten</label> <br>
 
                                                                         <small>Pilih salah satu</small>
@@ -184,7 +195,7 @@
 
                                            
                                                 <!--===================================================-->
-                                                <div id="hapus-domisili-<?php echo $kolom['id_domisili'] ?>" class="modal fade" tabindex="-1">
+                                                <div id="hapus-domisili-<?php echo $kolom['info_domisili']['id_domisili'] ?>" class="modal fade" tabindex="-1">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -194,8 +205,8 @@
                                                             
                                                             <div class="modal-body">
 
-                                                                <label for="">Nama Bagian : <span class="text-main text-semibold"><?php echo $kolom['kota'] ?></span></label><br>
-                                                                <label for="">Wilayah : <span class="text-main text-semibold"><?php echo $kolom['wilayah'] ?></span></label>
+                                                                <label for="">Nama Bagian : <span class="text-main text-semibold"><?php echo $kolom['info_domisili']['kota'] ?></span></label><br>
+                                                                <label for="">Wilayah : <span class="text-main text-semibold"><?php echo $kolom['info_domisili']['wilayah'] ?></span></label>
 
 
                                                                 <hr>
@@ -206,7 +217,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Batal</button>
-                                                                <a href="<?php echo base_url('domisili/prosesHapusDomisili/'. $kolom['id_domisili']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
+                                                                <a href="<?php echo base_url('domisili/prosesHapusDomisili/'. $kolom['info_domisili']['id_domisili']) ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-close"></i> Hapus Sekarang</a>
                                                             </div>
                                                         </div>
                                                     </div>

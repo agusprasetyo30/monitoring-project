@@ -41,9 +41,13 @@
                     'view'      => "V_dashboard",
                     
                     'calPenagihan' => $this->M_dashboard->calculatePenagihanByMonth()->row(),
-                    'calAccount' => $this->M_dashboard->calculateAccount()->row()
+                    'calAccount' => $this->M_dashboard->calculateAccount()->row(),
+
+                    'totalPenagihan' => $this->M_dashboard->totalPenagihan(),
+                    'persen_piutang'        => $this->M_dashboard->percentagePiutang(),
+                    'persen_pencabutan'     => $this->M_dashboard->percentagePencabutan(),
                   
-                   
+                    
                 );
                 $this->load->view('template/template_backend', $data);
 
@@ -63,6 +67,19 @@
 
             
             
+        }
+
+
+
+
+
+
+
+        function grafik() {
+
+            $data = $this->M_dashboard->dataGrafik();
+
+            echo json_encode( $data );
         }
     
     }

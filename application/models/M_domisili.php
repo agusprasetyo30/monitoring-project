@@ -6,6 +6,46 @@
     class M_domisili extends CI_Model {
         
 
+
+        function getDataDomisiliWithSubDomisili() {
+
+            // data all domisili with subdomisili
+            $dataDomisili = array();
+
+            $getDataDomisili = $this->db->get('master_domisili');
+
+            // apakah tabel master_domisili ada isinya ?
+            if ( $getDataDomisili->num_rows() > 0 ) {
+
+                $totalSubDomisili = 0;
+                foreach ( $getDataDomisili->result_array() as $rowDomisili ) {
+
+
+                    // ambil data kecamatan 
+                    $id_domisili = $rowDomisili['id_domisili'];
+                    $this->db->where('id_domisili', $id_domisili);
+                    $getDataKecamatanById_domisili = $this->db->get('master_subdomisili');
+
+
+                    // hitung jumlah
+                    $totalSubDomisili = $getDataKecamatanById_domisili->num_rows();
+
+
+                    // memasukkan data diatas ke dalam variabel array 
+                    array_push( $dataDomisili, array(
+
+                        'info_domisili' => $rowDomisili,
+                        'info_totalsub' => $totalSubDomisili
+                    ));
+                }
+            }
+
+
+            return $dataDomisili;
+        }
+
+
+
         // menampilkan data domisili
         function getDataTable( $where = null, $table ) {
 

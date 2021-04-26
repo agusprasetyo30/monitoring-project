@@ -17,10 +17,13 @@
         public function index(){
             
             // data domisili (get all)
-            $dataDomisili = $this->M_domisili->getDataTable( null, 'master_domisili' );
+            // $dataDomisili = $this->M_domisili->getDataTable( null, 'master_domisili' );
 
             // tampil spesifik
             // $dataDomisili = $this->M_domisili->getDataTable( $where, 'master_domisili' );
+
+
+            $dataDomisili = $this->M_domisili->getDataDomisiliWithSubDomisili();
 
             $data = array(
 

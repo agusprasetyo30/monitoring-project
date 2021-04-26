@@ -30,11 +30,9 @@ class Account extends CI_Controller {
                 'folder'    => "account",
                 'view'      => "V_account_menu",
 
-                'man' => $this->M_account->calculateAccountMan()->row(),
-                'peg' => $this->M_account->calculateAccountPeg()->row(),
-                'pet' => $this->M_account->calculateAccountPet()->row()
-
-              
+                'sum_manajer'  => $this->M_account->sumUsers( "manajer" )->num_rows(),
+                'sum_lapangan' => $this->M_account->sumUsers( "petugas_lapangan" )->num_rows(),
+                'sum_kantor'   => $this->M_account->sumUsers( "pegawai_kantor" )->num_rows(),
             );
             $this->load->view('template/template_backend', $data);
         }
@@ -74,7 +72,7 @@ class Account extends CI_Controller {
 
     /** Controller - Pegawai Kantor */
 
-        function viewPegawaiKantor() {
+        function viewPegawaiKantor() {  
 
             $dataOfficer = $this->M_account->getDataOfficer("pegawai_kantor");
             $data = array(

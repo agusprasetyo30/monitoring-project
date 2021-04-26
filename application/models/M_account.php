@@ -228,21 +228,33 @@
             $this->db->update('user_officer', $dataOfficer);
 
 
-            if ( $getDataOfficer['jabatan'] == "pegawai_kantor" ) {
 
-                $text = "Pegawai Kantor";
-                $link = base_url('account/viewPegawaiKantor');
 
-            } else if ( $getDataOfficer['jabatan'] == "petugas_lapangan" ) {
+            // cek pengguna atau level
+            $sesi_level = $this->session->userdata('sess_level');
+            if ( $sesi_level == "employee") {
+                
+                $jabatan = $getDataOfficer['jabatan'];
+                $link = base_url('account/editAkun?jabatan='. $jabatan .'&id='. $id_login);
 
-                $text = "Petugas Lapangan";
-                $link = base_url('account/viewPetugasLapangan');
+            } else {
 
-           } else if ( $getDataOfficer['jabatan'] == "manajer" ) {
+                if ( $getDataOfficer['jabatan'] == "pegawai_kantor" ) {
 
-                $text = "Manajer";
-                $link = base_url('account/viewManager');
-            }  
+                    $text = "Pegawai Kantor";
+                    $link = base_url('account/viewPegawaiKantor');
+
+                } else if ( $getDataOfficer['jabatan'] == "petugas_lapangan" ) {
+
+                    $text = "Petugas Lapangan";
+                    $link = base_url('account/viewPetugasLapangan');
+
+                } else if ( $getDataOfficer['jabatan'] == "manajer" ) {
+
+                    $text = "Manajer";
+                    $link = base_url('account/viewManager');
+                }  
+            }
 
 
             // msg 
@@ -287,34 +299,17 @@
             redirect( $link );
         }
 
-        function calculateAccountMan(){
+
+
+
+        function sumUsers( $jabatan ){
 
             // $jabatan = $this->session->userdata('sess_jabatan');
-            $sql = "SELECT COUNT(*) AS man FROM user_officer WHERE jabatan = 'manajer'";
+            $sql = "SELECT * FROM user_officer WHERE jabatan = '$jabatan'";
 
             $query = $this->db->query( $sql );
             return $query;
         }
-
-        function calculateAccountPeg(){
-
-            // $jabatan = $this->session->userdata('sess_jabatan');
-            $sql = "SELECT COUNT(*) AS peg FROM user_officer WHERE jabatan = 'pegawai_kantor'";
-
-            $query = $this->db->query( $sql );
-            return $query;
-        }
-
-        function calculateAccountPet(){
-
-            // $jabatan = $this->session->userdata('sess_jabatan');
-            $sql = "SELECT COUNT(*) AS pet FROM user_officer WHERE jabatan = 'petugas_lapangan'";
-
-            $query = $this->db->query( $sql );
-            return $query;
-        }
-
-
         
     }
     
