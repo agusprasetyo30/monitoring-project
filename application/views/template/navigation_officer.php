@@ -47,7 +47,7 @@
 						            </li>
 
 										 <!--Menu list item-->
-										 <li class="<?php echo $this->uri->segment(1) == "laporan" ? 'active-sub' : '' ?>">
+									<li class="<?php echo $this->uri->segment(1) == "laporan" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('laporan') ?>">
 						                    <i class="demo-pli-pencil"></i>
 						                    <span class="menu-title">Laporan</span>

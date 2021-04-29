@@ -75,6 +75,21 @@
 
                                 <hr class="new-section-xs">
 
+							
+					
+					                <!--Tile-->
+					                <!--===================================================-->
+					                <div class="panel panel-default panel-colorful">
+					                    <div class="pad-all text-center">
+					                        <span class="text-3x text-thin"><?php echo $calAccount->jml ?></span>
+					                        <p style="margin: 0px">Total Pengguna</p>
+					                        <i class="ti-medall-alt"></i>
+					                    </div>
+										<small>Pegawai Kantor, Petugas Lapangan, Manajer</small>
+					                </div>
+                              
+					                <!--===================================================-->
+
                                 
                             </div>
                         </div>
@@ -96,13 +111,13 @@
 					    <div class="panel-body">
 					        <div class="row mar-top">
 					            <div class="col-md-5">
-					                <h3 class="text-main text-normal text-2x mar-no">Activated Users</h3>
-					                <h5 class="text-uppercase text-muted text-normal">Report for last 7-days ago</h5>
+					                <h3 class="text-main text-normal text-2x mar-no"></h3>
+					                <h5 class="text-uppercase text-muted text-normal"></h5>
 					                <hr class="new-section-xs">
 					                <div class="row mar-top">
 					                    <div class="col-sm-5">
-					                        <div class="text-lg"><p class="text-5x text-thin text-main mar-no">520</p></div>
-					                        <p class="text-sm">Since 2016 190 peoples already registered</p>
+					                        <div class="text-lg"><p class="text-5x text-thin text-main mar-no"></p></div>
+					                       
 					                    </div>
 					                    <div class="col-sm-7">
 					                        <div class="list-group bg-trans mar-no">
@@ -113,7 +128,7 @@
 					                    </div>
 					                </div>
 					                <button class="btn btn-pink mar-ver">View Details</button>
-					                <p class="text-xs">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+					               
 					            </div>
 					            <div class="col-md-7">
 									<div id="demo-morris-bar" style="height: 250px"></div>
