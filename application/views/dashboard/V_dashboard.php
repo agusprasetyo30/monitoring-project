@@ -106,9 +106,9 @@
 					                    </div>
 					                    <div class="col-sm-7">
 					                        <div class="list-group bg-trans mar-no">
-					                            <a class="list-group-item" href="#"><i class="demo-pli-information icon-lg icon-fw"></i> Pengguna</a>
-					                            <a class="list-group-item" href="#"><i class="demo-pli-mine icon-lg icon-fw"></i> Pengaturan</a>
-					                            <a class="list-group-item" href="#"><span class="label label-info pull-right">New</span><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i> Cetak Laporan</a>
+					                            <a class="list-group-item" href="<?php echo base_url('account') ?>"><i class="demo-pli-information icon-lg icon-fw"></i> Pengguna</a>
+					                            <a class="list-group-item" href="<?php echo base_url('setting') ?>"><i class="demo-pli-mine icon-lg icon-fw"></i> Pengaturan</a>
+					                            <a class="list-group-item" href="<?php echo base_url('laporan') ?>"><span class="label label-info pull-right">New</span><i class="demo-pli-credit-card-2 icon-lg icon-fw"></i> Cetak Laporan</a>
 					                        </div>
 					                    </div>
 					                </div>
