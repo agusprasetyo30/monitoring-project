@@ -339,9 +339,6 @@
 
                                         $this->load->view('template/navigation_employee');
 
-                                    } else if ( $jabatan == "pegawai_kantor" ) {
-
-
                                     } else if ( $jabatan == "manajer" ) {
                                         $this->load->view('template/navigation_manajer');
 
