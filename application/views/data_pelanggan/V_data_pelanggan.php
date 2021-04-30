@@ -24,16 +24,15 @@
                                 <a href="<?php echo base_url('data_pelanggan/importData')?>" class="btn btn-sm btn-purple btn-labeled"><i class="btn-label ti-plus"></i> Import Data Excel</a>
                                 <hr>
 
-                                <table class="table" id="table-data_pelanggan">
+                                <table class="table" id="table-data_pelanggan" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>No Ref</th>
-                                            <th>Nama pelanggan</th>
+                                            <th width="5%">No</th>
+                                            <th width="10%">No Ref</th>
+                                            <th width="15%">Nama</th>
                                             <th>Alamat</th>
-                                            <th>Pencabutan</th>
+                                            <th width="15%">Pencabutan</th>
                                             <th>Domisili</th>
-                                            <th>Sub Domisili</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -45,24 +44,29 @@
                                         <tr>
                                             <td>1</td>
                                             <td> 
-                                                <small><?php echo $kolom['no_ref'] ?></small> 
+                                                <?php echo $kolom['no_ref'] ?>
                                             <br></td>
                                             <td> 
-                                                <small><?php echo $kolom['nama'] ?></small> 
+                                                <?php echo $kolom['nama'] ?>
                                             <br></td>
                                             <td> 
-                                                <small><?php echo $kolom['alamat'] ?></small> 
+                                                <?php echo $kolom['alamat'] ?>
                                             <br></td>
                                             <td> 
-                                                <small><?php echo $kolom['pencabutan'] ?></small> 
+                                                <label class="badge badge-default"><?php echo $kolom['pencabutan'] ?></label>
+                                                <?php 
+                                                
+                                                    if ( $kolom['pencabutan'] == "iya" ) {
+
+                                                        echo '<br>';
+                                                        echo '<small>Pada '.date('d M Y').'</small>';
+                                                    }
+                                                ?>
                                             <br></td>
                                             <td> 
-                                                <small><?php echo $kolom['wilayah'] ?></small> 
+                                                <?php echo $kolom['wilayah'].' - '.$kolom['kelurahan'] ?>
                                             <br></td>
-                                            <td> 
-                                                <small><?php echo $kolom['kelurahan'] ?></small> 
-                                            <br></td>
-                                            <td>
+                                            <td width="20%">
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
                                                    

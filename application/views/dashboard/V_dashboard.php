@@ -134,8 +134,8 @@
 									<div id="demo-morris-bar" style="height: 250px"></div>
 					                <hr class="new-section-xs bord-no">
 					                <ul class="list-inline text-center">
-										<li><span class="label label-info">354</span> Piutang</li>
-					                    <li><span class="label label-warning">25</span> Pencabutan</li>
+										<li><span class="label label-info"><?php echo $totalPiutangPencabutan[1] ?></span> Piutang</li>
+					                    <li><span class="label label-warning"><?php echo $totalPiutangPencabutan[0] ?></span> Pencabutan</li>
 					                </ul>
 					            </div>
 					        </div>

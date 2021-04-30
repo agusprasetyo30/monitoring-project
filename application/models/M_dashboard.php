@@ -7,6 +7,22 @@
         
 
 
+        // menghitung keseluruhan dari pencabutan dan piutang
+        function totalPencabutan_dan_piutang() {
+
+            $tahun = date('Y');
+
+            $sqlPencabutan = "SELECT YEAR(tanggal_pencabutan) FROM data_pelanggan WHERE pencabutan = 'iya' AND YEAR(tanggal_pencabutan) = '$tahun'";
+            $totalPencabutan = $this->db->query( $sqlPencabutan )->num_rows();
+
+            $sqlPiutang = "SELECT * FROM piutang WHERE tahun = '$tahun' ";
+            $totalPiutang = $this->db->query( $sqlPiutang )->num_rows();
+
+            return array($totalPencabutan, $totalPiutang);
+        }
+
+
+
 
         /***
          * 
@@ -93,13 +109,31 @@
 
                     $totalPiutang  = $queryPiutang->row_array()['total'];
                 }
+
+
+                // end piutang -----------------------------------------------
+                
+                $totalPencabutan = 0;
+                $sqlPencabutan = "SELECT YEAR(tanggal_pencabutan) AS tahun, MONTHNAME(tanggal_pencabutan) AS bulan, 
+                                        COUNT(pencabutan) AS total 
+                                        
+                                    FROM data_pelanggan 
+                                    WHERE pencabutan = 'iya' AND YEAR(tanggal_pencabutan) = '$tahun' AND MONTHNAME(tanggal_pencabutan) = '$bulan'";
+
+                $queryPencabutan = $this->db->query( $sqlPencabutan );
+                if ( $queryPencabutan->num_rows() == 1 ) {
+
+                    $totalPencabutan = $queryPencabutan->row_array()['total'];
+                }
                 
 
 
 
 
 
-                $totalPencabutan = rand(0, 1);
+
+
+
 
                 array_push( $dataChart, array(
 

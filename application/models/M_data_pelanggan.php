@@ -61,16 +61,29 @@
         }
 
         function EditDataPelanggan($id_pelanggan) {
-            
+
+            $status_pencabutan = $this->input->post('cabut');
+            $tanggal_pencabutan = null;
+
+
+            // cek aksi pencabutan
+            if ( $status_pencabutan == "iya" ) {
+
+                $tanggal_pencabutan = date('Y-m-d H:i:s');
+            }
+
+
+
+
             $data = array(
 
                 'no_ref' => $this->input->post('no_ref') ,
                 'nama'=> $this->input->post('nama_pelanggan'),
                 'alamat'   => $this->input->post('alamat'),
-                'id_jenis_pelanggan'   => $this->input->post('jenis'),
                 'id_domisili'   => $this->input->post('domisili'),
                 'id_subdomisili'   => $this->input->post('subdomisili'),
-                'pencabutan'   => $this->input->post('cabut'),
+                'pencabutan'   => $status_pencabutan,
+                'tanggal_pencabutan' => $tanggal_pencabutan
             );
 
             $this->db->where('id_pelanggan', $id_pelanggan);
@@ -98,6 +111,43 @@
             // kembali ke halaman
             redirect('data_pelanggan');
         }
+    
+    
+    // upload file excel 
+    function prosesInsertDataExcel() {
+
+        $config['upload_path']          = './assets/excel/';
+        $config['allowed_types']        = 'xlsx';
+        $config['max_size']             = 20000; // 20 mb max
+
+        $this->load->library('upload', $config);
+
+        $file_excel = "";
+        if ( $this->upload->do_upload('userfile')) {
+
+            $file_excel = $this->upload->data('file_name');
+        } else {
+
+            $html = '<div class="alert alert-danger">'.$this->upload->display_errors().'</div>';
+            $this->session->set_flashdata('pesan', $html);
+
+            redirect('data_pelanggan/importData');
+        }
+
+        
+        return $file_excel;
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    } // end file
 
 ?>

@@ -46,6 +46,10 @@
                     'totalPenagihan' => $this->M_dashboard->totalPenagihan(),
                     'persen_piutang'        => $this->M_dashboard->percentagePiutang(),
                     'persen_pencabutan'     => $this->M_dashboard->percentagePencabutan(),
+
+
+                    // untuk tampilan bawah chart
+                    'totalPiutangPencabutan'=> $this->M_dashboard->totalPencabutan_dan_piutang()
                   
                     
                 );

@@ -1,5 +1,12 @@
 <?php 
 
+
+    require('./vendor/autoload.php');
+
+    use PhpOffice\PhpSpreadsheet\Helper\Sample;
+    use PhpOffice\PhpSpreadsheet\IOFactory;
+    use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
     
     defined('BASEPATH') OR exit('No direct script access allowed');
     
@@ -98,6 +105,326 @@
             );
             $data['master_domisili'] = $this->M_domisili->getDataTable(null, 'master_domisili')->result_array();
             $this->load->view('template/template_backend', $data);
+        }
+
+
+
+        // import excel
+        function importPelanggan() {
+
+            $file_excel = $this->M_data_pelanggan->prosesInsertDataExcel();
+
+            // Create new Spreadsheet object
+            $spreadsheet = new Spreadsheet();
+            $direktori = './assets/excel/'. $file_excel;
+
+
+            /** Load $inputFileName to a Spreadsheet Object  **/
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($direktori);
+
+            $sheet = $spreadsheet->getActiveSheet()->toArray(null, true, true ,true);
+
+            $data = array();
+
+
+            echo $spreadsheet->getActiveSheet()->getCell('A1')->getValue();
+
+
+            $baris = 6;  // start mulai kolom ke 6
+            // foreach ( $sheet AS $row ) {
+
+            //     echo $spreadsheet->getActiveSheet()->getCell('A'. $baris)->getValue();
+            //     echo '<hr>';
+            //     $baris++;
+            // }
+            
+            // ambil tahun
+            $dataTahun = $spreadsheet->getActiveSheet()->getCell('A2')->getValue();
+            $tahun = explode('-', $dataTahun);
+            for ( $baris = 6; $baris <= count($sheet) - 5; $baris++ ) {
+
+                // atribut
+                $no_ref = $spreadsheet->getActiveSheet()->getCell('B'.$baris)->getValue();
+                $tahun  = $tahun[1];
+
+                $bulan = "";
+                $nominal = $spreadsheet->getActiveSheet()->getCell('F'.$baris)->getValue();
+
+                foreach( range( 'f', 'q' ) as $alphabet ) {
+
+                    // if (  )
+                }
+
+
+
+
+                array_push( $data, array(
+
+                    'no_ref'    => 
+                    'tahun'     => $tahun[1],
+                    'bulan'     => 
+                    'nominal'
+                    'keterangan'
+                    'alasan'
+                ) );
+            }
+
+            
+
+
+
+            // exec
+            // foreach ( $sheet AS $row ) {
+
+            //     array_push( $data, array(
+
+            //         'no_ref'    =>
+            //         'tahun'     =>
+            //         'bulan'     =>
+            //         'nominal'   =>
+            //         'keterangan'=>
+            //         'alasan'    =>
+            //     ) );
+            // }
+
+
+            // if ( count($data) > 0 ) {
+
+            // } else {
+
+            //     $html = '<div class="alert alert-warning">Data excel kosong harap masukkan excel yang valid !</div>';
+            //     $this->session->set_flashdata('pesan', $html);
+
+            //     redirect('data_pelanggan/importData');
+            // }
+            
+
+        }
+
+
+
+
+        // proses cetak excel 
+        function exportFormatExcel() {
+
+
+            $tahun = $this->input->post('tahun');
+            $tahun_singkat = substr($tahun, -2);
+
+            $domisili = $this->input->post('domisili');
+
+            // Create new Spreadsheet object
+            $spreadsheet = new Spreadsheet();
+
+            // Set document properties
+            $spreadsheet->getProperties()->setCreator('AE Monitoring')
+                        ->setLastModifiedBy('Hayoloo')
+                        ->setTitle('Office 2007 XLSX Test Document')
+                        ->setSubject('Office 2007 XLSX Test Document')
+                        ->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+                        ->setKeywords('office 2007 openxml php')
+                        ->setCategory('Test result file');
+
+
+
+            // Header Wilayah
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', 'LAPORAN DAFTAR PIUTANG '. strtoupper($domisili));
+            $spreadsheet->getActiveSheet()->mergeCells('A1:M1');
+            $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setBold(true); // set bold
+            $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setSize(14); // set font
+
+
+
+            // Header tahun
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A2', 'Pada Tahun - '. $tahun);
+            $spreadsheet->getActiveSheet()->mergeCells('A2:M2');
+            $spreadsheet->getActiveSheet()->getStyle('A2')->getFont()->setBold(true); // set bold
+            $spreadsheet->getActiveSheet()->getStyle('A2')->getFont()->setSize(12); // set font
+
+
+
+            // Table 
+            $style_col = array(
+                'font' => array('bold' => true), // Set font nya jadi bold
+                'alignment'      => array(
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                        'vertical'   => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+                    ),
+                'borders' => array(
+                    'top'   => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                    'right' => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                    'bottom'=> array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                    'left'  => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+                )
+            );
+
+
+            // nomor
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A5', 'NO');
+            $spreadsheet->getActiveSheet()->getStyle('A5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('A5')->applyFromArray($style_col);
+
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('B5', 'NOMOR REF');
+            $spreadsheet->getActiveSheet()->getStyle('B5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20); // Set width kolom C
+
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('C5', 'NAMA');
+            $spreadsheet->getActiveSheet()->getStyle('C5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('C5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(30); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('D5', 'ALAMAT');
+            $spreadsheet->getActiveSheet()->getStyle('D5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(40); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('E5', 'BUKU');
+            $spreadsheet->getActiveSheet()->getStyle('E5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(10); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('F5', 'JAN-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('F5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('F5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('G5', 'FEB-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('G5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('G5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('H5', 'MAR-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('H5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('H5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('I5', 'APR-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('I5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('I5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('J5', 'MEI-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('J5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('J5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+            $spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('K5', 'JUNI-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('K5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('K5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('K')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('L5', 'JULI-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('L5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('L5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('L')->setWidth(15); // Set width kolom C
+
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('M5', 'AGS-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('M5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('M5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('M')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('N5', 'SEPT-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('N5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('N5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('N')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('O5', 'OKT-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('O5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('O5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('O')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('P5', 'NOV-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('P5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('P5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('P')->setWidth(15); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('Q5', 'DES-'. $tahun_singkat);
+            $spreadsheet->getActiveSheet()->getStyle('Q5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('Q5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('Q')->setWidth(15); // Set width kolom C
+
+
+
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('R5', 'GRAND TOTAL');
+            $spreadsheet->getActiveSheet()->getStyle('R5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('R5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('R')->setWidth(18); // Set width kolom C
+
+
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('S5', 'LAMA PIUTANG');
+            $spreadsheet->getActiveSheet()->getStyle('S5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('S5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('S')->setAutoSize(true);
+
+
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('T5', 'KETERANGAN');
+            $spreadsheet->getActiveSheet()->getStyle('T5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('T5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('T')->setWidth(20); // Set width kolom C
+
+
+
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('U5', 'ALASAN');
+            $spreadsheet->getActiveSheet()->getStyle('U5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('U5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('U')->setWidth(20); // Set width kolom C
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // Rename worksheet
+            $spreadsheet->getActiveSheet()->setTitle('Report Excel '.date('d-m-Y H'));
+
+            // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+            $spreadsheet->setActiveSheetIndex(0);
+
+            // Redirect output to a client’s web browser (Xlsx)
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment;filename="RPRT-'.strtoupper($domisili).'-'.$tahun.'.xlsx"');
+            header('Cache-Control: max-age=0');
+            // If you're serving to IE 9, then the following may be needed
+            header('Cache-Control: max-age=1');
+
+            // If you're serving to IE over SSL, then the following may be needed
+            header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+            header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+            header('Pragma: public'); // HTTP/1.0
+
+            $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+            $writer->save('php://output');
+            exit;
         }
 
     }
