@@ -20,8 +20,8 @@
 
             
             // load 
-            $this->load->model('M_data_pelanggan');
             $this->load->model('M_jenis_pelanggan');
+            $this->load->model('M_data_pelanggan');
             $this->load->model('M_domisili');
          
         }
@@ -124,10 +124,11 @@
 
             $sheet = $spreadsheet->getActiveSheet()->toArray(null, true, true ,true);
 
-            $data = array();
+            $dataPelanggan = array();
+            $dataPiutang = array();
 
 
-            echo $spreadsheet->getActiveSheet()->getCell('A1')->getValue();
+            
 
 
             $baris = 6;  // start mulai kolom ke 6
@@ -141,64 +142,145 @@
             // ambil tahun
             $dataTahun = $spreadsheet->getActiveSheet()->getCell('A2')->getValue();
             $tahun = explode('-', $dataTahun);
-            for ( $baris = 6; $baris <= count($sheet) - 5; $baris++ ) {
+            $tahun  = $tahun[1];
+            
 
-                // atribut
-                $no_ref = $spreadsheet->getActiveSheet()->getCell('B'.$baris)->getValue();
-                $tahun  = $tahun[1];
+            if ( count($sheet) >= 6 ) {
+            
+            
+                for ( $baris = 6; $baris <= count($sheet); $baris++ ) {
 
-                $bulan = "";
-                $nominal = $spreadsheet->getActiveSheet()->getCell('F'.$baris)->getValue();
+                    // atribut
+                    $no_ref = $spreadsheet->getActiveSheet()->getCell('B'.$baris)->getValue();
 
-                foreach( range( 'f', 'q' ) as $alphabet ) {
+                    // hiangkan petik
+                    $no_ref = substr( $no_ref, 1 );
+                    
+                    if ( !empty($no_ref) || strlen($no_ref) > 0 ) {
+                    
+                    
+                        $nama   = $spreadsheet->getActiveSheet()->getCell('C'.$baris)->getFormattedValue();
+                        $alamat = $spreadsheet->getActiveSheet()->getCell('D'.$baris)->getFormattedValue();
+                        $kode_buku = $spreadsheet->getActiveSheet()->getCell('E'.$baris)->getFormattedValue();
 
-                    // if (  )
+
+                        foreach( range( 'f', 'q' ) as $alphabet ) {
+
+                            // penentuan bulan
+                            $nama_bulan = "";
+                            switch( $alphabet ) {
+
+                                case 'f':
+                                    $nama_bulan = "January";
+                                    break;
+                                case 'g':
+                                    $nama_bulan = "February";
+                                    break;
+                                case 'h':
+                                    $nama_bulan = "March";
+                                    break;
+                                case 'i':
+                                    $nama_bulan = "April";
+                                    break;
+                                case 'j':
+                                    $nama_bulan = "May";
+                                    break;
+                                case 'k':
+                                    $nama_bulan = "June";
+                                    break;
+                                case 'l':
+                                    $nama_bulan = "July";
+                                    break;
+                                case 'm':
+                                    $nama_bulan = "August";
+                                    break;
+                                case 'n':
+                                    $nama_bulan = "September";
+                                    break;
+                                case 'o':
+                                    $nama_bulan = "October";
+                                    break;
+                                case 'p':
+                                    $nama_bulan = "November";
+                                    break;
+                                case 'q':
+                                    $nama_bulan = "December";
+                                    break;
+                            }
+
+                            $nominal = $spreadsheet->getActiveSheet()->getCell( $alphabet . $baris)->getValue();
+
+                            if ( (strlen($nominal) > 0) || !empty( $nominal ) ) {
+
+
+                                array_push( $dataPiutang, array(
+            
+                                    'no_ref'    => $no_ref,
+                                    'tahun'     => $tahun,
+                                    'bulan'     => $nama_bulan,
+                                    'nominal'   => $nominal,
+                                    'keterangan'=> $spreadsheet->getActiveSheet()->getCell( 'T' . $baris)->getValue(),
+                                    'alasan'    => $spreadsheet->getActiveSheet()->getCell( 'U' . $baris)->getValue(),
+                                ) );
+                            }
+                        }
+
+
+
+
+                        // melengkapi identitas data pelanggan
+                        $where = ['kode_wilayah'    => $kode_buku];
+                        $table = "master_subdomisili";
+                        $getInformasiSubDomisilyByKodeBuku = $this->M_domisili->getDataTable( $where, $table );
+
+                        $id_domisili = null;
+                        $id_subdomisili = null;
+
+                        if ( $getInformasiSubDomisilyByKodeBuku->num_rows() == 1 ) {
+
+                            $kolom = $getInformasiSubDomisilyByKodeBuku->row_array();
+
+                            $id_domisili = $kolom['id_domisili'];
+                            $id_subdomisili = $kolom['id_subdomisili'];
+                        }
+
+                        array_push( $dataPelanggan, array(
+
+                            'no_ref'        => $no_ref,
+                            'nama'          => $nama,
+                            'alamat'        => $alamat,
+                            'pencabutan'    => "tidak",
+                            'tanggal_pencabutan' => null,
+                            'id_domisili'        => $id_domisili,
+                            'id_subdomisili'     => $id_subdomisili
+                        ) );
+
+                        // end identitas data pelanggan
+
+                    }
+
                 }
 
 
 
+                // eksekusi insert
+                $this->M_data_pelanggan->importExcelDataPelanggan( $dataPelanggan, $dataPiutang );
+                
+                
+                // set flashdata
+                $this->session->set_flashdata('msg', 'tambah');
+                redirect('data_pelanggan');
 
-                array_push( $data, array(
+            } else {
 
-                    'no_ref'    => 
-                    'tahun'     => $tahun[1],
-                    'bulan'     => 
-                    'nominal'
-                    'keterangan'
-                    'alasan'
-                ) );
+
+                echo "Excel kosong";
             }
 
+
+
             
-
-
-
-            // exec
-            // foreach ( $sheet AS $row ) {
-
-            //     array_push( $data, array(
-
-            //         'no_ref'    =>
-            //         'tahun'     =>
-            //         'bulan'     =>
-            //         'nominal'   =>
-            //         'keterangan'=>
-            //         'alasan'    =>
-            //     ) );
-            // }
-
-
-            // if ( count($data) > 0 ) {
-
-            // } else {
-
-            //     $html = '<div class="alert alert-warning">Data excel kosong harap masukkan excel yang valid !</div>';
-            //     $this->session->set_flashdata('pesan', $html);
-
-            //     redirect('data_pelanggan/importData');
-            // }
             
-
         }
 
 

@@ -40,9 +40,9 @@
 
 
 
-                                    <?php foreach ( $data_pelanggan->result_array() AS $kolom ) { ?>
+                                    <?php $no = 1; foreach ( $data_pelanggan->result_array() AS $kolom ) { ?>
                                         <tr>
-                                            <td>1</td>
+                                            <td><?php echo $no++ ?></td>
                                             <td> 
                                                 <?php echo $kolom['no_ref'] ?>
                                             <br></td>

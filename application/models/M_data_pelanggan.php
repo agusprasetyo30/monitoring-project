@@ -139,6 +139,23 @@
     }
     
     
+
+
+
+    // proses import excel 
+    function importExcelDataPelanggan( $dataPelanggan, $dataPiutang ) {
+
+        if ( count( $dataPelanggan ) > 0 ) {
+
+            $this->db->insert_batch( "data_pelanggan", $dataPelanggan );
+        }
+
+
+        if ( count( $dataPiutang ) > 0 ) {
+
+            $this->db->insert_batch( "piutang", $dataPiutang );
+        }
+    }
     
     
     

@@ -54,8 +54,11 @@
 
             $totalPelanggan = $this->db->get('data_pelanggan')->num_rows();
 
+            $persentase = 0;
+            if ( $totalPelanggan > 0 ) {
 
-            $persentase = $totalPiutang / $totalPelanggan * 100;
+                $persentase = $totalPiutang / $totalPelanggan * 100;
+            }
 
             
 
@@ -69,7 +72,14 @@
             $totalPencabutan = $this->db->query( $sqlTotalPencabutan )->num_rows();
 
             $totalPelanggan = $this->db->get('data_pelanggan')->num_rows();
-            $persentase = $totalPencabutan / $totalPelanggan * 100;
+
+
+            $persentase = 0;
+
+            if ( $totalPelanggan > 0 ) {
+
+                $persentase = $totalPencabutan / $totalPelanggan * 100;
+            }
 
             return array($totalPencabutan, $persentase);
         }
