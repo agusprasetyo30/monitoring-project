@@ -274,8 +274,13 @@
                                         </a>
                                     </div>
                                     <div id="profile-nav" class="collapse list-group bg-trans">
+                                    <?php
+											
+												$id_login = $this->session->userdata('sess_idlogin');
+											?>
+
                                     <li>
-                                        <a href="<?php echo base_url('setting') ?>" class="list-group-item">
+                                        <a href="<?php echo base_url('account/editAkun?jabatan='. $jabatan .'&id='.$id_login) ?>" class="list-group-item">
                                             <i class="demo-pli-male icon-lg icon-fw"></i> Pengaturan Akun
                                         </a>
                                          <!--Submenu-->
