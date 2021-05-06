@@ -170,6 +170,13 @@
 
             return $this->db->query( $sql );
         }
+
+        function getAllPelangganCabut() {
+
+            $sql = "SELECT * FROM `data_pelanggan` WHERE pencabutan = 'iya'";
+
+            return $this->db->query( $sql );
+        }
     }
     
     /* End of file M_laporan.php */

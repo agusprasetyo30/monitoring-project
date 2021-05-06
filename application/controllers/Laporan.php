@@ -188,10 +188,374 @@
 
 
 
+    function exportpelangganPDF() {
+        
+
+        $pencabutan = $this->M_laporan->getAllPelangganCabut();
+
+  
+        $dataCabut = array();
+
+        if ( $pencabutan->num_rows() > 0 ) {
+
+            foreach ( $pencabutan->result_array() AS $rowCabut )  {
+
+ 
+                    array_push( $dataCabut, $rowCabut );
+                
+        
+
+                }
+            }
+        
+
+        
+        $sub_header = "";
+        $specific = false;
+    
+
+
+    // header attribute
+    $name_file = 'RPRT_ACCOUNT'.rand(1, 999999).'-'.date('Y-m-d');
+    $pdf = $this->header_attr( $name_file );
+
+    // add a page
+    $pdf->AddPage('P', 'A4');
+
+
+    // Sub header
+    // $pdf->Ln(5, false);
+    $html = '<table border="0">
+        <tr>
+            <td align="center"><h2>LAPORAN PENAGIHAN PIUTANG</h2></td>
+         
+        </tr>
+  
+       
+    </table>';
+
+    $pdf->writeHTML($html, true, false, true, false, '');
+    $pdf->Ln(5, false);
+
+
+    // table body
+    $table_body = "";
+    $i = 0; foreach ( $dataCabut AS $rowCabut ) {
+
+
+        $table_body .= '<tr>
+            <td align="center">'.($i + 1).'</td>
+            <td>'.$rowCabut['no_ref'].'</td>
+            <td>'.$rowCabut['nama'].'</td>
+            <td>'.$rowCabut['alamat'].'</td>
+            <td>'.$rowCabut['tanggal_pencabutan'].'</td>
+          
+        </tr>';
+
+        $i++;
+    }
+    
+    
+
+    // header table
+    $table = '
+        <table border="1" width="100%" cellpadding="6">
+            <tr>
+                <th width="5%" height="20" padding="5" align="center"><b>No</b></th>
+                <th width="30%" align="center"><b>No.Reff</b></th>
+                <th width="10%" align="center"><b>Nama</b></th>
+                <th width="20%" align="center"><b>Alamat</b></th>
+                <th width="20%" align="center"><b>Tanggal Pencabutan</b></th>
+           
+            </tr>
+            '.$table_body.'
+        </table>';
+
+    $pdf->writeHTML($table, true, false, true, false, '');
+
+
+
+    $pdf->Ln(10, false);
+    $ttd = '
+        <table border="0">
+            <tr>
+                <td colspan="2" align="right">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date('Y').'</td>
+            </tr>
+            <tr>
+                <td colspan="2" height="80"></td>
+            </tr>
+            <tr>
+                <td width="75%"></td>
+                <td width="20%" align="center">(. . . . . . . . . . . . . . . . .)</td>
+            </tr>
+        </table>
+    ';
+
+    $pdf->writeHTML($ttd, true, false, true, false, '');
+
+
+    // output
+    $pdf->Output($name_file.'.pdf', 'I');
+
+}
 
 
 
 
+
+
+        function exportPencabutanExcel() {
+            
+
+            $pencabutan = $this->M_laporan->getAllPelangganCabut();
+ 
+
+            // Create new Spreadsheet object
+            $spreadsheet = new Spreadsheet();
+
+            // Set document properties
+            $spreadsheet->getProperties()->setCreator('AE Monitoring')
+                        ->setLastModifiedBy('Hayoloo')
+                        ->setTitle('Office 2007 XLSX Test Document')
+                        ->setSubject('Office 2007 XLSX Test Document')
+                        ->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+                        ->setKeywords('office 2007 openxml php')
+                        ->setCategory('Test result file');
+
+
+
+            // Header Wilayah
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', 'LAPORAN DAFTAR PENCABUTAN ');
+            $spreadsheet->getActiveSheet()->mergeCells('A1:M1');
+            $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setBold(true); // set bold
+            $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setSize(14); // set font
+
+
+
+            // Header tahun
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A2', 'Kantor Jargas');
+            $spreadsheet->getActiveSheet()->mergeCells('A2:M2');
+            $spreadsheet->getActiveSheet()->getStyle('A2')->getFont()->setBold(true); // set bold
+            $spreadsheet->getActiveSheet()->getStyle('A2')->getFont()->setSize(12); // set font
+
+
+
+            // Table 
+            $style_col = array(
+                'font' => array('bold' => true), // Set font nya jadi bold
+                'alignment'      => array(
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                        'vertical'   => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+                    ),
+                'borders' => array(
+                    // 'top'   => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                    // 'right' => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                    // 'bottom'=> array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                    // 'left'  => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+                )
+            );
+
+
+            $style_angka = array(
+                'font' => array('bold' => false, 'size' => 11), // Set font nya jadi bold
+                'alignment'      => array(
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+                        'vertical'   => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+                    ),
+                'borders' => array(
+                    // 'top'   => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                    // 'right' => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                    'bottom'=> array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                    // 'left'  => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+                )
+            );
+
+
+            $style_huruf = array(
+                'font' => array('bold' => false, 'size' => 11), // Set font nya jadi bold
+                'alignment'      => array(
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT, // Set text jadi ditengah secara horizontal (center)
+                        'vertical'   => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+                    ),
+                'borders' => array(
+                    // 'top'   => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border top dengan garis tipis
+                    // 'right' => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN),  // Set border right dengan garis tipis
+                    'bottom'=> array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN), // Set border bottom dengan garis tipis
+                    // 'left'  => array('borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN) // Set border left dengan garis tipis
+                )
+            );
+
+
+            $spreadsheet->getActiveSheet()->getStyle('A5:U5')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+            $spreadsheet->getActiveSheet()->getStyle('A5:U5')->getFill()
+                ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+                ->getStartColor()->setARGB('609cd4');
+
+            // nomor
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A5', 'NO');
+            $spreadsheet->getActiveSheet()->getStyle('A5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('A5')->applyFromArray($style_col);
+
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('B5', 'NOMOR REF');
+            $spreadsheet->getActiveSheet()->getStyle('B5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20); // Set width kolom C
+
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('C5', 'NAMA');
+            $spreadsheet->getActiveSheet()->getStyle('C5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('C5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(30); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('D5', 'ALAMAT');
+            $spreadsheet->getActiveSheet()->getStyle('D5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(40); // Set width kolom C
+            
+            
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('E5', 'BUKU');
+            $spreadsheet->getActiveSheet()->getStyle('E5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(10); // Set width kolom C
+            
+
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('F5', 'GRAND TOTAL');
+            $spreadsheet->getActiveSheet()->getStyle('F5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('F5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(20); // Set width kolom C
+
+
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('G5', 'LAMA PIUTANG');
+            $spreadsheet->getActiveSheet()->getStyle('G5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('G5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+
+
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('H5', 'KETERANGAN');
+            $spreadsheet->getActiveSheet()->getStyle('H5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('H5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(24); // Set width kolom C
+
+
+
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('I5', 'ALASAN');
+            $spreadsheet->getActiveSheet()->getStyle('I5')->getFont()->setSize(12); // set font
+            $spreadsheet->getActiveSheet()->getStyle('I5')->applyFromArray($style_col);
+            $spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(24); // Set width kolom C
+
+            $grandtotal = $totalTagihan['total_tagihan'];
+            $keterangan = $rowPelanggan['tanggal_pencabutan'];
+            $alasan     = $rowPiutang['alasan'];
+
+            // SET VALUE PENCABUTAN
+            if ( count($pencabutan) > 0 ) {
+
+                $baris = 6;
+                $urutan = 1;
+                foreach ( $pencabutan AS $rowPencabutan ) {
+
+
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('A'.$baris, $urutan);
+                    $spreadsheet->getActiveSheet()->getStyle('A'. $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('A'. $baris)->applyFromArray($style_angka);
+
+
+                    // no_Ref
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('B'.$baris, "'".$rowPencabutan['informasi_detail']['no_ref']);
+                    $spreadsheet->getActiveSheet()->getStyle('B'. $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('B'. $baris)->applyFromArray($style_huruf);
+
+
+                    // nama
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('C'.$baris, $rowPencabutan['informasi_detail']['nama']);
+                    $spreadsheet->getActiveSheet()->getStyle('C'. $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('C'. $baris)->applyFromArray($style_huruf);
+
+
+                    // alamat
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('D'.$baris, $rowPencabutan['informasi_detail']['alamat']);
+                    $spreadsheet->getActiveSheet()->getStyle('D'. $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('D'. $baris)->applyFromArray($style_huruf);
+
+
+
+                    // kode_buku
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('E'.$baris, $rowPencabutan['informasi_detail']['kode_wilayah']);
+                    $spreadsheet->getActiveSheet()->getStyle('E'. $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('E'. $baris)->applyFromArray($style_angka);
+
+
+
+                    // grandtotal
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('F' . $baris, $grandtotal);
+                    $spreadsheet->getActiveSheet()->getStyle('F' . $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('F' . $baris)->applyFromArray($style_angka);
+
+
+
+                    // lama piutang
+                    $lama_piutang = "";
+                    if ( count( $row['informasi_piutang'] ) > 0 ) {
+
+                        $lama_piutang = count( $row['informasi_piutang'] );
+                    }
+
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('G' . $baris, $lama_piutang);
+                    $spreadsheet->getActiveSheet()->getStyle('G' . $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('G' . $baris)->applyFromArray($style_angka);
+
+
+                    // keterangan
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('H' . $baris, $keterangan);
+                    $spreadsheet->getActiveSheet()->getStyle('H' . $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('H' . $baris)->applyFromArray($style_huruf);
+                    
+                    // alasan
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('I' . $baris, $alasan);
+                    $spreadsheet->getActiveSheet()->getStyle('I' . $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('I' . $baris)->applyFromArray($style_huruf);
+
+
+                
+                    $baris++;
+                    $urutan++;
+                }
+            }
+
+
+
+            // Rename worksheet
+            $spreadsheet->getActiveSheet()->setTitle('Report Excel '.date('d-m-Y H'));
+
+            // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+            $spreadsheet->setActiveSheetIndex(0);
+
+            // Redirect output to a client’s web browser (Xlsx)
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment;filename="RPRT-'.strtoupper($domisili[1]).'-'.$tahun.'.xlsx"');
+            header('Cache-Control: max-age=0');
+            // If you're serving to IE 9, then the following may be needed
+            header('Cache-Control: max-age=1');
+
+            // If you're serving to IE over SSL, then the following may be needed
+            header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+            header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+            header('Pragma: public'); // HTTP/1.0
+
+            $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+            $writer->save('php://output');
+            exit;
+        }
+    
+
+        
+
+
+        
 
 
 
@@ -544,6 +908,11 @@
                     $spreadsheet->getActiveSheet()->getStyle('U' . $baris)->getFont()->setBold(false); // set bold
                     $spreadsheet->getActiveSheet()->getStyle('U' . $baris)->applyFromArray($style_huruf);
 
+                    // status
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('V' . $baris, $alasan);
+                    $spreadsheet->getActiveSheet()->getStyle('V' . $baris)->getFont()->setBold(false); // set bold
+                    $spreadsheet->getActiveSheet()->getStyle('V' . $baris)->applyFromArray($style_huruf);
+
                 
                     $baris++;
                     $urutan++;
@@ -650,6 +1019,7 @@
             return $pdf;
         }
     }
+
     
     /* End of file Dashboard.php */
     

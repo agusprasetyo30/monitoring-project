@@ -59,14 +59,6 @@
                                     </div>
 
 
-
-
-                                    
-
-
-
-
-
                                     <!-- Transaction -->
                                     <div class="row">
                                         <div class="col-md-3">
@@ -74,7 +66,7 @@
                                         </div>
                                         <div clss="col-md-9">
                                             <h4>Laporan Piutang</h4>
-                                            <p>Informasi aktivitas antrian yang telah disimpan</p>
+                                            <p>Informasi laporan penagihan piutang</p>
 
                                             <small>Pilih menu opsi dibawah ini untuk mencetak :</small>
                                             <div class="">
@@ -105,10 +97,63 @@
                                                     </div>
                                                     <div class="col-md-3 text-right" style="border-left: 1px solid #e0e0e0">
                                                         <button class="btn btn-icon"><?php echo svg("xls") ?></button>
+                                                       
                                                     </div>
                                                     </form>
                                                 </div>
                                             </div>
+
+                                        </div>
+                                        <div class="col-md-12"><hr></div>
+                                    </div>
+
+
+
+                                    <!-- Cabut -->
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <?php echo svg("account") ?>
+                                        </div>
+                                        <div clss="col-md-9">
+                                            <h4>Laporan Pencabutan</h4>
+                                            <p>Rekapan keseluruhan data pelanggan yang telah tercabut</p>
+
+                                                <form action="<?php echo base_url('laporan/exportpelangganPDF') ?>" method="GET">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-8 text-right" >
+                                                    <button class="btn btn-icon"><?php echo svg("pdf") ?></button>
+                                                    
+                                                    </div>
+                                                </div>
+                                                </form>
+                                                
+                                         
+                                        </div>
+                                        <div class="col-md-12"><hr></div>
+                                    </div>
+
+                                     <!-- Cabut -->
+                                     <div class="row">
+                                        <div class="col-md-3">
+                                            <?php echo svg("account") ?>
+                                        </div>
+                                        <div clss="col-md-9">
+                                            <h4>Laporan Pencabutan</h4>
+                                            <p>Rekapan keseluruhan data pelanggan yang telah tercabut</p>
+
+                                                <form action="<?php echo base_url('laporan/exportPencabutanExcel') ?>" method="GET">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-8 text-right" >
+                                                    <button class="btn btn-icon"><?php echo svg("xls") ?></button>
+                                                    
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                               
+                                                
+                                         
                                         </div>
                                         <div class="col-md-12"><hr></div>
                                     </div>
