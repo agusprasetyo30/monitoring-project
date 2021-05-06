@@ -83,21 +83,6 @@
                                             </select>
 					                        </div>
 					                    </div>
-										
-										<div class="form-group">
-					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Jenis Pelanggan</label>
-					                        <div class="col-sm-6">
-                                            <select data-placeholder="Choose a Country..." name="jenis" id="jen" tabindex="2">
-					                            <option value=""selected readonly>Pilih status pelanggan</option>
-												<?php
-													foreach ($master_jenis_pelanggan as $kolom => $value) { ?>
-														<option value="<?= $value['id_jenis_pelanggan']?>"><?= $value['nama_jenis']?></option>
-												<?php 
-													}
-												?>
-                                            </select>
-					                        </div>
-					                    </div>
 
 										<div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Sub Domisili</label>

@@ -42,7 +42,6 @@
                 'no_ref' => $this->input->post('no_ref') ,
                 'nama'=> $this->input->post('nama_pelanggan'),
                 'alamat'   => $this->input->post('alamat'),
-                'id_jenis_pelanggan'   => $this->input->post('jenis'),
                 'id_domisili'   => $this->input->post('domisili'),
                 'id_subdomisili'   => $this->input->post('subdomisili'),
                 'pencabutan'   => $this->input->post('pencabutan'),

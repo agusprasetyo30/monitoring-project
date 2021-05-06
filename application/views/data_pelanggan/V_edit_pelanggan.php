@@ -67,7 +67,7 @@
                                             <textarea placeholder="Masukkan alamat..." rows="4" class="form-control" name="alamat" required=""><?php echo $hasil['alamat'] ?></textarea>
 					                        </div>
 					                    </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Status/Jenis Pelanggan</label>
 					                        <div class="col-sm-6">
 											
@@ -86,7 +86,7 @@
 												?>
                                             </select>
 					                        </div>
-					                    </div>
+					                    </div> -->
                                         <div class="form-group">
 					                        <label for="demo-is-inputnormal" class="col-sm-3 control-label">Domisili</label>
 					                        <div class="col-sm-6">
