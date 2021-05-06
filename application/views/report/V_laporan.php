@@ -59,7 +59,7 @@
                                     </div>
 
 
-                                    <!-- Transaction -->
+                                    <!-- Piutang Pelanggan -->
                                     <div class="row">
                                         <div class="col-md-3">
                                             <?php echo svg("rekap") ?>
@@ -109,7 +109,7 @@
 
 
 
-                                    <!-- Cabut -->
+                                    <!-- Cabut PDF -->
                                     <div class="row">
                                         <div class="col-md-3">
                                             <?php echo svg("account") ?>
@@ -133,30 +133,57 @@
                                         <div class="col-md-12"><hr></div>
                                     </div>
 
-                                     <!-- Cabut -->
+
+
+                                     <!-- Cabut Excell -->
                                      <div class="row">
                                         <div class="col-md-3">
-                                            <?php echo svg("account") ?>
+                                            <?php echo svg("rekap") ?>
                                         </div>
                                         <div clss="col-md-9">
-                                            <h4>Laporan Pencabutan</h4>
-                                            <p>Rekapan keseluruhan data pelanggan yang telah tercabut</p>
+                                            <h4>Laporan Pencabutan </h4>
+                                            <p>Rekapan pelanggan yang telah tercabut</p>
 
-                                                <form action="<?php echo base_url('laporan/exportPencabutanExcel') ?>" method="GET">
+                                            <small>Pilih menu opsi dibawah ini untuk mencetak :</small>
+                                            <div class="">
                                                 <div class="row">
-                                                    
-                                                    <div class="col-md-8 text-right" >
-                                                    <button class="btn btn-icon"><?php echo svg("xls") ?></button>
-                                                    
+
+                                                    <form action="<?php echo base_url('laporan/exportPencabutanExcel') ?>" method="GET">
+                                                    <div class="col-md-2">
+                                                        <select id="tahun-" class="form-control" name="tahun" required="">
+                                                            <option value="">Silahkan pilih tahun</option>
+                                                            <?php 
+                                                            
+                                                                    $tahun = substr(date('Y'), -2);
+                                                                    for ( $i = 18; $i <= intval($tahun); $i++ ) { ?>
+                                                                    <option value="20<?php echo $i ?>">20<?php echo $i ?></option>
+                                                                    <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <select  id="domisili" name="domisili" required="">
+                                                                <option value="">Silahkan pilih domisili</option>
+                                                                <?php
+                                                                    foreach ($master_domisili as $kolom => $value) { ?>
+                                                                    <option value="<?= $value['id_domisili'].'-'.$value['kota']?>"><?= $value['kota']." - ".$value['wilayah'] ?></option>
+                                                                <?php 
+                                                                }
+                                                                ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 text-right" style="border-left: 1px solid #e0e0e0">
+                                                        <button class="btn btn-icon"><?php echo svg("xls") ?></button>
+                                                       
                                                     </div>
                                                     </form>
                                                 </div>
-                                               
-                                                
-                                         
+                                            </div>
+
                                         </div>
                                         <div class="col-md-12"><hr></div>
                                     </div>
+
+
 
 
                                 </div>

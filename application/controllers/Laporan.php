@@ -84,232 +84,238 @@
         
 
 
-        // header attribute
-        $name_file = 'RPRT_ACCOUNT'.rand(1, 999999).'-'.date('Y-m-d');
-        $pdf = $this->header_attr( $name_file );
+            // header attribute
+            $name_file = 'RPRT_ACCOUNT'.rand(1, 999999).'-'.date('Y-m-d');
+            $pdf = $this->header_attr( $name_file );
 
-        // add a page
-        $pdf->AddPage('P', 'A4');
-
-
-        // Sub header
-        // $pdf->Ln(5, false);
-        $html = '<table border="0">
-            <tr>
-                <td align="center"><h2>LAPORAN PEGAWAI KANTOR</h2></td>
-            </tr>
-            <tr>
-                <td align="center"><h3>'.$berdasarkan.'</h3></td>
-            </tr>
-        </table>';
-
-        $pdf->writeHTML($html, true, false, true, false, '');
-        $pdf->Ln(5, false);
+            // add a page
+            $pdf->AddPage('P', 'A4');
 
 
-        // table body
-        $table_body = "";
-        $i = 0; foreach ( $dataProfile AS $rowReq ) {
-
-            $jabatan = "";
-            if ( $rowReq['level'] != "superadmin" ) {
-
-                if ( $rowReq['level'] == "admin" ) {
-
-                    $jabatan = "Manajer";
-                } else {
-
-                    if ( $rowReq['jabatan'] == "petugas_lapangan" ) {
-
-                        $jabatan = "Petugas Lapangan";
-                    } else {
-
-                        $jabatan = "Pegawai Kantor";
-                    }
-                }
-            }
-
-            $table_body .= '<tr>
-                <td align="center">'.($i + 1).'</td>
-                <td>'.$rowReq['name'].'</td>
-                <td>'.ucfirst($rowReq['wilayah_penugasan']).'</td>
-                <td>'.$rowReq['telp'].'</td>
-                <td>'.$rowReq['email'].'</td>
-                <td>'.$jabatan.'</td>
-            </tr>';
-
-            $i++;
-        }
-        
-        
-
-        // header table
-        $table = '
-            <table border="1" width="100%" cellpadding="6">
+            // Sub header
+            // $pdf->Ln(5, false);
+            $html = '<table border="0">
                 <tr>
-                    <th width="5%" height="20" padding="5" align="center"><b>No</b></th>
-                    <th width="30%" align="center"><b>Nama Lengkap</b></th>
-                    <th width="10%" align="center"><b>Penugasan</b></th>
-                    <th width="20%" align="center"><b>Telepon</b></th>
-                    <th width="20%" align="center"><b>Email</b></th>
-                    <th width="15%" align="center"><b>Jabatan</b></th>
+                    <td align="center"><h2>LAPORAN PEGAWAI KANTOR</h2></td>
                 </tr>
-                '.$table_body.'
+                <tr>
+                    <td align="center"><h3>'.$berdasarkan.'</h3></td>
+                </tr>
             </table>';
 
-        $pdf->writeHTML($table, true, false, true, false, '');
+            $pdf->writeHTML($html, true, false, true, false, '');
+            $pdf->Ln(5, false);
 
 
+            // table body
+            $table_body = "";
+            $i = 0; foreach ( $dataProfile AS $rowReq ) {
 
-        $pdf->Ln(10, false);
-        $ttd = '
-            <table border="0">
-                <tr>
-                    <td colspan="2" align="right">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date('Y').'</td>
-                </tr>
-                <tr>
-                    <td colspan="2" height="80"></td>
-                </tr>
-                <tr>
-                    <td width="75%"></td>
-                    <td width="20%" align="center">(. . . . . . . . . . . . . . . . .)</td>
-                </tr>
-            </table>
-        ';
+                $jabatan = "";
+                if ( $rowReq['level'] != "superadmin" ) {
 
-        $pdf->writeHTML($ttd, true, false, true, false, '');
+                    if ( $rowReq['level'] == "admin" ) {
 
+                        $jabatan = "Manajer";
+                    } else {
 
-        // output
-        $pdf->Output($name_file.'.pdf', 'I');
+                        if ( $rowReq['jabatan'] == "petugas_lapangan" ) {
 
-    }
+                            $jabatan = "Petugas Lapangan";
+                        } else {
 
-
-
-    function exportpelangganPDF() {
-        
-
-        $pencabutan = $this->M_laporan->getAllPelangganCabut();
-
-  
-        $dataCabut = array();
-
-        if ( $pencabutan->num_rows() > 0 ) {
-
-            foreach ( $pencabutan->result_array() AS $rowCabut )  {
-
- 
-                    array_push( $dataCabut, $rowCabut );
-                
-        
-
+                            $jabatan = "Pegawai Kantor";
+                        }
+                    }
                 }
+
+                $table_body .= '<tr>
+                    <td align="center">'.($i + 1).'</td>
+                    <td>'.$rowReq['name'].'</td>
+                    <td>'.ucfirst($rowReq['wilayah_penugasan']).'</td>
+                    <td>'.$rowReq['telp'].'</td>
+                    <td>'.$rowReq['email'].'</td>
+                    <td>'.$jabatan.'</td>
+                </tr>';
+
+                $i++;
             }
+            
+            
+
+            // header table
+            $table = '
+                <table border="1" width="100%" cellpadding="6">
+                    <tr>
+                        <th width="5%" height="20" padding="5" align="center"><b>No</b></th>
+                        <th width="30%" align="center"><b>Nama Lengkap</b></th>
+                        <th width="10%" align="center"><b>Penugasan</b></th>
+                        <th width="20%" align="center"><b>Telepon</b></th>
+                        <th width="20%" align="center"><b>Email</b></th>
+                        <th width="15%" align="center"><b>Jabatan</b></th>
+                    </tr>
+                    '.$table_body.'
+                </table>';
+
+            $pdf->writeHTML($table, true, false, true, false, '');
+
+
+
+            $pdf->Ln(10, false);
+            $ttd = '
+                <table border="0">
+                    <tr>
+                        <td colspan="2" align="right">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date('Y').'</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="80"></td>
+                    </tr>
+                    <tr>
+                        <td width="75%"></td>
+                        <td width="20%" align="center">(. . . . . . . . . . . . . . . . .)</td>
+                    </tr>
+                </table>
+            ';
+
+            $pdf->writeHTML($ttd, true, false, true, false, '');
+
+
+            // output
+            $pdf->Output($name_file.'.pdf', 'I');
+
+        }
+
+
+
+        function exportpelangganPDF() {
+            
+
+            $pencabutan = $this->M_laporan->getAllPelangganCabut();
+
+    
+            $dataCabut = array();
+
+            if ( $pencabutan->num_rows() > 0 ) {
+
+                foreach ( $pencabutan->result_array() AS $rowCabut )  {
+
+    
+                        array_push( $dataCabut, $rowCabut );
+                    
+            
+
+                    }
+                }
+            
+
+            
+            $sub_header = "";
+            $specific = false;
         
 
+
+            // header attribute
+            $name_file = 'RPRT_ACCOUNT'.rand(1, 999999).'-'.date('Y-m-d');
+            $pdf = $this->header_attr( $name_file );
+
+            // add a page
+            $pdf->AddPage('P', 'A4');
+
+
+            // Sub header
+            // $pdf->Ln(5, false);
+            $html = '<table border="0">
+                <tr>
+                    <td align="center"><h2>LAPORAN PENAGIHAN PIUTANG</h2></td>
+                
+                </tr>
         
-        $sub_header = "";
-        $specific = false;
-    
+            
+            </table>';
+
+            $pdf->writeHTML($html, true, false, true, false, '');
+            $pdf->Ln(5, false);
 
 
-    // header attribute
-    $name_file = 'RPRT_ACCOUNT'.rand(1, 999999).'-'.date('Y-m-d');
-    $pdf = $this->header_attr( $name_file );
-
-    // add a page
-    $pdf->AddPage('P', 'A4');
+            // table body
+            $table_body = "";
+            $i = 0; foreach ( $dataCabut AS $rowCabut ) {
 
 
-    // Sub header
-    // $pdf->Ln(5, false);
-    $html = '<table border="0">
-        <tr>
-            <td align="center"><h2>LAPORAN PENAGIHAN PIUTANG</h2></td>
-         
-        </tr>
-  
-       
-    </table>';
+                $table_body .= '<tr>
+                    <td align="center">'.($i + 1).'</td>
+                    <td>'.$rowCabut['no_ref'].'</td>
+                    <td>'.$rowCabut['nama'].'</td>
+                    <td>'.$rowCabut['alamat'].'</td>
+                    <td>'.$rowCabut['tanggal_pencabutan'].'</td>
+                
+                </tr>';
 
-    $pdf->writeHTML($html, true, false, true, false, '');
-    $pdf->Ln(5, false);
+                $i++;
+            }
+            
+            
 
+            // header table
+            $table = '
+                <table border="1" width="100%" cellpadding="6">
+                    <tr>
+                        <th width="5%" height="20" padding="5" align="center"><b>No</b></th>
+                        <th width="30%" align="center"><b>No.Reff</b></th>
+                        <th width="10%" align="center"><b>Nama</b></th>
+                        <th width="20%" align="center"><b>Alamat</b></th>
+                        <th width="20%" align="center"><b>Tanggal Pencabutan</b></th>
+                
+                    </tr>
+                    '.$table_body.'
+                </table>';
 
-    // table body
-    $table_body = "";
-    $i = 0; foreach ( $dataCabut AS $rowCabut ) {
-
-
-        $table_body .= '<tr>
-            <td align="center">'.($i + 1).'</td>
-            <td>'.$rowCabut['no_ref'].'</td>
-            <td>'.$rowCabut['nama'].'</td>
-            <td>'.$rowCabut['alamat'].'</td>
-            <td>'.$rowCabut['tanggal_pencabutan'].'</td>
-          
-        </tr>';
-
-        $i++;
-    }
-    
-    
-
-    // header table
-    $table = '
-        <table border="1" width="100%" cellpadding="6">
-            <tr>
-                <th width="5%" height="20" padding="5" align="center"><b>No</b></th>
-                <th width="30%" align="center"><b>No.Reff</b></th>
-                <th width="10%" align="center"><b>Nama</b></th>
-                <th width="20%" align="center"><b>Alamat</b></th>
-                <th width="20%" align="center"><b>Tanggal Pencabutan</b></th>
-           
-            </tr>
-            '.$table_body.'
-        </table>';
-
-    $pdf->writeHTML($table, true, false, true, false, '');
+            $pdf->writeHTML($table, true, false, true, false, '');
 
 
 
-    $pdf->Ln(10, false);
-    $ttd = '
-        <table border="0">
-            <tr>
-                <td colspan="2" align="right">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date('Y').'</td>
-            </tr>
-            <tr>
-                <td colspan="2" height="80"></td>
-            </tr>
-            <tr>
-                <td width="75%"></td>
-                <td width="20%" align="center">(. . . . . . . . . . . . . . . . .)</td>
-            </tr>
-        </table>
-    ';
+            $pdf->Ln(10, false);
+            $ttd = '
+                <table border="0">
+                    <tr>
+                        <td colspan="2" align="right">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date('Y').'</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="80"></td>
+                    </tr>
+                    <tr>
+                        <td width="75%"></td>
+                        <td width="20%" align="center">(. . . . . . . . . . . . . . . . .)</td>
+                    </tr>
+                </table>
+            ';
 
-    $pdf->writeHTML($ttd, true, false, true, false, '');
-
-
-    // output
-    $pdf->Output($name_file.'.pdf', 'I');
-
-}
+            $pdf->writeHTML($ttd, true, false, true, false, '');
 
 
+            // output
+            $pdf->Output($name_file.'.pdf', 'I');
+
+        }
 
 
 
 
         function exportPencabutanExcel() {
+            $tahun      = $this->input->get('tahun');
+            $domisili   = explode('-', $this->input->get('domisili'));
+            // memastikan bahwa format domisili valid
+            if ( count( $domisili ) != 2 ) show_404();
             
 
+            $kondisi = "master_domisili.id_domisili = '$domisili[0]'";
+            
             $pencabutan = $this->M_laporan->getAllPelangganCabut();
  
+
+            $tahun_singkat = substr($tahun, -2);
 
             // Create new Spreadsheet object
             $spreadsheet = new Spreadsheet();
@@ -326,7 +332,7 @@
 
 
             // Header Wilayah
-            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', 'LAPORAN DAFTAR PENCABUTAN ');
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', 'LAPORAN DAFTAR PENCABUTAN '. strtoupper($domisili[1]));
             $spreadsheet->getActiveSheet()->mergeCells('A1:M1');
             $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setBold(true); // set bold
             $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setSize(14); // set font
@@ -334,11 +340,10 @@
 
 
             // Header tahun
-            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A2', 'Kantor Jargas');
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A2', 'Pada Tahun - '. $tahun);
             $spreadsheet->getActiveSheet()->mergeCells('A2:M2');
             $spreadsheet->getActiveSheet()->getStyle('A2')->getFont()->setBold(true); // set bold
             $spreadsheet->getActiveSheet()->getStyle('A2')->getFont()->setSize(12); // set font
-
 
 
             // Table 
@@ -446,12 +451,10 @@
             $spreadsheet->getActiveSheet()->getStyle('I5')->applyFromArray($style_col);
             $spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(24); // Set width kolom C
 
-            $grandtotal = $totalTagihan['total_tagihan'];
-            $keterangan = $rowPelanggan['tanggal_pencabutan'];
-            $alasan     = $rowPiutang['alasan'];
+         
 
             // SET VALUE PENCABUTAN
-            if ( count($pencabutan) > 0 ) {
+            if ($pencabutan->num_rows() > 0 ) {
 
                 $baris = 6;
                 $urutan = 1;
@@ -488,6 +491,11 @@
                     $spreadsheet->getActiveSheet()->getStyle('E'. $baris)->applyFromArray($style_angka);
 
 
+                    // BAGIAN PIUTANG 
+                    $nominal = "";
+                    $grandtotal = $row['total_tagihan'];
+                    $keterangan = "";
+                    $alasan     = "";
 
                     // grandtotal
                     $spreadsheet->setActiveSheetIndex(0)->setCellValue('F' . $baris, $grandtotal);
@@ -551,9 +559,6 @@
             exit;
         }
     
-
-        
-
 
         
 
@@ -908,10 +913,7 @@
                     $spreadsheet->getActiveSheet()->getStyle('U' . $baris)->getFont()->setBold(false); // set bold
                     $spreadsheet->getActiveSheet()->getStyle('U' . $baris)->applyFromArray($style_huruf);
 
-                    // status
-                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('V' . $baris, $alasan);
-                    $spreadsheet->getActiveSheet()->getStyle('V' . $baris)->getFont()->setBold(false); // set bold
-                    $spreadsheet->getActiveSheet()->getStyle('V' . $baris)->applyFromArray($style_huruf);
+        
 
                 
                     $baris++;
@@ -956,18 +958,6 @@
     
 
         
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

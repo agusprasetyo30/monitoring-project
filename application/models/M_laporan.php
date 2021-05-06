@@ -177,6 +177,7 @@
 
             return $this->db->query( $sql );
         }
+        
     }
     
     /* End of file M_laporan.php */
