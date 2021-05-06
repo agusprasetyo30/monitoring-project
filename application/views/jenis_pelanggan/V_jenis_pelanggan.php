@@ -40,8 +40,6 @@
                                                     <input type="text" name="nama_jenis_pelanggan" class="form-control" placeholder="..." id="" required="" />
                                                     <small>Masukkan nama jenis pelanggan</small>
                                                 </div>
-                                            
-                                                
                                             </div>
                                             <div class="modal-footer">
                                                 <button data-dismiss="modal" class="btn btn-sm btn-default" type="button">Close</button>
@@ -53,8 +51,6 @@
                                 </div>
                                 <!--===================================================-->
                                 <!--End Small Bootstrap Modal-->
-
-
                                 <hr>
 
                                 <table class="table" id="table-jenis_pelanggan">
@@ -66,8 +62,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
-
 
                                     <?php foreach ( $jenis_pelanggan->result_array() AS $kolom ) { ?>
                                         <tr>

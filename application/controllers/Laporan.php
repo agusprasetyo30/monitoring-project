@@ -304,18 +304,9 @@
 
 
         function exportPencabutanExcel() {
-            $tahun      = $this->input->get('tahun');
-            $domisili   = explode('-', $this->input->get('domisili'));
-            // memastikan bahwa format domisili valid
-            if ( count( $domisili ) != 2 ) show_404();
-            
-
-            $kondisi = "master_domisili.id_domisili = '$domisili[0]'";
             
             $pencabutan = $this->M_laporan->getAllPelangganCabut();
  
-
-            $tahun_singkat = substr($tahun, -2);
 
             // Create new Spreadsheet object
             $spreadsheet = new Spreadsheet();
@@ -332,7 +323,7 @@
 
 
             // Header Wilayah
-            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', 'LAPORAN DAFTAR PENCABUTAN '. strtoupper($domisili[1]));
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A1', 'LAPORAN DAFTAR PENCABUTAN ');
             $spreadsheet->getActiveSheet()->mergeCells('A1:M1');
             $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setBold(true); // set bold
             $spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->setSize(14); // set font
@@ -340,7 +331,7 @@
 
 
             // Header tahun
-            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A2', 'Pada Tahun - '. $tahun);
+            $spreadsheet->setActiveSheetIndex(0)->setCellValue('A2', 'Kantor Jargas ');
             $spreadsheet->getActiveSheet()->mergeCells('A2:M2');
             $spreadsheet->getActiveSheet()->getStyle('A2')->getFont()->setBold(true); // set bold
             $spreadsheet->getActiveSheet()->getStyle('A2')->getFont()->setSize(12); // set font
@@ -526,7 +517,6 @@
                     $spreadsheet->getActiveSheet()->getStyle('I' . $baris)->getFont()->setBold(false); // set bold
                     $spreadsheet->getActiveSheet()->getStyle('I' . $baris)->applyFromArray($style_huruf);
 
-
                 
                     $baris++;
                     $urutan++;
@@ -560,8 +550,6 @@
         }
     
 
-        
-
 
 
         // export pelanggan with excel 
@@ -578,8 +566,6 @@
 
             $ambilDataPelangganByTahunDomisili = $this->M_laporan->getAlldataPelanggan( $kondisi, $tahun );
             
-
-
 
             $tahun_singkat = substr($tahun, -2);
 

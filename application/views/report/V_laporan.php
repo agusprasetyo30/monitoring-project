@@ -149,29 +149,7 @@
                                                 <div class="row">
 
                                                     <form action="<?php echo base_url('laporan/exportPencabutanExcel') ?>" method="GET">
-                                                    <div class="col-md-2">
-                                                        <select id="tahun-" class="form-control" name="tahun" required="">
-                                                            <option value="">Silahkan pilih tahun</option>
-                                                            <?php 
-                                                            
-                                                                    $tahun = substr(date('Y'), -2);
-                                                                    for ( $i = 18; $i <= intval($tahun); $i++ ) { ?>
-                                                                    <option value="20<?php echo $i ?>">20<?php echo $i ?></option>
-                                                                    <?php } ?>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <select  id="domisili" name="domisili" required="">
-                                                                <option value="">Silahkan pilih domisili</option>
-                                                                <?php
-                                                                    foreach ($master_domisili as $kolom => $value) { ?>
-                                                                    <option value="<?= $value['id_domisili'].'-'.$value['kota']?>"><?= $value['kota']." - ".$value['wilayah'] ?></option>
-                                                                <?php 
-                                                                }
-                                                                ?>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3 text-right" style="border-left: 1px solid #e0e0e0">
+                                                    <div class="col-md-8 text-right">
                                                         <button class="btn btn-icon"><?php echo svg("xls") ?></button>
                                                        
                                                     </div>
