@@ -13,43 +13,21 @@
                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content">
-    
-    
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <div class="panel panel-body" style="border: 1px solid #e0e0e0">
-                            
-                                <p class="text-main text-semibold">Data Tabel Jenis Pelanggan</p>
-                           
-                                $ambilDataPenagihan = $this->db->get();
-
-                                $data_notif = array();
-
-
-
-                                <?php 
-                                    $nomor = 1; 
-                                    if ( $ambilDataPenagihan->num_rows() > 0 ) {
-                                    foreach ( $ambilDataPenagihan->result_array() AS $notifikasi ) : ?>
-                                <tr>
-                            
-                                
-                                    <td><?php echo $nomor++?></td>
-                                    <td><?php echo ucfirst($notifikasi['tanggal_penagihan']) ?> Atas nama</td>
-                                    <td><?php echo $notifikasi['username'] ?></td>
-                                 
-                                </tr>
+                            <?php if ( $notifikasi->num_rows() > 0 ) {?>
+                                <?php foreach ( $notifikasi->result_array() AS $row ) : ?>
+                                    <div class="col-md-12 text-left">
+                                        <div class="panel panel-body" style="border: 1px solid #e0e0e0; background-color:#FF6347; color:#FFFFFF">
+                                            <p>Pada tanggal <?php echo ucfirst($row['tanggal_penagihan'])?></p> 
+                                            Atas nama <?php echo $row['username'] ?>
+                                            Telah melakukan penagihan kepada no_ref <?php echo $row['no_ref'] ?>
+                                            sebesar <?php echo $row['pembayaran'] ?> <br>
+                                            Status tagihan : <?php echo $row['status_penagihan'] ?>
+                                    </div>
+                                </div>
                                 <?php endforeach; ?>
-
-                                }
-                    
-                             
-
-                              
-
-                            </div>
-                        
-                        </div>
+                            <?php } ?>
+                       
                     </div>
 
 
