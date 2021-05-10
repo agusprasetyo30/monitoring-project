@@ -97,6 +97,7 @@
             // $pdf->Ln(5, false);
             $html = '<table border="0">
                 <tr>
+                <br><br>
                     <td align="center"><h2>LAPORAN PEGAWAI KANTOR</h2></td>
                 </tr>
                 <tr>
@@ -150,7 +151,7 @@
                     <tr>
                         <th width="5%" height="20" padding="5" align="center"><b>No</b></th>
                         <th width="30%" align="center"><b>Nama Lengkap</b></th>
-                        <th width="10%" align="center"><b>Penugasan</b></th>
+                        <th width="15%" align="center"><b>Penugasan</b></th>
                         <th width="20%" align="center"><b>Telepon</b></th>
                         <th width="20%" align="center"><b>Email</b></th>
                         <th width="15%" align="center"><b>Jabatan</b></th>
@@ -228,6 +229,7 @@
             // $pdf->Ln(5, false);
             $html = '<table border="0">
                 <tr>
+                <br><br>
                     <td align="center"><h2>LAPORAN PENAGIHAN PIUTANG</h2></td>
                 
                 </tr>

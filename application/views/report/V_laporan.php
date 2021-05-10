@@ -123,10 +123,15 @@
                                                     
                                                     <div class="col-md-8 text-right" >
                                                     <button class="btn btn-icon"><?php echo svg("pdf") ?></button>
-                                                    
+                                                    <form action="<?php echo base_url('laporan/exportPencabutanExcel') ?>" method="GET">
+                                                 
+                                                 <button class="btn btn-icon"><?php echo svg("xls") ?></button>
+                                         
+                                               </form>
                                                     </div>
                                                 </div>
                                                 </form>
+
                                                 
                                          
                                         </div>
@@ -135,31 +140,6 @@
 
 
 
-                                     <!-- Cabut Excell -->
-                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <?php echo svg("rekap") ?>
-                                        </div>
-                                        <div clss="col-md-9">
-                                            <h4>Laporan Pencabutan </h4>
-                                            <p>Rekapan pelanggan yang telah tercabut</p>
-
-                                            <small>Pilih menu opsi dibawah ini untuk mencetak :</small>
-                                            <div class="">
-                                                <div class="row">
-
-                                                    <form action="<?php echo base_url('laporan/exportPencabutanExcel') ?>" method="GET">
-                                                    <div class="col-md-8 text-right">
-                                                        <button class="btn btn-icon"><?php echo svg("xls") ?></button>
-                                                       
-                                                    </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-12"><hr></div>
-                                    </div>
 
 
 

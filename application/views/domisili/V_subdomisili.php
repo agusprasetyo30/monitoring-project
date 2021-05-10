@@ -86,9 +86,9 @@
                                     <tbody>
 
 
-                                        <?php foreach ( $subdomisili->result_array() AS $kolom ) { ?>
+                                        <?php $no = 1; foreach ( $subdomisili->result_array() AS $kolom ) { ?>
                                         <tr>
-                                            <td>1</td>
+                                            <td><?php echo $no++ ?></td>
                                             <td>
                                                <label for=""><?php echo $kolom['kode_wilayah'] ?></label>
                                             </td>

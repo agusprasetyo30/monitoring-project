@@ -133,10 +133,10 @@
 					                    <div class="col-md-6">
 					                        <div class="radio">
 					                            <!-- Inline radio buttons -->
-					                            <input id="wilayah-1" class="magic-radio" type="radio" name="wilayah" value="Kota" required="" >
+					                            <input id="wilayah-1" class="magic-radio" type="radio" name="wilayah" value="kota" required="" >
 					                            <label for="wilayah-1">Kota</label>
 					
-					                            <input id="wilayah-2" class="magic-radio" type="radio" name="wilayah" value="Kab" required="">
+					                            <input id="wilayah-2" class="magic-radio" type="radio" name="wilayah" value="kabupaten" required="">
 					                            <label for="wilayah-2">Kabupaten</label>					
 					                        </div>
                                             <small class="text-muted">Pilih wilayah penugasan</small>

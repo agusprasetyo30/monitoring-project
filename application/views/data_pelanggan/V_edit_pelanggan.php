@@ -5,8 +5,8 @@
                             
                             <!--Page Title-->
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                            <div id="page-title">}
-                                <h1 class="page-header text-overflow">Edit Data Pelanggan </h1>
+                            <div id="page-title">
+                                <h1 class="page-header text-overflow">Sunting Data Pelanggan </h1>
                             </div>
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                             <!--End page title-->
@@ -15,7 +15,7 @@
 							<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 							<ol class="breadcrumb">
 								<li><a href="<?php echo base_url('data_pelanggan') ?>"><i class="demo-pli-home"></i></a></li>
-								<li class="active">Edit Data Pelanggan</li>
+								<li class="active">Sunting Data Pelanggan</li>
 							</ol>
 							<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 							<!--End breadcrumb-->

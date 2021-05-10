@@ -123,7 +123,7 @@
                                                 <div class="col-md-6">
                                                     <label class="text-sm"><i class="demo-pli-mail icon-lg icon-fw"></i><?php echo $row['email'] ?></label><br>
                                                     <label class="text-sm"><i class="demo-pli-old-telephone icon-lg icon-fw"></i><?php echo $row['telp'] ?></label><br>
-													<label class="text-sm"><i class="demo-pli-old-telephone icon-lg icon-fw"></i><?php echo $row['address'] ?></label>
+													<label class="text-sm"><i class="demo-pli-home icon-lg icon-fw"></i><?php echo $row['address'] ?></label>
                                             </div>
                                             <div class="col-md-6" style="border-left: 1px solid #e0e0e0">
                                                     <div class="row">
@@ -134,7 +134,7 @@
                                                             <small class="text-main text-semibold">Wilayah Penugasan</small><br>
 															<label class="text-sm"><?php echo $row['wilayah_penugasan'] ?></label><br>
                                                         </div>
-                                                        <div class="col-md-12"><small>Pelajari lebih lanjut tentang <a class="text-semibold btn-link">Hak akses</a>.</small></div>
+                                                       
 
                                                     </div>
                                                 </div>

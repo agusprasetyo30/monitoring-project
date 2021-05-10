@@ -144,10 +144,10 @@
 					                    <div class="col-md-6">
 					                        <div class="radio">
 					                            <!-- Inline radio buttons -->
-					                            <input id="wilayah-1" class="magic-radio" type="radio" name="wilayah" value="Kota" <?php if ( $dataOfficer['wilayah_penugasan'] == 'kota' ) echo 'checked' ?> required="" >
+					                            <input id="wilayah-1" class="magic-radio" type="radio" name="wilayah" value="kota" <?php if ( $dataOfficer['wilayah_penugasan'] == 'kota' ) echo 'checked' ?> required="" >
 					                            <label for="wilayah-1">Kota</label>
 					
-					                            <input id="wilayah-2" class="magic-radio" type="radio" name="wilayah" value="Kab" <?php if ( $dataOfficer['wilayah_penugasan'] == 'kabupaten' ) echo 'checked' ?> required="">
+					                            <input id="wilayah-2" class="magic-radio" type="radio" name="wilayah" value="kabupaten" <?php if ( $dataOfficer['wilayah_penugasan'] == 'kabupaten' ) echo 'checked' ?> required="">
 					                            <label for="wilayah-2">Kabupaten</label>			                 		
 					                        </div>
                                             <small class="text-muted">Pilih wilayah penugasan</small>

@@ -87,9 +87,9 @@
                                     <tbody>
 
 
-                                        <?php foreach ( $domisili AS $kolom ) { ?>
+                                        <?php $no = 1; foreach ( $domisili AS $kolom ) { ?>
                                         <tr>
-                                            <td>1</td>
+                                            <td><?php echo $no++ ?></td>
                                             <td>
                                                 <small>Informasi Kota</small> <br>
                                                 <a href="" class="btn-link text-semibold text-main"><?php echo $kolom['info_domisili']['kota'] ?></a>
@@ -161,11 +161,11 @@
                                                                     <div class="radio">
                                     
                                                                         <!-- Inline radio buttons -->
-                                                                        <input id="demo-inline-form-radio-edit" class="magic-radio" type="radio" name="wilayah" value="kota" <?php if ( $kolom['info_domisili']['wilayah'] == "kota" ) echo 'checked'; ?>>
-                                                                        <label for="demo-inline-form-radio-edit">Kota</label>
+                                                                        <input id="demo-inline-form-radio-edit-<?php echo $kolom['info_domisili']['id_domisili'] ?>" class="magic-radio" type="radio" name="wilayah" value="kota" <?php if ( $kolom['info_domisili']['wilayah'] == "kota" ) echo 'checked'; ?>>
+                                                                        <label for="demo-inline-form-radio-edit-<?php echo $kolom['info_domisili']['id_domisili'] ?>">Kota</label>
                                             
-                                                                        <input id="demo-inline-form-radio-edit-2" class="magic-radio" type="radio" name="wilayah" value="kabupaten" <?php if ( $kolom['info_domisili']['wilayah'] == "kabupaten" ) echo 'checked'; ?>>
-                                                                        <label for="demo-inline-form-radio-edit-2">Kabupaten</label> <br>
+                                                                        <input id="demo-inline-form-radio-edit-2-<?php echo $kolom['info_domisili']['id_domisili'] ?>" class="magic-radio" type="radio" name="wilayah" value="kabupaten" <?php if ( $kolom['info_domisili']['wilayah'] == "kabupaten" ) echo 'checked'; ?>>
+                                                                        <label for="demo-inline-form-radio-edit-2-<?php echo $kolom['info_domisili']['id_domisili'] ?>">Kabupaten</label> <br>
 
                                                                         <small>Pilih salah satu</small>
                                                                     </div>

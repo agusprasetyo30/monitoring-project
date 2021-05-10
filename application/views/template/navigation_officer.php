@@ -18,12 +18,7 @@
 						                    <span class="menu-title">Akun Pengguna </span>
 						                </a>
 						            </li>
-                                    <li class="<?php echo $this->uri->segment(2) == "jenis_pelanggan" ? 'active-sub' : '' ?>">
-						                <a href="<?php echo base_url('jenis_pelanggan') ?>">
-						                    <i class="demo-pli-check"></i>
-						                    <span class="menu-title">Master Jenis Pelanggan </span>
-						                </a>
-						            </li>
+                                   
 
                                     <li class="<?php echo $this->uri->segment(3) == "domisili" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('domisili') ?>">
@@ -46,12 +41,37 @@
 						                </a>
 						            </li>
 
+									  <!--Menu list item-->
+									  <li class="<?php echo $this->uri->segment(1) == "penagihan" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('penagihan') ?>">
+						                    <i class="demo-pli-pencil"></i>
+						                    <span class="menu-title">Kelola Penagihan</span>
+						                </a>
+						            </li>
+
 										 <!--Menu list item-->
 									<li class="<?php echo $this->uri->segment(1) == "laporan" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('laporan') ?>">
-						                    <i class="demo-pli-pencil"></i>
+						                    <i class="demo-pli-file-edit"></i>
 						                    <span class="menu-title">Laporan</span>
 						                </a>
+						            </li>
+
+									    <!--Menu list item-->
+										<li class="<?php echo $this->uri->segment(1) == "" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('setting') ?>">
+						                    <i class="demo-pli-gear"></i>
+						                    <span class="menu-title">Pengaturan Akun</span>
+											<i class="arrow"></i>
+						                </a>
+
+										 <!--Submenu-->
+										 <ul class="collapse">
+										 
+						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=pegawai_kantor&id=') ?>">Pengaturan Akun</a></li>
+											<li><a href="<?php echo base_url('setting') ?>">Pengaturan Password</a></li>
+											
+						                </ul>
 						            </li>
 
 

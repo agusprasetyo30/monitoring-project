@@ -15,13 +15,13 @@ class Pdf extends TCPDF {
         // Title
         $this->Ln(3, true);
         $this->setCellMargins(13, 0, 0, 0);
-        $this->SetFont('times', 'B', 11);
-        $this->Cell(60, 8, 'Sistem Informasi Pencatatan dan Monitoring Penagihan Piutang', 0, 2, 'L', 0, '', 0, false, 'M', 'M');
+        $this->SetFont('times', 'B', 14);
+        $this->Cell(60, 10, 'Sistem Informasi Pencatatan dan Monitoring Penagihan Piutang', 0, 2, 'L', 0, '', 0, false, 'M', 'M');
 
-        $this->SetFont('times', '', 8);
-        $this->Cell(0, 6, 'Wiroborang, Mayangan, Kota Probolinggo, Jawa Timur 67216', 0, 2, 'L', 0, '', 0, false, 'M', 'M');
-        $this->Cell(0, 6, 'Telp. ', 0, 2, 'L', 0, '', 0, false, 'M', 'M');
-        $this->Cell(0, 5, 'PT Perusahaan Gas Negara (Persero) Tbk.', 0, 2, 'L', 0, '', 0, false, 'M', 'M');
+        $this->SetFont('times', '', 10);
+        $this->Cell(0, 10, 'Wiroborang, Mayangan, Kota Probolinggo, Jawa Timur 67216', 0, 2, 'L', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 10, 'Telp. ', 0, 2, 'L', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 27, 'PT Perusahaan Gas Negara (Persero) Tbk.', 0, 2, 'L', 0, '', 0, false, 'M', 'M');
 
 
     
@@ -36,7 +36,7 @@ class Pdf extends TCPDF {
         $this->SetFont('helvetica', 'I', 8);
         // Page number
         $date = date('d/m/Y');
-        $this->Cell(0, 10, 'Laporan Akun Pengguna | '.$date, 0, 0, 'L');
+        $this->Cell(0, 10, 'Data Laporan | '.$date, 0, 0, 'L');
         
         $this->Cell(0, 10, 'Halaman '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, 0, 'R');
     }
