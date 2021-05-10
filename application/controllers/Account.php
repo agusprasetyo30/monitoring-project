@@ -18,11 +18,11 @@ class Account extends CI_Controller {
 
         $sesi_level = $this->session->userdata('sess_level');
         $sess_jabatan = $this->session->userdata('sess_jabatan');
-        if ( $sesi_level == "employee" && $sess_jabatan == "petugas_lapangan") {
+        if ( ($sesi_level == "employee" || $sesi_level == "admin") && ($sess_jabatan == "petugas_lapangan" || $sess_jabatan == "manajer") ) {
             
             redirect('dashboard');
             
-        } else if ( $sesi_level == "superadmin" || $sess_jabatan == "pegawai_kantor" || $sess_jabatan == "manajer") {
+        } else if ( $sesi_level == "superadmin" || $sess_jabatan == "pegawai_kantor") {
 
             $data = array(
 
@@ -34,6 +34,10 @@ class Account extends CI_Controller {
                 'sum_kantor'   => $this->M_account->sumUsers( "pegawai_kantor" )->num_rows(),
             );
             $this->load->view('template/template_backend', $data);
+        } else {
+
+
+            
         }
 
         
