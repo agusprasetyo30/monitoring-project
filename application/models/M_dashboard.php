@@ -13,23 +13,23 @@
             $this->db->select('user_login.username, penagihan.*')->from('penagihan');
             $this->db->join('user_login', 'user_login.id_login = penagihan.id_login');
 
-            $ambilDataPenagihan = $this->db->get();
+            // $ambilDataPenagihan = $this->db->get();
 
-            $data_notif = array();
+            // $data_notif = array();
 
-            if ( $ambilDataPenagihan->num_rows() > 0 ) {
+            // if ( $ambilDataPenagihan->num_rows() > 0 ) {
 
-                foreach ( $ambilDataPenagihan->result_array() AS $notifikasi ) {
+            //     foreach ( $ambilDataPenagihan->result_array() AS $notifikasi ) {
 
-                    echo '<h4>Notifikasi <small>'.$notifikasi['tanggal_penagihan'].'</small></h4>';
-                    echo 'Atas nama '. $notifikasi['username'].' telah melakukan penagihan kepada no_ref '. $notifikasi['no_ref'].'<br>';
-                    echo '<h2 style="margin: 0px">'.number_format($notifikasi['pembayaran']).'</h2>';
-                    echo 'Status tagihan : '. $notifikasi['status_penagihan'];
-                    echo '<hr>';
+            //         echo '<h4>Notifikasi <small>'.$notifikasi['tanggal_penagihan'].'</small></h4>';
+            //         echo 'Atas nama '. $notifikasi['username'].' telah melakukan penagihan kepada no_ref '. $notifikasi['no_ref'].'<br>';
+            //         echo '<h2 style="margin: 0px">'.number_format($notifikasi['pembayaran']).'</h2>';
+            //         echo 'Status tagihan : '. $notifikasi['status_penagihan'];
+            //         echo '<hr>';
 
 
-                }
-            }
+            //     }
+            // }
         }
 
 

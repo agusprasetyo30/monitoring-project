@@ -81,7 +81,16 @@
         // notifikasi
         function ambilNotifikasi() {
 
-            $this->M_dashboard->cekDataNotifikasi();
+            // $this->M_dashboard->cekDataNotifikasi();
+
+            $data = array(
+
+                'folder'    => "dashboard",
+                'view'      => "V_notifikasi",
+
+               
+            );
+            $this->load->view('template/template_backend', $data);
         }
 
 
