@@ -47,6 +47,9 @@
 
 										<?php
 
+											$sess_jabatan = $this->session->userdata('sess_jabatan');
+
+
 											$data_target = "#tambah_pembayaran";
 											$colorBtn = "btn-primary";
 											$textBtn  = "Tambah Pembayaran";
@@ -58,7 +61,13 @@
 											}
 										
 										?>
+
+										<?php if ( $sess_jabatan != "manajer" ) { ?>
+
 										<button data-target="<?php echo $data_target ?>" data-toggle="modal" class="btn btn-sm <?php echo $colorBtn ?>"><i class="fa fa-money"></i> <?php echo $textBtn ?></button>
+										
+										<?php } ?>
+										
 										<!-- Modal Tambah Pembayaran -->
 										<!--===================================================-->
 										<div class="modal fade" id="tambah_pembayaran" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
@@ -331,7 +340,8 @@
 												?>
 												<br> <a href="<?php echo $img ?>" target="_blank" class="text-sm text-main btn-link" download><i class="ti-arrow-down"></i> Unduh Bukti Pembayaran</a>
 											</div>
-
+											
+											<?php if ( $sess_jabatan != "manajer" ) { ?>
 											<div class="dropdown text-right">
 					                            <button class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" type="button">
 					                            	Opsi <i class="dropdown-caret"></i>
@@ -343,6 +353,7 @@
 													<li><a data-target="#hapus-pembayaran-<?php echo $penagihan['id_penagihan'] ?>" data-toggle="modal">Hapus</a></li>
 					                            </ul>
 					                        </div>
+											<?php } ?>
 										</div>
 
 										<?php endforeach; endif; ?>

@@ -448,7 +448,10 @@
         $('#table-subdomisili').dataTable();
         $('#table-jenis_pelanggan').dataTable();
         $('#table-data_pelanggan').dataTable();
-        $('#table-data_piutang').dataTable();
+        $('#table-data_piutang').dataTable({
+
+            "responsive": true,
+        });
     </script>
 
 

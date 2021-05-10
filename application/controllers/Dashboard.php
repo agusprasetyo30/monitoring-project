@@ -24,15 +24,18 @@
             $this->load->model('M_dashboard');
         }
 
+
+
+
         public function index(){
             
             $sess_level = $this->session->userdata('sess_level');
-
+            $sess_jabatan = $this->session->userdata('sess_jabatan');
             // super_admin | admin | employee
 
             
             // pengecekan hak akses
-            if ( $sess_level != "employee" ) {
+            if ( $sess_level != "employee" || $sess_jabatan == "pegawai_kantor" ) {
 
                 // view :: pegawai kantor
                 $data = array(

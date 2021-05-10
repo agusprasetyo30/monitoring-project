@@ -234,7 +234,7 @@
             // cek pengguna atau level
             $sesi_level = $this->session->userdata('sess_level');
             $sesi_jabatan = $this->session->userdata('sess_jabatan');
-            if ( $sesi_level == "employee" || $sesi_jabatan) {
+            if ( $sesi_level == "employee" || $sesi_jabatan == "manajer" ) {
                 
                 $jabatan = $getDataOfficer['jabatan'];
                 $link = base_url('account/editAkun?jabatan='. $jabatan .'&id='. $id_login);

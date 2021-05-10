@@ -144,7 +144,7 @@
                                             <tr>
                                                 <th width="10%">No</th>
                                                 <th>Informasi</th>
-                                                <th width="20%">Opsi</th>
+                                                <th width="20%" class="min-desktop">Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -154,6 +154,7 @@
                                             <?php 
                                             
                                             $sess_idlogin = $this->session->userdata('sess_idlogin');
+                                            $sess_jabatan = $this->session->userdata('sess_jabatan');
                                             $i = 1; foreach ( $dataPiutang AS $row ) {
                                                 
                                                 // if ( $dataPiutang['informasi'] )
@@ -170,15 +171,13 @@
                                                     }
 
                                                 } else {
-
-
                                                     $show = true;
                                                 }
 
 
 
 
-                                                if ( $show == true ) {
+                                                if ( $show == true || $sess_jabatan == "manajer" ) {
                                             ?>
                                             <tr>
                                                 <td><?php echo $i++ ?></td>
