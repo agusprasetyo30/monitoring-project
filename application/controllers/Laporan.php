@@ -21,6 +21,7 @@
 
             $this->load->model('M_laporan');
             $this->load->model('M_domisili');
+            $this->load->model('M_data_piutang');
         
         }
 
@@ -305,7 +306,7 @@
 
         function exportPencabutanExcel() {
             
-            $pencabutan = $this->M_laporan->getAllPelangganCabut();
+            $pencabutan = $this->M_data_piutang->getAllDataPiutang();
  
 
             // Create new Spreadsheet object
@@ -445,11 +446,15 @@
          
 
             // SET VALUE PENCABUTAN
-            if ($pencabutan->num_rows() > 0 ) {
+            if (count($pencabutan) > 0 ) {
 
                 $baris = 6;
                 $urutan = 1;
                 foreach ( $pencabutan AS $rowPencabutan ) {
+
+
+                    // print_r( $rowPencabutan );
+                    // echo '<hr>';
 
 
                     $spreadsheet->setActiveSheetIndex(0)->setCellValue('A'.$baris, $urutan);
@@ -484,9 +489,9 @@
 
                     // BAGIAN PIUTANG 
                     $nominal = "";
-                    $grandtotal = $row['total_tagihan'];
-                    $keterangan = "";
-                    $alasan     = "";
+                    $grandtotal = $rowPencabutan['total_tagihan'];
+                    $keterangan = $rowPencabutan['informasi_detail']['keterangan'];
+                    $alasan     = $rowPencabutan['informasi_detail']['alasan'];
 
                     // grandtotal
                     $spreadsheet->setActiveSheetIndex(0)->setCellValue('F' . $baris, $grandtotal);
@@ -495,14 +500,8 @@
 
 
 
-                    // lama piutang
-                    $lama_piutang = "";
-                    if ( count( $row['informasi_piutang'] ) > 0 ) {
 
-                        $lama_piutang = count( $row['informasi_piutang'] );
-                    }
-
-                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('G' . $baris, $lama_piutang);
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('G' . $baris, $rowPencabutan['informasi_detail']['total_bulan']);
                     $spreadsheet->getActiveSheet()->getStyle('G' . $baris)->getFont()->setBold(false); // set bold
                     $spreadsheet->getActiveSheet()->getStyle('G' . $baris)->applyFromArray($style_angka);
 
@@ -533,7 +532,7 @@
 
             // Redirect output to a client’s web browser (Xlsx)
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header('Content-Disposition: attachment;filename="RPRT-'.strtoupper($domisili[1]).'-'.$tahun.'.xlsx"');
+            header('Content-Disposition: attachment;filename="RPRT-.xlsx"');
             header('Cache-Control: max-age=0');
             // If you're serving to IE 9, then the following may be needed
             header('Cache-Control: max-age=1');

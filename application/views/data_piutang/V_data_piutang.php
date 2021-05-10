@@ -29,6 +29,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>No Ref</th>
+                                            <th>Nama</th>
                                             <th>Tahun</th>
                                             <th>Bulan</th>
                                             <th>Nominal</th>
@@ -48,6 +49,9 @@
                                             <td><?php echo $nomor++ ?></td>
                                             <td> 
                                                 <small><?php echo $kolom['no_ref'] ?></small> 
+                                            <br></td>
+                                            <td> 
+                                                <small><?php echo $kolom['nama'] ?></small> 
                                             <br></td>
 
                                             <td> 

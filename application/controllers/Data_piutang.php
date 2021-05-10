@@ -23,7 +23,7 @@
         {
 
             // data jenis_pelanggan (get all)
-            $datapiutang = $this->M_data_piutang->getDataTable( null, 'piutang' );
+            $datapiutang = $this->M_data_piutang->getDataPiutangPelanggan();
             $dataPelanggan = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan');
 
 

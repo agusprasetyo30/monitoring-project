@@ -17,13 +17,12 @@ class Account extends CI_Controller {
     function index(){
 
         $sesi_level = $this->session->userdata('sess_level');
-        if ( $sesi_level == "employee") {
+        $sess_jabatan = $this->session->userdata('sess_jabatan');
+        if ( $sesi_level == "employee" && $sess_jabatan == "petugas_lapangan") {
             
             redirect('dashboard');
-        }
-        else if ($sesi_level == "admin"){
-            redirect('dashboard');
-        } else {
+            
+        } else if ( $sesi_level == "superadmin" || $sess_jabatan == "pegawai_kantor" || $sess_jabatan == "manajer") {
 
             $data = array(
 

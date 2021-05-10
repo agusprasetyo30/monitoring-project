@@ -201,6 +201,7 @@
 
                     // upload success
                     $data_foto = $this->upload->data('file_name');
+                    
                 }
 
             } else {
@@ -232,10 +233,17 @@
 
             // cek pengguna atau level
             $sesi_level = $this->session->userdata('sess_level');
-            if ( $sesi_level == "employee") {
+            $sesi_jabatan = $this->session->userdata('sess_jabatan');
+            if ( $sesi_level == "employee" || $sesi_jabatan) {
                 
                 $jabatan = $getDataOfficer['jabatan'];
                 $link = base_url('account/editAkun?jabatan='. $jabatan .'&id='. $id_login);
+
+
+                // update at that time
+                $this->session->set_userdata('sess_foto', $data_foto);
+
+
 
             } else {
 

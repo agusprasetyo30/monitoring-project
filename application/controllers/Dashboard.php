@@ -78,6 +78,17 @@
 
 
 
+        // notifikasi
+        function ambilNotifikasi() {
+
+            $this->M_dashboard->cekDataNotifikasi();
+        }
+
+
+
+
+
+
 
         function grafik() {
 

@@ -272,6 +272,20 @@
         }
 
 
+
+
+        // relasi antara piutang dan pelanggan
+        function getDataPiutangPelanggan() {
+
+            $this->db->select('piutang.*, data_pelanggan.*')->from('piutang')
+                    ->join('data_pelanggan', 'data_pelanggan.no_ref = piutang.no_ref');
+            $query = $this->db->get();
+
+            return $query;
+
+        }
+
+
        
     }
 

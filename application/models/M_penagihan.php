@@ -9,12 +9,22 @@
         
     
         function processInsertDataPembayaran() {
+            // load model data piutang
+            $this->load->model('M_data_piutang');
+    
 
 
             $id_login = $this->session->userdata('sess_idlogin');
             $no_ref = $this->input->post('no_ref');
             $tanggal = $this->input->post('tanggal');
             $catatan = $this->input->post('keterangan');
+            $pembayaran = $this->input->post('pembayaran');
+
+
+
+            // ambil rekapan piutang berdasarkan no_ref
+            $historiRekapanPiutang = $this->M_data_piutang->getAllDataPiutang( $no_ref )[0]; 
+
           
 
             $config['upload_path']          = './assets/img/bukti-pembayaran/';
@@ -37,14 +47,25 @@
             }
 
 
+
+            
+            $status = "cicil";
+            $pelunasan = $historiRekapanPiutang['total_pelunasan'] + $pembayaran;
+            if ( $pelunasan == $historiRekapanPiutang['total_tagihan'] ) {
+
+                $status = "lunas";
+            }
+
+
             $data = array(
 
                 'no_ref'    => $no_ref,
                 'id_login'  => $id_login,
                 'jenis_pembayaran'  => $this->input->post('jenis_pembayaran'),
-                'pembayaran'        => $this->input->post('pembayaran'),
+                'pembayaran'        => $pembayaran,
                 'bukti_pembayaran'  => $bukti_pembayaran,
                 'tanggal_penagihan' => $tanggal,
+                'status_penagihan'  => $status,
                 'catatan'   => $catatan
             );
 
@@ -55,6 +76,7 @@
             // var_dump($query);
             // die;
 
+            
             // activity 
             $notes = "Menambahkan pembayaran sebesar ". $data['pembayaran'];
             $this->rekap_transaksi( $data['no_ref'], "tambah", $notes );

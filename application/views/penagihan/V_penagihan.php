@@ -151,7 +151,35 @@
                                             <?php if ( count($dataPiutang) > 0 ) { ?>
 
 
-                                            <?php $i = 1; foreach ( $dataPiutang AS $row ) { ?>
+                                            <?php 
+                                            
+                                            $sess_idlogin = $this->session->userdata('sess_idlogin');
+                                            $i = 1; foreach ( $dataPiutang AS $row ) {
+                                                
+                                                // if ( $dataPiutang['informasi'] )
+
+                                                $show = false;
+                                                if ( count( $row['informasi_penagihan'] ) > 0 ) {
+
+                                                    foreach ( $row['informasi_penagihan'] AS $rowPenagihan ) {
+
+                                                        if ( $rowPenagihan['id_login'] == $sess_idlogin ) {
+
+                                                            $show = true;
+                                                        }
+                                                    }
+
+                                                } else {
+
+
+                                                    $show = true;
+                                                }
+
+
+
+
+                                                if ( $show == true ) {
+                                            ?>
                                             <tr>
                                                 <td><?php echo $i++ ?></td>
                                                 <td>
@@ -207,7 +235,10 @@
                                                     <a href="<?php echo base_url('penagihan/detailPenagihan?no_ref='. $row['informasi_detail']['no_ref'])?>" class="btn btn-sm btn-primary btn-labeled"><i class="btn-label ti-pencil"></i> Buat Catatan Penagihan</a>
                                                 </td>
                                             </tr>
-                                            <?php }  // end foreach
+                                            <?php 
+                                            
+                                                    } // end show
+                                                }  // end foreach
                                         
                                             } else { ?>
                                             
