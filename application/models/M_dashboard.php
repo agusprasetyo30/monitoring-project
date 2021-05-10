@@ -10,27 +10,31 @@
         // notifikasi
         function cekDataNotifikasi() {
 
-            $this->db->select('user_login.username, penagihan.*')->from('penagihan');
-            $this->db->join('user_login', 'user_login.id_login = penagihan.id_login');
+            $sql="SELECT user_login.username, penagihan.* FROM penagihan
+            JOIN user_login ON user_login.id_login = penagihan.id_login";
 
-            $ambilDataPenagihan = $this->db->get();
+            $query = $this->db->query( $sql );
 
-            $data_notif = array();
+            return $query;
 
-            if ( $ambilDataPenagihan->num_rows() > 0 ) {
+            // $ambilDataPenagihan = $this->db->get();
 
-                foreach ( $ambilDataPenagihan->result_array() AS $notifikasi ) {
+            // $data_notif = array();
 
-                    echo '<h4>Notifikasi <small>'.$notifikasi['tanggal_penagihan'].'</small></h4>';
-                    echo 'Atas nama '. $notifikasi['username'].' telah melakukan penagihan kepada no_ref '. $notifikasi['no_ref'].'<br>';
-                    echo '<h2 style="margin: 0px">'.number_format($notifikasi['pembayaran']).'</h2>';
-                    echo 'Status tagihan : '. $notifikasi['status_penagihan'];
-                    echo '<hr>';
+            // if ( $ambilDataPenagihan->num_rows() > 0 ) {
+
+            //     foreach ( $ambilDataPenagihan->result_array() AS $notifikasi ) {
+
+            //         echo '<h4>Notifikasi <small>'.$notifikasi['tanggal_penagihan'].'</small></h4>';
+            //         echo 'Atas nama '. $notifikasi['username'].' telah melakukan penagihan kepada no_ref '. $notifikasi['no_ref'].'<br>';
+            //         echo '<h2 style="margin: 0px"; background-color:#FFEBCD>'.number_format($notifikasi['pembayaran']).'</h2>';
+            //         echo 'Status tagihan : '. $notifikasi['status_penagihan'];
+            //         echo '<hr>';
 
 
-                }
+            //     }
             }
-        }
+
 
 
 
@@ -114,6 +118,7 @@
 
             return array($totalPencabutan, $persentase);
         }
+        
 
 
 

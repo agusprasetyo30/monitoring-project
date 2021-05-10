@@ -40,7 +40,7 @@
                                     <span class="pad-ver text-main text-sm text-uppercase text-bold">Total Penagihan Masuk</span>
                                     <p class="text-sm">Periode <?php echo date('F Y') ?></p>
                                     <h3 class="text-success">Rp <?php echo number_format($totalPenagihan['bayar'], 2) ?></h3>
-                                    <a href="" class="btn btn-block btn-info mar-top">Rincian Detail</a>
+                                    <a href="<?php echo base_url('dashboard/ambilNotifikasi') ?>" class="btn btn-md btn-danger btn-labeled"><i class="btn-label ti-bell"></i>Cek Notifikasi</a>
                                 </div>
                                 <hr class="new-section-xs">
                                 <div class="pad-hor">
@@ -127,8 +127,8 @@
 					                        </div>
 					                    </div>
 					                </div>
-					                <button class="btn btn-pink mar-ver">View Details</button>
-					               
+					                <!-- <button class="btn btn-danger btn-labeled"><i class="btn-label ti-pencil"></i>Cek Notifikasi Penagihan</button>
+					                -->
 					            </div>
 					            <div class="col-md-7">
 									<div id="demo-morris-bar" style="height: 250px"></div>

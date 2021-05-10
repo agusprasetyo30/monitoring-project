@@ -102,7 +102,7 @@
 
                         <div class="row">
                         
-                            <div class="col-md-10 col-md-offset-1">
+                            <div class="col-md-11 col-md-offset-1">
                                 <div class="panel panel-body" style="border:1px solid #e0e0e0">
                                 
 
@@ -211,7 +211,7 @@
                                                                 if ( $row['total_pelunasan'] == 0 ) { 
 
                                                                     $labelColor = "label-default";
-                                                                    $text = "Belum Membayar";
+                                                                    $text = "pending";
 
                                                                 } else if ( $row['status_piutang'] == "lunas" ) {
 
