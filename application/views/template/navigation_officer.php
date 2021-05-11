@@ -56,7 +56,12 @@
 						                    <span class="menu-title">Laporan</span>
 						                </a>
 						            </li>
-
+									<?php
+										$sess_level = $this->session->userdata('sess_level');
+            							$sess_jabatan = $this->session->userdata('sess_jabatan');
+										
+									?>
+									<?php if ( $sess_level == "employee" || $sess_jabatan == "pegawai_kantor" ) { ?>
 									    <!--Menu list item-->
 										<li class="<?php echo $this->uri->segment(1) == "" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('setting') ?>">
@@ -65,6 +70,8 @@
 											<i class="arrow"></i>
 						                </a>
 
+										
+										
 										 <!--Submenu-->
 										 <ul class="collapse">
 										 
@@ -72,7 +79,9 @@
 											<li><a href="<?php echo base_url('setting') ?>">Pengaturan Password</a></li>
 											
 						                </ul>
+									
 						            </li>
 
 
                                 </ul>
+								<?php } ?>

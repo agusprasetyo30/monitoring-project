@@ -300,8 +300,8 @@
             }  
             
             // msg 
-            $msg = '<div class="alert alert-success"><b>Pegawai '.$text.' berhasil dihapus</b> <br>
-                Menambahkan pada tanggal '.date('d F Y H.i A').'
+            $msg = '<div class="alert alert-success"><b>Hapus data '.$text.' berhasil</b> <br>
+                Menghapus pada tanggal '.date('d F Y H.i A').'
             </div>';
             $this->session->set_flashdata('msg', $msg);
             redirect( $link );

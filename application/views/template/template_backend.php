@@ -444,10 +444,18 @@
 
     <script>
     
-        $('#table-domisili').dataTable();
-        $('#table-subdomisili').dataTable();
-        $('#table-jenis_pelanggan').dataTable();
-        $('#table-data_pelanggan').dataTable();
+        $('#table-domisili').dataTable({
+            "responsive": true,
+        });
+        $('#table-subdomisili').dataTable({
+            "responsive": true,
+        });
+        $('#table-jenis_pelanggan').dataTable({
+            "responsive": true,
+        });
+        $('#table-data_pelanggan').dataTable({
+            "responsive": true,
+        });
         $('#table-data_piutang').dataTable({
 
             "responsive": true,
