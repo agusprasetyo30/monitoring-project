@@ -61,10 +61,10 @@
 					        
 							<!---------------------------------->
 							<div class="col-sm-4 col-md-3">
-								<div class="panel panel-body" style="border : 1px solid #e0e0e0">
-									<!-- Contact Widget -->
-									<!---------------------------------->
-									<div class="panel pos-rel">
+									<div class="panel panel-body" style="border : 1px solid #e0e0e0; width:95%; height:290px; position : relative;">
+										<!-- Contact Widget -->
+										<!---------------------------------->
+										<div class="panel pos-rel" style="width:105%;">
 										<div class="pad-all text-center">
 											<div class="widget-control">
 												<div class="btn-group dropdown">

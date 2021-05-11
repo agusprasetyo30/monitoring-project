@@ -153,6 +153,7 @@
 
                                             <?php 
                                             
+                                            $sess_level = $this->session->userdata('sess_level');
                                             $sess_idlogin = $this->session->userdata('sess_idlogin');
                                             $sess_jabatan = $this->session->userdata('sess_jabatan');
                                             $i = 1; foreach ( $dataPiutang AS $row ) {
@@ -177,7 +178,7 @@
 
 
 
-                                                if ( $show == true || $sess_jabatan == "manajer" ) {
+                                                if ( $show == true || $sess_jabatan == "manajer" || $sess_jabatan="pegawai_kantor" || $sess_level="superadmin") {
                                             ?>
                                             <tr>
                                                 <td><?php echo $i++ ?></td>
@@ -231,7 +232,14 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <small>Lihat Lebih lanjut</small>
+                                                   <?php if ( $sess_jabatan != "manajer" && $sess_jabatan !="pegawai_kantor") {
+                                                    ?>
                                                     <a href="<?php echo base_url('penagihan/detailPenagihan?no_ref='. $row['informasi_detail']['no_ref'])?>" class="btn btn-sm btn-primary btn-labeled"><i class="btn-label ti-pencil"></i> Buat Catatan Penagihan</a>
+                                                    <?php
+                                                    } else{?>
+                                                    <a href="<?php echo base_url('penagihan/detailPenagihan?no_ref='. $row['informasi_detail']['no_ref'])?>" class="btn btn-sm btn-primary btn-labeled"><i class="btn-label ti-pencil"></i> Detail Catatan Penagihan</a>
+                                                    <?php } ?>
+                
                                                 </td>
                                             </tr>
                                             <?php 

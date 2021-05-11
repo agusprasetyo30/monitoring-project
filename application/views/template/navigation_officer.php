@@ -61,7 +61,7 @@
             							$sess_jabatan = $this->session->userdata('sess_jabatan');
 										
 									?>
-									<?php if ( $sess_level == "employee" || $sess_jabatan == "pegawai_kantor" ) { ?>
+									
 									    <!--Menu list item-->
 										<li class="<?php echo $this->uri->segment(1) == "" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('setting') ?>">
@@ -70,12 +70,12 @@
 											<i class="arrow"></i>
 						                </a>
 
-										
-										
+
 										 <!--Submenu-->
 										 <ul class="collapse">
-										 
+										 <?php if ( $sess_level == "employee" || $sess_jabatan == "pegawai_kantor" ) { ?>
 						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=pegawai_kantor&id=') ?>">Pengaturan Akun</a></li>
+											<?php }?>
 											<li><a href="<?php echo base_url('setting') ?>">Pengaturan Password</a></li>
 											
 						                </ul>
@@ -84,4 +84,4 @@
 
 
                                 </ul>
-								<?php } ?>
+		

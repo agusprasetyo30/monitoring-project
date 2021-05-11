@@ -81,13 +81,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="text-semibold">Kata sandi lama</label>
-                                    <input type="text" name="old-password" class="form-control input-sm" <?php echo $account['username'] ?>placeholder="kata sandi lama" required="" />
+                                    <input type="password" name="old-password" class="form-control input-sm" <?php echo $account['username'] ?>placeholder="kata sandi lama" required="" />
                                     <small>Masukkan kata sandi lama anda</small>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="text-semibold">Kata sandi baru</label>
-                                    <input type="text" name="new-password" class="form-control input-sm" placeholder="kata sandi baru" required="" />
+                                    <input type="password" name="new-password" class="form-control input-sm" placeholder="kata sandi baru" required="" />
                                     <small>Masukkan kata sandi baru</small>
                                 </div>
                                 <div class="form-group text-right">

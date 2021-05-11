@@ -277,12 +277,16 @@
                                     <?php
 											
 												$id_login = $this->session->userdata('sess_idlogin');
+                                                $sess_level = $this->session->userdata('sess_level');
 											?>
 
-                                    <li>
+                                    <li> 
+                                        <?php if($sess_level != "superadmin"){?> 
                                         <a href="<?php echo base_url('account/editAkun?jabatan='. $jabatan .'&id='.$id_login) ?>" class="list-group-item">
-                                            <i class="demo-pli-male icon-lg icon-fw"></i> Pengaturan Akun
+                                        
+                                        <i class="demo-pli-male icon-lg icon-fw"></i> Pengaturan Akun
                                         </a>
+                                        <?php } ?>
                                          <!--Submenu-->
 						                <ul class="collapse">
 						                    <li><a href="index.html">Dashboard 1</a></li>

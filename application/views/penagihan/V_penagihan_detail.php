@@ -62,7 +62,7 @@
 										
 										?>
 
-										<?php if ( $sess_jabatan != "manajer" ) { ?>
+										<?php if ( $sess_jabatan != "manajer" && $sess_jabatan!="pegawai_kantor") { ?>
 
 										<button data-target="<?php echo $data_target ?>" data-toggle="modal" class="btn btn-sm <?php echo $colorBtn ?>"><i class="fa fa-money"></i> <?php echo $textBtn ?></button>
 										

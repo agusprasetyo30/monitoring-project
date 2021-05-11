@@ -107,7 +107,7 @@
 
                                  
                                       <div class="col-md-12 text-right">
-                                      <button class="btn btn-sm btn-success btn-labeled"><a href="<?php echo base_url('account/editAkun?jabatan=manajer&id='. $row['id_login']) ?>"><i class="btn-label ti-pencil"></i>Sunting</a></button>
+                                      <button class="btn btn-sm btn-warning btn-labeled"><a href="<?php echo base_url('account/editAkun?jabatan=manajer&id='. $row['id_login']) ?>" style="color:#FFFFFF;"><i class="btn-label ti-pencil"></i>Sunting</a></button>
 					                </div>
 
 					            </div>
