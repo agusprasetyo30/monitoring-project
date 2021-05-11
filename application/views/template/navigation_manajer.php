@@ -41,7 +41,7 @@
 										 <!--Submenu-->
 										 <ul class="collapse">
 										 
-						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=manajer&id=') ?>">Pengaturan Akun</a></li>
+						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=manajer&id=') ?>">Pengaturan Profile</a></li>
 											<li><a href="<?php echo base_url('setting') ?>">Pengaturan Password</a></li>
 											
 						                </ul>

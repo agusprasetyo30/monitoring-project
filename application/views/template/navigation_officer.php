@@ -74,7 +74,7 @@
 										 <!--Submenu-->
 										 <ul class="collapse">
 										 <?php if ( $sess_level == "employee" || $sess_jabatan == "pegawai_kantor" ) { ?>
-						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=pegawai_kantor&id=') ?>">Pengaturan Akun</a></li>
+						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=pegawai_kantor&id=') ?>">Pengaturan Profile</a></li>
 											<?php }?>
 											<li><a href="<?php echo base_url('setting') ?>">Pengaturan Password</a></li>
 											

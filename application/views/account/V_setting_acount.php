@@ -17,7 +17,7 @@
         <ol class="breadcrumb">
         <li><a href="<?php echo base_url('dashboard') ?>"><i class="demo-pli-home"></i></a></li>
         <li><a href="<?php echo base_url('setting') ?>">Menu Pengaturan </a></li>
-        <li class="active">Pengaturan Akun</li>
+        <li class="active">Pengaturan Password</li>
         </ol>
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <!--End breadcrumb-->

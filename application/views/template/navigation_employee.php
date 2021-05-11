@@ -38,7 +38,7 @@
 												$id_login = $this->session->userdata('sess_idlogin');
 											?>
 
-						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=petugas_lapangan&id='. $id_login) ?>">Pengaturan Akun</a></li>
+						                    <li><a href="<?php echo base_url('account/editAkun?jabatan=petugas_lapangan&id='. $id_login) ?>">Pengaturan Profile</a></li>
 											<li><a href="<?php echo base_url('setting') ?>">Pengaturan Password</a></li>
 											
 						                </ul>
