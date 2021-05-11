@@ -33,7 +33,7 @@
         <!---------------------------------->
         <div class="row pad-btm">
             <div class="col-sm-6 toolbar-left">
-                <a href="<?php echo base_url('setting') ?>" id="demo-btn-addrow" class="btn btn-primary btn-labeled"><i class="btn-label ti-arrow-left"></i> Kembali ke halaman sebelumnya</a>
+                <a href="<?php echo base_url('dashboard') ?>" id="demo-btn-addrow" class="btn btn-primary btn-labeled"><i class="btn-label ti-arrow-left"></i> Kembali ke halaman sebelumnya</a>
             </div>
         </div>
         <!---------------------------------->

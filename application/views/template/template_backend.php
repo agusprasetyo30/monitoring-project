@@ -189,12 +189,16 @@
                                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                             </a>
 
-
+                            <?php
+								$sess_level = $this->session->userdata('sess_level');		
+							?>
                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right panel-default">
                                 <ul class="head-list">
+                                    <?php if($sess_level != "superadmin"){?>
                                     <li>
-                                        <a href="<?php //echo base_url('setting-account') ?>"><i class="demo-pli-male icon-lg icon-fw"></i> Profile</a>
+                                        <a href="<?php echo base_url('setting') ?>"><i class="demo-pli-male icon-lg icon-fw"></i> Profile</a>
                                     </li>
+                                    <?php } ?>
                                     <li>
                                         <a href="<?php echo base_url('login/processlogout') ?>"><i class="demo-pli-unlock icon-lg icon-fw"></i> Logout</a>
                                     </li>
