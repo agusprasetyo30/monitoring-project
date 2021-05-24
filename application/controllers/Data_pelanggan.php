@@ -20,7 +20,6 @@
 
             
             // load 
-            $this->load->model('M_jenis_pelanggan');
             $this->load->model('M_data_pelanggan');
             $this->load->model('M_domisili');
          
@@ -50,7 +49,7 @@
                 'view'      => "V_add_pelanggan"
             );
            
-            $data['master_jenis_pelanggan'] = $this->M_jenis_pelanggan->getDataTable(null, 'master_jenis_pelanggan')->result_array();
+        
             $data['master_domisili'] = $this->M_domisili->getDataTable(null, 'master_domisili')->result_array();
             $data['master_subdomisili'] = $this->M_domisili->getDataTable(null, 'master_subdomisili')->result_array();
             // var_dump($data);
@@ -74,7 +73,6 @@
 
            
             $data['hasil'] = $this->M_data_pelanggan->getDataTable( $id_pelanggan, 'data_pelanggan' )->result_array()[0];
-            $data['master_jenis_pelanggan'] = $this->M_jenis_pelanggan->getDataTable(null, 'master_jenis_pelanggan')->result_array();
             $data['master_domisili'] = $this->M_domisili->getDataTable(null, 'master_domisili')->result_array();
             $data['master_subdomisili'] = $this->M_domisili->getDataTable(null, 'master_subdomisili')->result_array();
             // var_dump($data);

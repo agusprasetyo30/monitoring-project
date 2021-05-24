@@ -134,7 +134,7 @@
 		<!--Chosen [ OPTIONAL ]-->
 			<script src="<?php echo base_url() ?>assets/plugins/chosen/chosen.jquery.min.js"></script>
 			<script>
-				$('#jen').chosen({width:'100%'});
+				// $('#jen').chosen({width:'100%'});
 				$('#dom').chosen({width:'100%'});
 				$('#sub').chosen({width:'100%'});
 			</script>

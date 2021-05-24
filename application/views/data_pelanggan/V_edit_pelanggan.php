@@ -73,17 +73,7 @@
 											
                                             <select data-placeholder="Choose a Country..." name="jenis" id="jen" tabindex="2">
 					                            <option value=""selected readonly>Pilih status pelanggan</option>
-												<?php
-													foreach ($master_jenis_pelanggan as $kolom => $value) {
-													
-														if($value['id_jenis_pelanggan'] == $hasil['id_jenis_pelanggan']) {?>
-														<option selected value="<?= $value['id_jenis_pelanggan']?>"><?= $value['nama_jenis']?></option>
-														<?php }else{?>
-															<option value="<?= $value['id_jenis_pelanggan']?>"><?= $value['nama_jenis']?></option>
-									
-												<?php 
-													} }
-												?>
+												
                                             </select>
 					                        </div>
 					                    </div> -->
@@ -160,7 +150,7 @@
 			<!--Chosen [ OPTIONAL ]-->
 			<script src="<?php echo base_url() ?>assets/plugins/chosen/chosen.jquery.min.js"></script>
 			<script>
-				$('#jen').chosen({width:'100%'});
+				// $('#jen').chosen({width:'100%'});
 				$('#dom').chosen({width:'100%'});
 				$('#sub').chosen({width:'100%'});
 			</script>
