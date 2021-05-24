@@ -262,7 +262,7 @@
 
 
                 // eksekusi insert
-                $this->M_data_pelanggan->importExcelDataPelanggan( $dataPelanggan, $dataPiutang );
+                $this->M_data_pelanggan->importExcelDataPelanggan( $dataPelanggan, $dataPiutang, $tahun );
                 
                 
                 // set flashdata

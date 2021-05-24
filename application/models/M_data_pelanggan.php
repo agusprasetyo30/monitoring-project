@@ -142,18 +142,110 @@
 
 
     // proses import excel 
-    function importExcelDataPelanggan( $dataPelanggan, $dataPiutang ) {
+    function importExcelDataPelanggan( $dataPelanggan, $dataPiutang, $tahun ) {
 
         if ( count( $dataPelanggan ) > 0 ) {
 
-            $this->db->insert_batch( "data_pelanggan", $dataPelanggan );
+            $newDataPelanggan = array();
+
+            $data = $this->db->get('data_pelanggan');
+            $jumlah_data = $data->num_rows();
+
+
+            if ( $jumlah_data > 0 ) {
+                
+                $data = $data->result_array();
+
+                // sorting data
+                usort($data, array($this, 'getSortingKodePelanggan'));
+
+                foreach ( $dataPelanggan AS $pelanggan ) {
+
+                    $pencarian = intval($pelanggan['no_ref']); // bulat
+
+                    $kiri = 0;
+                    $kanan = $jumlah_data - 1;
+                    $ditemukan = false;
+
+                    
+                    while ( $kiri <= $kanan ) {
+            
+                        $tengah = ceil( ($kiri + $kanan) / 2); // konversi bilangan desimal ke bulat
+                        $prediksi = intval($data[$tengah]["no_ref"]);
+                        
+                        if ( $pencarian == $prediksi) {
+                            
+                            $ditemukan = true;
+                            break;
+                            
+                        } else if ( $pencarian < $prediksi ) {
+                            
+                            $kanan = $tengah - 1;
+                        } else {
+                            
+                        $kiri = $tengah + 1; 
+                        }
+                    }
+
+
+                    if ( $ditemukan == false ) {
+
+                        array_push( $newDataPelanggan, $pelanggan );
+                    }
+                }
+                
+
+                // insert batch with algoritm binary searching
+                // print_r( $newDataPelanggan );
+                if ( count( $newDataPelanggan ) > 0 ) {
+
+                    $this->db->insert_batch( "data_pelanggan", $newDataPelanggan );
+                }
+            } else {
+
+                // do insert without search with algorithm binary because table is empty
+                $this->db->insert_batch( "data_pelanggan", $dataPelanggan );
+            }
         }
 
 
         if ( count( $dataPiutang ) > 0 ) {
 
-            $this->db->insert_batch( "piutang", $dataPiutang );
+            
+            $newPiutang = array();
+            // sequential 
+            foreach ( $dataPiutang AS $piutang ) {
+
+                $where = array(
+
+                    'no_ref'=> $piutang['no_ref'],
+                    'tahun' => $tahun,
+                    'bulan' => $piutang['bulan']
+                );
+                $query = $this->db->get_where('piutang', $where);
+
+
+                if ( $query->num_rows() == 0 ) {
+                    // setujui insert data
+                    array_push( $newPiutang, $piutang );
+                }
+            }
+
+            if ( count( $newPiutang ) > 0 ) {
+
+                $this->db->insert_batch( "piutang", $dataPiutang );
+            }
         }
+    }
+
+
+
+
+
+    // sorting data
+    function getSortingKodePelanggan( $a, $b ){
+
+        return strcmp( intval($a["no_ref"]), intval($b["no_ref"]) );
     }
     
     

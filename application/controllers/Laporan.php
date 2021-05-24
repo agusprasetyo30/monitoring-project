@@ -827,7 +827,8 @@
 
                     // BAGIAN PIUTANG 
                     $nominal = "";
-                    $grandtotal = $row['total_tagihan'];
+                    // $grandtotal = $row['total_tagihan'];
+                    $grandtotal = 0;
                     $keterangan = "";
                     $alasan     = "";
 
@@ -864,6 +865,10 @@
                             $spreadsheet->getActiveSheet()->getStyle($posisi_bulan[ $index ] . $baris)->getFont()->setBold(false); // set bold
                             $spreadsheet->getActiveSheet()->getStyle($posisi_bulan[ $index ] . $baris)->applyFromArray($style_angka);
 
+                            // grandtotal
+                            $grandtotal = $grandtotal + $rowPiutang['nominal'];
+                            
+
                             $keterangan = $rowPiutang['keterangan'];
                             $alasan     = $rowPiutang['alasan'];
                         }
@@ -872,7 +877,7 @@
 
 
                     // grandtotal
-                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('R' . $baris, $grandtotal);
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('R' . $baris, ($grandtotal == 0) ? "" : $grandtotal);
                     $spreadsheet->getActiveSheet()->getStyle('R' . $baris)->getFont()->setBold(false); // set bold
                     $spreadsheet->getActiveSheet()->getStyle('R' . $baris)->applyFromArray($style_angka);
 
