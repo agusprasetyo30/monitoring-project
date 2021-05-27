@@ -41,6 +41,13 @@
 						                </a>
 						            </li>
 
+									<li class="<?php echo $this->uri->segment(3) == "penugasan" ? 'active-sub' : '' ?>">
+						                <a href="<?php echo base_url('penugasan') ?>">
+						                    <i class="demo-pli-file-add"></i>
+						                    <span class="menu-title">Penugasan</span>
+						                </a>
+						            </li>
+
 									  <!--Menu list item-->
 									  <li class="<?php echo $this->uri->segment(1) == "penagihan" ? 'active-sub' : '' ?>">
 						                <a href="<?php echo base_url('penagihan') ?>">

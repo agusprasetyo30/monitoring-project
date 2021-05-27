@@ -39,6 +39,23 @@
             // $query = $this->db->get();
         }
 
+        function getDataOfficerByJabatan($id_officer = null){
+            if($id_officer){
+                $sql = "SELECT user_officer.id_officer, user_officer.name
+                FROM user_officer
+                WHERE user_officer.jabatan = 'petugas_lapangan'";
+            } else { 
+                $sql = "SELECT user_officer.id_officer, user_officer.name
+                FROM user_officer";
+            }
+            
+            $query = $this->db->query($sql);
+
+            return $query;
+            }
+
+        
+
 
         // fungsi insert
         function insertDataOfficer() {
@@ -320,6 +337,7 @@
         }
         
     }
+    
     
     /* End of file M_account.php */
     

@@ -110,7 +110,7 @@
                                         <div class="col-md-6">
                                         
                                             <h5>Daftar Piutang</h5>
-                                            <small>Penjelasan . . .</small> <br><br>
+                                            <small>Penagihan piutang pelanggan</small> <br><br>
                                         </div>
                                         <div class="col-md-6">
                                             <small>Lihat Berdasarkan : </small> <br>
