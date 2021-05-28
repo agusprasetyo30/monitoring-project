@@ -33,6 +33,31 @@
 
             }
 
+
+             // proses insert ke db
+            function insertDataPenugasan() {
+
+                // $id_pelanggan =  $this->input->post('id_domisili');
+
+                $data = array(
+
+                    'id_officer' => $this->input->post('officer') ,
+                    'id_pelanggan'=> $this->input->post('pelanggan'),
+
+                );
+
+                // query insert
+                $this->db->insert('penugasan', $data);
+                
+                
+                // flashdata
+                $this->session->set_flashdata('msg', 'tambah');
+
+                // kembali ke halaman
+                redirect('penugasan');
+        }
+
+
     }
     
     /* End of file M_dashboard.php */

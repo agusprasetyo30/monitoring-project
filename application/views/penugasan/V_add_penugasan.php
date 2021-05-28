@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-body" style="border: 1px solid #e0e0e0">
-                            
+                            <form action="<?php echo base_url('penugasan/prosesTambahPenugasan') ?>" method="POST">
                                 <p class="text-main text-semibold">Data Penugasan</p>
                                       <h9> *Pilih Petugas</h9><br>
                                     
@@ -36,7 +36,7 @@
                                         <!-- Multiple Select Choosen -->
                                         <!--===================================================-->
                                         <h9> *Pilih Data Pelanggan</h9><br>
-                                        <select class="selectpicker" multiple title="Pilih data pelanggan..." data-width="100%">
+                                        <select class="selectpicker" name="pelanggan" multiple title="Pilih data pelanggan..." data-width="100%">
                                         <option value=""selected readonly>Pilih pelanggan</option>
                                             <?php
 											foreach ($data_pelanggan as $kolom => $value) { ?>
@@ -46,10 +46,8 @@
                                             ?>  
                                         </select>
 
-
-
                                     <br><br>
-                                    <form action="<?php echo base_url('penugasan/pilihPenugasan') ?>" method="POST">
+                                    
 
                                       <div class="col-md-12 text-right">
                                       <button class="btn btn-sm btn-success btn-labeled"><i class="btn-label ti-check"></i>Submit</button>
