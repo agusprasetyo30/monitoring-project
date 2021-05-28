@@ -12,7 +12,9 @@
 
             if($id_penugasan){
 
-            $sql="SELECT penugasan.id_penugasan, penugasan.id_pelanggan, penugasan.id_officer, data_pelanggan.no_ref, data_pelanggan.nama, 
+            $sql="SELECT 
+            COUNT(penugasan.id_pelanggan) AS jumlah_pelanggan, 
+            penugasan.id_penugasan, penugasan.id_officer, data_pelanggan.no_ref, data_pelanggan.nama, 
             data_pelanggan.alamat, user_officer.id_officer, user_officer.name 
             FROM penugasan 
             JOIN user_officer ON penugasan.id_officer = user_officer.id_officer
@@ -43,6 +45,7 @@
 
                     'id_officer' => $this->input->post('officer') ,
                     'id_pelanggan'=> $this->input->post('pelanggan'),
+                    
 
                 );
 

@@ -23,7 +23,7 @@
 
                                 <hr>
 
-                                <table class="table" id="table-data_piutang">
+                                <table class="table" id="table-penugasan">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -33,11 +33,14 @@
                                             <th>Action</th>
                                         </tr>
                                     <tbody>
+                                    
+                                    <!-- //Ambil datanya -->
+                                    <?php $no = 1; foreach ( $penugasan AS $kolom ) { ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>wwwwww</td>
-                                            <td>eeeeeeee</td>
-                                            <td>ttt</td>
+                                            <td><?php echo $no++ ?></td>
+                                            <td><?php echo $kolom['name'] ?></td>
+                                            <td>0</td>
+                                            <td><?php echo $kolom['nama'] ?></td>
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
@@ -46,7 +49,9 @@
                                                     </td>     
                                                 </div>
                                             </tr>
-                                        </tbody>
+                                    <?php } ?>
+                                    
+                                    </tbody>
 
                                     </thead>
                                 </table>
