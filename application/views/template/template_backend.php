@@ -41,6 +41,14 @@
     <!--Nifty Stylesheet [ REQUIRED ]-->
     <link href="<?php echo base_url() ?>assets/css/nifty.min.css" rel="stylesheet">
 
+     <!--Bootstrap Select [ OPTIONAL ]-->
+     <link href="<?php echo base_url() ?>assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+    
+    <!--Select2 [ OPTIONAL ]-->
+    <link href="<?php echo base_url() ?>assets/plugins/select2/css/select2.min.css" rel="stylesheet">
+
+    <!--Chosen [ OPTIONAL ]-->
+    <link href="<?php echo base_url() ?>assets/plugins/chosen/chosen.min.css" rel="stylesheet">
 
     <!--Nifty Premium Icon [ DEMONSTRATION ]-->
     <link href="<?php echo base_url() ?>assets/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
