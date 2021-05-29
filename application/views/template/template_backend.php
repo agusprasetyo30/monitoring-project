@@ -476,6 +476,10 @@
 
             "responsive": true,
         });
+        // $('#table-penugasan').dataTable({
+
+        //     "responsive": true,
+        //     });
     </script>
 
 

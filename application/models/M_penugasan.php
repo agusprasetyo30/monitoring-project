@@ -37,7 +37,7 @@
              // proses insert ke db
             function insertDataPenugasan() {
 
-                // $id_pelanggan =  $this->input->post('id_domisili');
+
 
                 $data = array(
 
@@ -56,6 +56,39 @@
                 // kembali ke halaman
                 redirect('penugasan');
         }
+
+        function editDataPenugasan() {
+
+            $id = $this->input->post('id');
+
+            $data = array(
+
+                'id_officer' => $this->input->post('officer') ,
+                'id_pelanggan'=> $this->input->post('pelanggan'),
+
+            );
+
+            // query insert
+            $this->db->where('id_penugasan', $id);
+            $this->db->update('penugasan', $data);
+            
+            
+            // flashdata
+            $this->session->set_flashdata('msg', 'ubah');
+
+            // kembali ke halaman
+            redirect('penugasan');
+        }
+
+        function deleteDataPenugasan($id_penugasan) {
+
+            $where = ['id_penugasan' => $id_penugasan];
+            $this->db->where( $where )->delete('penugasan');
+                // flashdata
+                $this->session->set_flashdata('msg', 'hapus');
+                // kembali ke halaman
+                redirect('penugasan');
+    }
 
 
     }

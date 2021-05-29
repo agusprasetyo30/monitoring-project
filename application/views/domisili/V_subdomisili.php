@@ -101,8 +101,9 @@
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                    <button data-target="#hapus-subdomisili-<?php echo $kolom['id_subdomisili'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-danger">Hapus</button>
-                                                    <button data-target="#sunting-subdomisili-<?php echo $kolom['id_subdomisili'] ?>" data-toggle="modal" class="btn btn-sm btn-default btn-active-warning">Sunting</button>
+                                                <button data-target="#sunting-subdomisili-<?php echo $kolom['id_subdomisili'] ?>" data-toggle="modal" class="btn btn-sm btn-warning btn-labeled"><i class="btn-label ti-pencil"></i>Sunting</button>
+                                                    <button data-target="#hapus-subdomisili-<?php echo $kolom['id_subdomisili'] ?>" data-toggle="modal" class="btn btn-sm btn-danger btn-labeled" ><i class="btn-label ti-trash"></i>Hapus</button>
+                                                    
                                                     
                                                 </div>
 

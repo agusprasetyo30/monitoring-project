@@ -18,17 +18,28 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-body" style="border: 1px solid #e0e0e0">
-                            <form action="<?php echo base_url('penugasan/prosesTambahPenugasan') ?>" method="POST">
+                            <form class="form-horizontal" action="<?php echo base_url('penugasan/prosesSuntingPenugasan/'.$hasil['id_penugasan']) ?>" method="POST" enctype="multipart/form-data">
                                 <p class="text-main text-semibold">Data Penugasan</p>
+
+                                <input type="hidden" name="id" value="<?php echo $hasil['id_penugasan'] ?>">
                                       <h9> *Pilih Petugas</h9><br>
                                     
                                       <select id="off" name="officer" required="">
+                                      
                                       <option value=""selected readonly>Pilih petugas lapangan</option>
                                       <?php
-											foreach ($user_officer as $kolom => $value) { ?>
-												<option value="<?= $value['id_officer']?>"> <?= $value['name']?></option>
-											<?php 
-											}
+											foreach ($user_officer as $kolom => $value) {
+                                                
+                                                if($value['id_officer'] == $hasil['id_officer']) {?>
+
+                                                    <option selected value="<?= $value['id_officer']?>"><?= $value['name'] ?></option>
+														<?php }else{?>
+															<option value="<?= $value['id_officer']?>"><?= $value['name']?></option>
+									
+												<?php 
+													} }
+
+
                                             ?>  
                                       </select>
                                       
@@ -37,12 +48,17 @@
                                         <!--===================================================-->
                                         <h9> *Pilih Data Pelanggan</h9><br>
                                         <select class="selectpicker" name="pelanggan" multiple title="Pilih pelanggan" data-width="100%" >
-                                        
+  
                                             <?php
-											foreach ($data_pelanggan as $kolom => $value) { ?>
+											foreach ($data_pelanggan as $kolom => $value) { 
+
+                                            if($value['id_pelanggan'] == $hasil['id_pelanggan']) {?>
+
+                                                <option selected value="<?= $value['id_pelanggan']?>"><?= $value['no_ref']." - ".$value['nama']." - ".$value['alamat'] ?></option>
+														<?php }else{?>
 												<option value="<?= $value['id_pelanggan']?>"> <?= $value['no_ref']." - ".$value['nama']." - ".$value['alamat'] ?></option>
 											<?php 
-											}
+											} }
                                             ?>  
                                         </select>
 
@@ -50,7 +66,7 @@
                                     
 
                                       <div class="col-md-12 text-right">
-                                      <button class="btn btn-sm btn-success btn-labeled"><i class="btn-label ti-check"></i>Submit</button>
+                                      <button class="btn btn-sm btn-success btn-labeled"><i class="btn-label ti-check"></i>Simpan dan Perbarui</button>
 					                </div>
 
 					        </div>
@@ -114,10 +130,6 @@
                                     </thead>
                                 </table>
 
-                                <div class="col-md-12 text-right">
-                                      <button class="btn btn-sm btn-success btn-labeled"><i class="btn-label ti-check"></i>Submit</button>
-					                </div>
-                    
                    
                             </div>
                             <!-- </form> -->
