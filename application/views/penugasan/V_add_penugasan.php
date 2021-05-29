@@ -4,8 +4,8 @@
                 <div id="page-head">
                     
                     <div class="pad-all text-center">
-                        <h3>PENUGASAN</h3>
-                        <p1>Data penugasan penagihan terhadap petugas lapangan</p>
+                        <h3>DETAIL PENUGASAN</h3>
+                       
                     </div>
                 </div>
 
@@ -36,8 +36,8 @@
                                         <!-- Multiple Select Choosen -->
                                         <!--===================================================-->
                                         <h9> *Pilih Data Pelanggan</h9><br>
-                                        <select class="selectpicker" name="pelanggan" multiple title="Pilih data pelanggan..." data-width="100%">
-                                        <option value=""selected readonly>Pilih pelanggan</option>
+                                        <select class="selectpicker" name="pelanggan" multiple title="Pilih pelanggan" data-width="100%" >
+                                        
                                             <?php
 											foreach ($data_pelanggan as $kolom => $value) { ?>
 												<option value="<?= $value['id_pelanggan']?>"> <?= $value['no_ref']." - ".$value['nama']." - ".$value['alamat'] ?></option>
@@ -47,6 +47,54 @@
                                         </select>
 
                                     <br><br>
+
+                            
+                            <!-- Tampilan OPSI 2 -->
+                            <div class="col-md-12 col-md-offset">
+                                <div class="panel panel-body" style="border: 1px solid #e0e0e0">
+                                <br>
+                                <p class="text-main text-semibold">Pilih Pelanggan</p>
+                                <label class="badge badge-info">Filter berdasarkan</label>
+                                            <div class="select">
+                                                <select data-placeholder="Pilih berdasarkan..." id="demo-ease" name="wilayah">
+                                                <option value=""selected readonly>Pilih wilayah</option>
+                                                <option value=""> Kelurahan</option>
+                                                <option value="">Kecamatan</option>
+    
+                                                </select>
+                                            </div>
+                                
+                                    <table class="table" id="table-penugasan">
+                                        <thead>
+                                        <tr>
+					                            <th data-field="state" data-checkbox="true"></th>
+					                            <th data-field="id" data-switchable="false">No</th>
+					                            <th data-field="name">Nama</th>
+					                            <th data-field="date">Alamat</th>
+					                        </tr>
+                                        <tbody>
+
+                                        <?php $no = 1; foreach ( $data_pelanggan AS $kolom ) { ?>
+                                        <tr>
+                                        <td>        
+                                            <input type="checkbox" id="demo-checkbox-1" name="pelanggan" value="<?php echo $kolom['id_pelanggan']?>" alt="Checkbox" class="magic-checkbox" >
+                                            <label for="demo-checkbox-1"> </label>
+                
+                                        </td>
+                                                <td><?php echo $no++ ?></td>
+                                                <td> <label for=""><?php echo $kolom['nama'] ?></label></td>
+                                                <td> <label for=""><?php echo $kolom['no_ref'] ?></label></td>
+                                                <td><label for=""><?php echo $kolom['alamat'] ?></label></td>
+                                        
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+
+                                        </thead>
+                                    </table>
+                                </div>
+                                <!-- </form> -->
+                            </div>
                                     
 
                                       <div class="col-md-12 text-right">
@@ -60,8 +108,10 @@
                     </div>
 					            <!--===================================================-->
 					            <!--End Panel 1-->
+
+                </div>
                                                     
-                    </div>
+                  
 
                     
 

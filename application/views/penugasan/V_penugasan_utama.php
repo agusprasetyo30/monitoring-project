@@ -23,35 +23,40 @@
 
                                 <hr>
 
+                          
+                            
+
                                 <table class="table" id="table-penugasan">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Petugas Lapangan</th>
-                                            <th>Jumlah Penugasan</th>
                                             <th>Nama Pelanggan</th>
+                                            <th>Jumlah Penugasan</th>
                                             <th>Action</th>
                                         </tr>
                                     <tbody>
-                                    
-                                    <!-- //Ambil datanya -->
-                                    <?php $no = 1; foreach ( $penugasan AS $kolom ) { ?>
+                                    <?php foreach ( $penugasan->result_array() AS $kolom ) { ?>
                                         <tr>
-                                            <td><?php echo $no++ ?></td>
-                                            <td><?php echo $kolom['name'] ?></td>
-                                            <td>0</td>
-                                            <td><?php echo $kolom['nama'] ?></td>
+                                            <td>1</td>
+                                            <td>  <label for=""><?php echo $kolom['name'] ?></label></td>
+                                          
+                                            <td> <label for=""><?php echo $kolom['nama'] ?></label></td>
+                                            <td>12</td>
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                    <a href=""class="btn btn-sm btn-warning btn-labeled"><i class="demo-psi-pencil icon-lg"></i></a>
-                                                    <button class="btn btn-sm btn-danger btn-labeled" ><i class="demo-psi-trash icon-lg"></i></button>
+                                                <a href="<?php echo base_url('penugasan/suntingPenugasan/').$kolom['id_penugasan'] ?>"class="btn btn-sm btn-warning btn-labeled"><i class="demo-psi-pencil icon-lg"></i></a>
+                                                  
+
+                                                    <a href="<?php echo base_url('penugasan/prosesHapusPenugasan/'. $kolom['id_penugasan']) ?>"
+												    onclick="return confirm('Apakah anda yakin ingin menghapus penugasan <?php echo $kolom['name'] ?>')" class="btn btn-sm btn-danger btn-labeled" ><i class="demo-psi-trash icon-lg"></i></a>
+                                                </div>
                                                     </td>     
                                                 </div>
                                             </tr>
-                                    <?php } ?>
-                                    
-                                    </tbody>
+                                            <?php } ?>
+                                        </tbody>
 
                                     </thead>
                                 </table>
@@ -61,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
                     
 
             <script src="<?php echo base_url() ?>assets/plugins/chosen/chosen.jquery.min.js"></script>

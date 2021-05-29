@@ -18,7 +18,7 @@
 
         public function index(){
 
-            $dataPenugasan = $this->M_penugasan->getDataTable(null, 'penugasan')->result_array();
+            $dataPenugasan = $this->M_penugasan->getDataTable(null, 'penugasan');
             
             $data = array(
 
@@ -37,11 +37,14 @@
 
 
         function tambahPenugasan(){
-            $dataPenugasan = $this->M_penugasan->getDataTable(null, 'penugasan')->result_array();
+            $dataPenugasan = $this->M_penugasan->getDataTable(null, 'penugasan');
+            
             $data = array(
 
                 'folder'    => "penugasan",
-                'view'      => "V_add_penugasan"
+                'view'      => "V_add_penugasan",
+
+                'penugasan' => $dataPenugasan,
             );
             
             $data['user_officer'] = $this->M_account->getDataOfficerByJabatan(null, 'user_officer')->result_array();
@@ -55,21 +58,44 @@
             $this->M_penugasan->insertDataPenugasan();
         }
 
+        
+        function suntingPenugasan($id_penugasan){
 
-        // public function pilihPenugasan(){
+            $dataPenugasan = $this->M_penugasan->getDataTable(null, 'penugasan');
+          
+            $data = array(
 
-        //     $data['data_pelanggan'] = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan')->result_array();
-        //     $data = array(
+                'folder'    => "penugasan",
+                'view'      => "V_edit_penugasan",
 
-        //         'folder'    => "penugasan",
-        //         'view'      => "V_penugasan_pelanggan",
+                'penugasan' => $dataPenugasan,
+            );
+            
+            $data['hasil'] = $this->M_penugasan->getDataTable( $id_penugasan, 'penugasan' )->result_array()[0];
+            $data['user_officer'] = $this->M_account->getDataOfficerByJabatan(null, 'user_officer')->result_array();
+            $data['data_pelanggan'] = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan')->result_array();
+            $this->load->view('template/template_backend', $data);
+        }
 
-        //     );
+          // proses tambah pelanggan
+          function prosesSuntingPenugasan($id_penugasan) {
+       
+            $this->M_penugasan->editDataPenugasan($id_penugasan);
+        }
 
-        //     $this->load->view('template/template_backend', $data);
+
+        // function getPelanggan(){
+        //     $petugas =$this->input->post('id_officer');
+        //     $data=$this->M_penugasan->getPelanggan($petugas)->result();
+        //     foreach ($data as $result) {
+        //         $value[] = (float) $result->id_pelanggan;
+        //     }
+        //     echo json_encode($value);
         // }
 
-      
+        function prosesHapusPenugasan( $id_penugasan )  {
+            $this->M_penugasan->deleteDataPenugasan( $id_penugasan );
+        }
 
     }
     
