@@ -49,7 +49,6 @@
                                 ?>
 
                                 <div class="row">
-                                
                                     <div class="col-sm-5">
                                     
                                         Lihat Wilayah
@@ -98,6 +97,11 @@
 					    </div>
 					    <!---------------------------------->
 
+                        <div class="row">
+                            <div class="col-md-11 col-md-offset-1">
+                                <a href="<?php echo base_url('penagihan/recordPenagihan') ?>" class="btn btn-sm btn-danger btn-labeled"><i class="btn-label ti-file"></i>Lihat Record Penagihan</a>
+                            </div>
+                        </div><br>
 
 
                         <div class="row">
@@ -227,6 +231,8 @@
                                                             ?>
 
                                                             <label class="label <?php echo $labelColor ?>">Status Penagihan : <?php echo $text ?></label>
+                                                            <small>Telah ditagih oleh : Daniel</small>
+
                                                         </div>
                                                     </div>
                                                 </td>
@@ -241,7 +247,6 @@
                                                 }  // end foreach
                                         
                                             } else { ?>
-                                            
                                             <tr>
                                             
                                                 <td colspan="3">

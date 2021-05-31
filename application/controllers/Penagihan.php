@@ -152,6 +152,16 @@
             
         }
 
+        function recordPenagihan(){
+            $data = array(
+
+                'folder'    => "penagihan",
+                'view'      => "V_record_penagihan",
+
+            );
+            $this->load->view('template/template_backend', $data);
+        }
+
 
 
 
