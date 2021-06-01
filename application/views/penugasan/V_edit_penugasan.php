@@ -25,16 +25,10 @@
 
 						<input type="hidden" name="id" value="<?php echo $hasil[0]['id_officer'] ?>">
 
-						<h1><?php echo $hasil[0]['name'] ?></h1>
+						<h4><?php echo $hasil[0]['name'] ?></h4>
 						<p>Wilayah Penugasan <?php echo $hasil[0]['wilayah_penugasan'] ?></p>
 
 						<br><br>
-
-                        <div class="col-md-12 text-right">
-					<button class="btn btn-sm btn-success btn-labeled"><i class="btn-label ti-check"></i>Simpan dan
-						Perbarui</button>
-				</div>
-
 
 				</div>
 
@@ -45,7 +39,7 @@
 	<!--End Panel 1-->
 
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
+		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-body" style="border: 1px solid #e0e0e0">
 				<br>
 				<!-- <form action="" method="POST"> -->
@@ -78,13 +72,9 @@
 					</select>
 				</div>
 
-                
 
 
 				<hr>
-
-
-
 
 
 				<table class="table" id="">
@@ -122,12 +112,7 @@
                                             $data = $data_pelanggan;
                                         }
 
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
+                                    
                                         
                                         foreach ( $data AS $kolom ) {
                                             
@@ -176,16 +161,19 @@
 						</tr>
 						<?php } ?>
 					</tbody>
-
-                    
-                    </form>
+					
 				</table>
-				
-
+				<br>
+				<div class="col-md-12 text-right">
+						<button class="btn btn-sm btn-success btn-labeled"><i class="btn-label ti-check"></i>Simpan dan	Perbarui
+						</button>
+				</div>
+				</form>
 			</div>
                         
 			
 		</div>
+		
 	</div>
 </div>
 

@@ -36,9 +36,12 @@
                                             <th>Action</th>
                                         </tr>
                                     <tbody>
-                                    <?php foreach ( $penugasan->result_array() AS $kolom ) { ?>
+                                 
+                                    <?php 
+                                           $nomor = 1;
+                                    foreach ( $penugasan->result_array() AS $kolom ) { ?>
                                         <tr>
-                                            <td>1</td>
+                                            <td><?php echo $nomor++ ?></td>
                                             <td>  <label for=""><?php echo $kolom['name'] ?></label></td>
                                           
                                             <td> <label for=""><?php echo $kolom['nama'] ?></label></td>
