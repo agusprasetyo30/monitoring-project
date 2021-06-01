@@ -5,19 +5,49 @@
     
     class M_penugasan extends CI_Model {
 
+        function __construct() {
 
 
-        // notifikasi
-        function getDataTable($id_penugasan = null) {
+            
+        }
 
-            if($id_penugasan){
+
+
+        function getDataPenugasan(){
+
+            return $this->db->get('penugasan');
+        }
+
+
+        function getPenugasanByIdOfficer() {
+
+            $id_login = $this->session->userdata('sess_idlogin');
+            $dataOfficer = $this->db->get_where('user_officer', ['id_login' => $id_login])->row_array();
+
+
+            $id_officer = $dataOfficer['id_officer'];
+            $sql = "SELECT data_pelanggan.*, penugasan.* FROM penugasan 
+                    JOIN data_pelanggan ON data_pelanggan.id_pelanggan = penugasan.id_pelanggan
+                    
+                    
+                    WHERE penugasan.id_officer = '$id_officer'";
+            
+            $dataPenugasan = $this->db->query( $sql );
+            return $dataPenugasan;
+        }
+
+
+        
+        function getDataTable($id_officer = null) {
+
+            if($id_officer){
 
             $sql="SELECT penugasan.id_penugasan, penugasan.id_pelanggan, penugasan.id_officer, data_pelanggan.no_ref, data_pelanggan.nama, 
-            data_pelanggan.alamat, user_officer.id_officer, user_officer.name 
+            data_pelanggan.alamat, user_officer.id_officer, user_officer.name, user_officer.wilayah_penugasan 
             FROM penugasan 
             JOIN user_officer ON penugasan.id_officer = user_officer.id_officer
             JOIN data_pelanggan ON penugasan.id_pelanggan = data_pelanggan.id_pelanggan 
-            WHERE penugasan.id_penugasan = '$id_penugasan'";
+            WHERE penugasan.id_officer = '$id_officer'";
             } else{
                 $sql="SELECT penugasan.id_penugasan, penugasan.id_pelanggan, penugasan.id_officer, data_pelanggan.no_ref, data_pelanggan.nama, 
                 data_pelanggan.alamat, user_officer.id_officer, user_officer.name 
@@ -38,16 +68,21 @@
             function insertDataPenugasan() {
 
 
+                $data = array();
+                $id_pelanggan = $this->input->post('pelanggan');
+                foreach ( $id_pelanggan AS $pelanggan ) {
 
-                $data = array(
+                    array_push( $data, array(
 
-                    'id_officer' => $this->input->post('officer') ,
-                    'id_pelanggan'=> $this->input->post('pelanggan'),
+                        'id_officer' => $this->input->post('officer') ,
+                        'id_pelanggan'=> $pelanggan,
+                    ) );
+                }
 
-                );
 
                 // query insert
-                $this->db->insert('penugasan', $data);
+                // $this->db->insert('penugasan', $data);
+                $this->db->insert_batch( 'penugasan', $data );
                 
                 
                 // flashdata
@@ -59,24 +94,32 @@
 
         function editDataPenugasan() {
 
-            $id = $this->input->post('id');
+            $id = $this->input->post('id'); // id officer
 
-            $data = array(
+            // hapus data lama
+            $this->db->where('id_officer', $id)->delete('penugasan');
 
-                'id_officer' => $this->input->post('officer') ,
-                'id_pelanggan'=> $this->input->post('pelanggan'),
 
-            );
+            // set data baru
+            $data = array();
+                $id_pelanggan = $this->input->post('pelanggan');
+                foreach ( $id_pelanggan AS $pelanggan ) {
 
+                    array_push( $data, array(
+
+                        'id_officer' => $id,
+                        'id_pelanggan'=> $pelanggan,
+                    ) );
+                }
+            
             // query insert
-            $this->db->where('id_penugasan', $id);
-            $this->db->update('penugasan', $data);
-            
-            
-            // flashdata
+            $this->db->insert_batch( 'penugasan', $data );
+                
+                            
+            // // flashdata
             $this->session->set_flashdata('msg', 'ubah');
 
-            // kembali ke halaman
+            // // kembali ke halaman
             redirect('penugasan');
         }
 

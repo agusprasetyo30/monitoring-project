@@ -31,20 +31,6 @@
 											}
                                             ?>  
                                       </select>
-                                      
-                                      <br><br>
-                                        <!-- Multiple Select Choosen -->
-                                        <!--===================================================-->
-                                        <h9> *Pilih Data Pelanggan</h9><br>
-                                        <select class="selectpicker" name="pelanggan" multiple title="Pilih pelanggan" data-width="100%" >
-                                        
-                                            <?php
-											foreach ($data_pelanggan as $kolom => $value) { ?>
-												<option value="<?= $value['id_pelanggan']?>"> <?= $value['no_ref']." - ".$value['nama']." - ".$value['alamat'] ?></option>
-											<?php 
-											}
-                                            ?>  
-                                        </select>
 
                                     <br><br>
 
@@ -54,16 +40,32 @@
                                 <div class="panel panel-body" style="border: 1px solid #e0e0e0">
                                 <br>
                                 <p class="text-main text-semibold">Pilih Pelanggan</p>
-                                <label class="badge badge-info">Filter berdasarkan</label>
+                                <label class="badge badge-info">Filter berdasarkan</label> <br>
                                             <div class="select">
-                                                <select data-placeholder="Pilih berdasarkan..." id="demo-ease" name="wilayah">
+                                                <select data-placeholder="Pilih berdasarkan..." id="demo-ease" name="wilayah" onchange="cariPelanggan(this.value)">
                                                 <option value=""selected readonly>Pilih wilayah</option>
-                                                <option value=""> Kelurahan</option>
-                                                <option value="">Kecamatan</option>
+                                                
+                                                <?php foreach ( $sub_domisili->result_array() AS $subdomi ) {
+                                                    
+                                                    $filter_subdomisili = $this->input->get('sub-domisili');    
+                                                    $select = "";
+
+
+                                                    if ( $filter_subdomisili == $subdomi['id_subdomisili'] ) {
+
+                                                        $select = 'selected="selected"';
+                                                    }
+
+
+                                                ?>
+                                                <option value="<?php echo $subdomi['id_subdomisili'] ?>" <?php echo $select ?>> <?php echo $subdomi['kode_wilayah'].' - '. $subdomi['kelurahan'].' '.$subdomi['kecamatan'] ?></option>
+                                                <?php } ?>
     
                                                 </select>
                                             </div>
                                 
+
+                                    <hr>
                                     <table class="table" id="table-penugasan">
                                         <thead>
                                         <tr>
@@ -72,34 +74,86 @@
 					                            <th data-field="name">Nama</th>
 					                            <th data-field="date">Alamat</th>
 					                        </tr>
+                                        </thead>
                                         <tbody>
 
-                                        <?php $no = 1; foreach ( $data_pelanggan AS $kolom ) { ?>
-                                        <tr>
-                                        <td>        
-                                            <input type="checkbox" id="demo-checkbox-1" name="pelanggan" value="<?php echo $kolom['id_pelanggan']?>" alt="Checkbox" class="magic-checkbox" >
-                                            <label for="demo-checkbox-1"> </label>
-                
-                                        </td>
+                                        <?php $no = 1; 
+                                        
+                                        $filter_subdomisili = $this->input->get('sub-domisili');
+                                        
+                                        $data = [];
+
+                                        // apakah kita melakukan filter
+                                        if ( $filter_subdomisili == true ) {
+
+
+                                            foreach ( $data_pelanggan AS $kolom ) {
+
+                                                if ( $filter_subdomisili == $kolom['id_subdomisili'] ) {
+
+                                                    array_push( $data, $kolom );
+                                                }
+                                            }
+
+                                        } else {
+
+
+                                            $data = $data_pelanggan;
+                                        }
+
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        foreach ( $data AS $kolom ) {
+                                            
+                                            
+                                            $style = "";
+                                            $name = "pelanggan[]";
+                                            $checkbox = "";
+                                            foreach ( $info_penugasan->result_array() AS $penugasan ) {
+
+                                                if ( $kolom['id_pelanggan'] == $penugasan['id_pelanggan'] ) {
+
+                                                    $style = 'text-decoration: line-through';
+                                                    $name = "none";
+                                                    $checkbox = "checked disabled";
+                                                }
+
+                                                
+
+                                            }
+                                        ?>
+                                            <tr>
+                                                <td>        
+                                                    <input type="checkbox" id="demo-checkbox-<?php echo $kolom['id_pelanggan'] ?>" name="<?php echo $name ?>" value="<?php echo $kolom['id_pelanggan']?>" alt="Checkbox" class="magic-checkbox" <?php echo $checkbox ?> >
+                                                    <label for="demo-checkbox-<?php echo $kolom['id_pelanggan'] ?>"> </label>
+                        
+                                                </td>
                                                 <td><?php echo $no++ ?></td>
-                                                <td> <label for=""><?php echo $kolom['nama'] ?></label></td>
-                                                <td> <label for=""><?php echo $kolom['no_ref'] ?></label></td>
-                                                <td><label for=""><?php echo $kolom['alamat'] ?></label></td>
+                                                <td> <label for="" style="<?php echo $style ?>"><?php echo $kolom['nama'] ?></label></td>
+                                                <td> <label for="" style="<?php echo $style ?>"><?php echo $kolom['no_ref'] ?></label> <label for="" style="<?php echo $style ?>"><?php echo $kolom['alamat'] ?></label></td>
                                         
                                                 </tr>
-                                                <?php } ?>
-                                            </tbody>
+                                            <?php } ?>
+                                        </tbody>
 
-                                        </thead>
+                                        
                                     </table>
                                 </div>
-                                <!-- </form> -->
+                                
                             </div>
                                     
 
                                       <div class="col-md-12 text-right">
                                       <button class="btn btn-sm btn-success btn-labeled"><i class="btn-label ti-check"></i>Submit</button>
 					                </div>
+
+
+                                    </form>
 
 					        </div>
                                    
@@ -129,7 +183,12 @@
             
             <script>                   
             $('#off').chosen({width:'100%'});
+            
 
+            function cariPelanggan( value ) {
+
+                window.location.href = "<?php echo base_url('penugasan/tambahPenugasan?sub-domisili=') ?>" + value;
+            }
 
 
             </script>

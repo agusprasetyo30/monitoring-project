@@ -29,6 +29,7 @@
             $this->load->model('M_domisili');
             $this->load->model('M_data_piutang');
             $this->load->model('M_penagihan');
+            $this->load->model('M_penugasan');
 
 
             
@@ -38,6 +39,9 @@
             
             $getDataDomisili = $this->M_domisili->getDataTable(null, 'master_domisili');
             $getDataAllPiutang = $this->M_data_piutang->getAllDataPiutang();
+
+
+            $getDataPenugasan = $this->M_penugasan->getPenugasanByIdOfficer();
 
 
             $rekapAllPiutang = array();
@@ -51,62 +55,71 @@
 
                     foreach ( $getDataAllPiutang AS $rowPiutang ) {
 
-
-                        // menggunakan filter wilayah
-                        if ($filter_wilayah) {
-
-                            $dataWilayah = $rowPiutang['informasi_detail']['wilayah'].'-'.$rowPiutang['informasi_detail']['kota'];
-                            // [informasi_detail][wilayah] = kota | [informasi_detail][kota] = probolinggo 
-                            // $dataWilayah = kota-Probolinggo
-
-                            // filter wilayah
-                            if ( $filter_wilayah == $dataWilayah ) {
+                        if ( $getDataPenugasan->num_rows() > 0 ) {
 
 
-                                if ( !empty($filter_bulan) && ($rowPiutang['informasi_detail']['total_bulan'] >= 3) ){
+                            foreach ( $getDataPenugasan->result_array() AS $penugasan ) {
+
+                                // hanya menampilkan penagihan berdasarkan penugasan yang telah ditentukan
+                                if ( $penugasan['no_ref'] == $rowPiutang['informasi_detail']['no_ref'] ) {
+                                    // menggunakan filter wilayah
+                                    if ($filter_wilayah) {
+
+                                        $dataWilayah = $rowPiutang['informasi_detail']['wilayah'].'-'.$rowPiutang['informasi_detail']['kota'];
+                                        // [informasi_detail][wilayah] = kota | [informasi_detail][kota] = probolinggo 
+                                        // $dataWilayah = kota-Probolinggo
+
+                                        // filter wilayah
+                                        if ( $filter_wilayah == $dataWilayah ) {
 
 
-                                    // push 
-                                    array_push( $rekapAllPiutang, $rowPiutang );
+                                            if ( !empty($filter_bulan) && ($rowPiutang['informasi_detail']['total_bulan'] >= 3) ){
+
+
+                                                // push 
+                                                array_push( $rekapAllPiutang, $rowPiutang );
 
 
 
-                                // filter bulan kosong
-                                } else if ( empty($filter_bulan) ) {
+                                            // filter bulan kosong
+                                            } else if ( empty($filter_bulan) ) {
 
-                                    // push 
-                                    array_push( $rekapAllPiutang, $rowPiutang );
+                                                // push 
+                                                array_push( $rekapAllPiutang, $rowPiutang );
+                                            }
+                                        }
+
+
+                                    // menampilkan seluruh wilayah
+                                    } else if ( empty( $filter_wilayah ) ) {
+
+
+                                        if ( !empty($filter_bulan) && ($rowPiutang['informasi_detail']['total_bulan'] >= 3) ){
+
+
+                                            // push 
+                                            array_push( $rekapAllPiutang, $rowPiutang );
+
+
+                                        // filter bulan kosong
+                                        } else if ( empty($filter_bulan) ) {
+
+                                            // push 
+                                            array_push( $rekapAllPiutang, $rowPiutang );
+                                        }
+                                    }
                                 }
-                            }
 
-
-                        // menampilkan seluruh wilayah
-                        } else if ( empty( $filter_wilayah ) ) {
-
-
-                            if ( !empty($filter_bulan) && ($rowPiutang['informasi_detail']['total_bulan'] >= 3) ){
-
-
-                                // push 
-                                array_push( $rekapAllPiutang, $rowPiutang );
-
-
-                            // filter bulan kosong
-                            } else if ( empty($filter_bulan) ) {
-
-                                // push 
-                                array_push( $rekapAllPiutang, $rowPiutang );
-                            }
+                            } // end cek penugasan
                         }
+
+
+                        
                     }
             } else {
 
                 $rekapAllPiutang = $getDataAllPiutang;
             }
-
-
-
-
 
 
 

@@ -14,6 +14,7 @@
             $this->load->model('M_penugasan');
             $this->load->model('M_account');
             $this->load->model('M_data_pelanggan');
+            $this->load->model('M_domisili');
         }
 
         public function index(){
@@ -45,6 +46,8 @@
                 'view'      => "V_add_penugasan",
 
                 'penugasan' => $dataPenugasan,
+                'info_penugasan'    => $this->M_penugasan->getDataPenugasan(),
+                'sub_domisili'=> $this->M_domisili->getDataTable(null, 'master_subdomisili')
             );
             
             $data['user_officer'] = $this->M_account->getDataOfficerByJabatan(null, 'user_officer')->result_array();
@@ -59,9 +62,9 @@
         }
 
         
-        function suntingPenugasan($id_penugasan){
+        function suntingPenugasan($id_officer){
 
-            $dataPenugasan = $this->M_penugasan->getDataTable(null, 'penugasan');
+            $dataPenugasan = $this->M_penugasan->getDataTable(null);
           
             $data = array(
 
@@ -69,9 +72,11 @@
                 'view'      => "V_edit_penugasan",
 
                 'penugasan' => $dataPenugasan,
+                'info_penugasan'    => $this->M_penugasan->getDataPenugasan(),
+                'sub_domisili'=> $this->M_domisili->getDataTable(null, 'master_subdomisili')
             );
             
-            $data['hasil'] = $this->M_penugasan->getDataTable( $id_penugasan, 'penugasan' )->result_array()[0];
+            $data['hasil'] = $this->M_penugasan->getDataTable( $id_officer, 'penugasan' )->result_array();
             $data['user_officer'] = $this->M_account->getDataOfficerByJabatan(null, 'user_officer')->result_array();
             $data['data_pelanggan'] = $this->M_data_pelanggan->getDataTable(null, 'data_pelanggan')->result_array();
             $this->load->view('template/template_backend', $data);

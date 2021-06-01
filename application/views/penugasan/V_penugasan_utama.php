@@ -46,7 +46,7 @@
                                             <td>
                                                 <small>Klik tombol dibawah ini</small> <br>
                                                 <div class="btn-group mar-rgt">
-                                                <a href="<?php echo base_url('penugasan/suntingPenugasan/').$kolom['id_penugasan'] ?>"class="btn btn-sm btn-warning btn-labeled"><i class="demo-psi-pencil icon-lg"></i></a>
+                                                <a href="<?php echo base_url('penugasan/suntingPenugasan/').$kolom['id_officer'] ?>"class="btn btn-sm btn-warning btn-labeled"><i class="demo-psi-pencil icon-lg"></i></a>
                                                   
 
                                                     <a href="<?php echo base_url('penugasan/prosesHapusPenugasan/'. $kolom['id_penugasan']) ?>"
