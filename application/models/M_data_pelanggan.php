@@ -17,14 +17,14 @@
                     FROM data_pelanggan
                     JOIN master_domisili ON data_pelanggan.id_domisili = master_domisili.id_domisili
                     JOIN master_subdomisili ON data_pelanggan.id_subdomisili = master_subdomisili.id_subdomisili
-                    WHERE data_pelanggan.id_pelanggan = '$id_pelanggan' limit 15";
+                    WHERE data_pelanggan.id_pelanggan = '$id_pelanggan'";
             } else { 
                 $sql = "SELECT 
                     data_pelanggan.pencabutan, data_pelanggan.id_pelanggan, data_pelanggan.no_ref, data_pelanggan.nama, data_pelanggan.alamat,
                     master_domisili.id_domisili, master_subdomisili.id_subdomisili, master_domisili.kota, master_domisili.wilayah, master_subdomisili.kelurahan, master_subdomisili.kecamatan
                     FROM data_pelanggan
                     JOIN master_domisili ON data_pelanggan.id_domisili = master_domisili.id_domisili
-                    JOIN master_subdomisili ON data_pelanggan.id_subdomisili = master_subdomisili.id_subdomisili limit 15";
+                    JOIN master_subdomisili ON data_pelanggan.id_subdomisili = master_subdomisili.id_subdomisili";
             }
             
             $query = $this->db->query($sql);
