@@ -71,9 +71,6 @@
                 $tanggal_pencabutan = date('Y-m-d H:i:s');
             }
 
-
-
-
             $data = array(
 
                 'no_ref' => $this->input->post('no_ref') ,

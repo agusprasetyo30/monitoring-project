@@ -135,7 +135,7 @@
 					                <hr class="new-section-xs bord-no">
 					                <ul class="list-inline text-center">
 										<li><span class="label label-info"><?php echo $totalPiutangPencabutan[1] ?></span> Piutang</li>
-					                    <li><span class="label label-warning"><?php echo $totalPiutangPencabutan[0] ?></span> Pencabutan</li>
+					                    <li><span class="label label-warning"><?php echo $totalPiutangPencabutan[0] ?></span> Penagihan</li>
 					                </ul>
 					            </div>
 					        </div>
@@ -157,59 +157,5 @@
 	<script src="<?php echo base_url() ?>assets/plugins/morris-js/morris.min.js"></script>
 	<script src="<?php echo base_url() ?>assets/plugins/morris-js/raphael-js/raphael.min.js"></script>
 
-
-    <script>
-	
-	$(document).on('nifty.ready', function() {
-
-			// FLOT CHART
-			// =================================================================
-			// Require Flot Charts
-			// -----------------------------------------------------------------
-			// http://www.flotcharts.org/
-			// =================================================================
-		
-		var dataXY = new Array();
-
-
-
-		// $.ajax({
-
-		// 	url : 
-		// });
-		$.get("<?php echo base_url('dashboard/grafik') ?>", function( hasil ) {
-
-			// hasil.forEach( function( item ) {
-
-			// 	dataXY.push({
-			// 		x : item.x,
-			// 		a : item.y1,
-			// 		b : item.y2
-			// 	})
-			// } );
-
-
-			Morris.Bar({
-				element: 'demo-morris-bar',
-				data: hasil,
-				xkey: 'x',
-				ykeys: ['a', 'b'],
-				labels: ['Piutang', 'Pencabutan'],
-				gridEnabled: true,
-				gridLineColor: 'rgba(0,0,0,.1)',
-				gridTextColor: '#8f9ea6',
-				gridTextSize: '11px',
-				barColors: ['#03a9f4', '#ffb300'],
-				resize:true,
-				hideHover: 'auto'
-			});
-		}, "json");
-
-
-		console.log( dataXY );
-
-
-		
-    });
-	
-	</script>
+	<!-- Digunakan untuk menampung isi dari base_url() yang mana aka dimasukan ke dalam file JS -->
+	<input type="hidden" id="base_url" value="<?php echo base_url('dashboard/grafik')?>">

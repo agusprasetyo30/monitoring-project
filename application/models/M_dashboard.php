@@ -173,16 +173,7 @@
                 }
                 
 
-
-
-
-
-
-
-
-
                 array_push( $dataChart, array(
-
                     'x' => $bulan,          // nama bulan
                     'a'=> intval($totalPiutang),   // piutang
                     'b'=> intval($totalPencabutan) // pencabutan
@@ -198,12 +189,6 @@
             return $dataChart;
             
         }
-
-
-
-        
-
-
 
 
 
@@ -261,7 +246,31 @@
             return $query;
 
         }
+
+        /*************** NEW ***************/
+        /**
+         * Undocumented function
+         *
+         * @return void
+         */
+        function grafikPiutangPenagihan($year)
+        {
+            $this->piutang($year);
+
+        }
+
+        
+        private function piutang($year) {
+            echo "kwokwokwokw";
+        }
+
+        
+        private function penagihan($year) {
+            echo "kwokwokwokw";
+        }
     }
+    
+
     
     /* End of file M_dashboard.php */
     

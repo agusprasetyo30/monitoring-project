@@ -111,6 +111,22 @@
             echo json_encode( $data );
         }
     
+        /****** Added by Agus *******/
+        
+        /**
+         * Undocumented function
+         *
+         * @return void
+         */
+        function test()
+        {
+            // Variabel tahunnya adalah tahun sekarang
+            $year = date('Y');
+
+            $data = $this->M_dashboard->grafikPiutangPenagihan($year);
+
+            echo $data;
+        }
     }
     
     /* End of file Dashboard.php */
