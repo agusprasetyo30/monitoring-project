@@ -125,7 +125,7 @@
 
             $data = $this->M_dashboard->grafikPiutangPenagihan($year);
 
-            echo $data;
+            print_r($data);
         }
     }
     

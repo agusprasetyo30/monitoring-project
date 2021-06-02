@@ -255,18 +255,62 @@
          */
         function grafikPiutangPenagihan($year)
         {
-            $this->piutang($year);
+            $data = [];
+            $indexBulan = 0;
+            $piutang = 0;
+            $penagihan = 0;
+            $month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            // for ($i=0; $i < 12 ; $i++) { 
+                // if (empty($this->piutang($year)[$indexBulan]) && empty($this->penagihan($year)[$indexBulan + 1])) {
+                    
+                // }
+
+                // if (!empty($this->piutang($year)[$indexBulan])) {
+                //     if ($this->piutang($year)[$indexBulan]['bulan'] == $month[$i]) {
+                        
+                //         $indexBulan++;
+                    
+                //     } else {
+                //         array_push($data, array(
+                //             'x' => $month[$i],  // nama bulan
+                //             'a'=> 0,            // piutang
+                //             'b'=> 0             // pencabutan
+                //         ));
+                //     }
+                
+                    
+                // }
+            // }
+            return $this->penagihan($year);
 
         }
 
-        
+        /**
+         * Undocumented function
+         *
+         * @param [type] $month
+         * @param [type] $year
+         * @return void
+         */
         private function piutang($year) {
-            echo "kwokwokwokw";
+            $q = "SELECT bulan, tahun, sum(nominal) as total FROM piutang WHERE tahun = $year GROUP BY bulan";
+            $query = $this->db->query($q)->result_array();
+
+            return $query;
         }
 
-        
+        /**
+         * Undocumented function
+         *
+         * @param [type] $year
+         * @return void
+         */
         private function penagihan($year) {
-            echo "kwokwokwokw";
+            $q = "SELECT MONTH(tanggal_penagihan) as bulan, YEAR(tanggal_penagihan) as tahun, sum(pembayaran) as pembayaran FROM penagihan WHERE YEAR(tanggal_penagihan) = $year GROUP BY bulan ORDER BY bulan";
+            $query = $this->db->query($q)->result_array();
+
+            return $query;
         }
     }
     
